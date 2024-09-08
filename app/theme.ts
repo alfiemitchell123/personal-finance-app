@@ -2,6 +2,11 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
+    breakpoints: {
+        sm: "0em",
+        md: "48em",
+        lg: "62em",
+    },
     colors: {
         beige: {
             100: "#F8F4F0",
@@ -101,6 +106,58 @@ const theme = extendTheme({
         150: "12px",
         100: "8px",
         50: "4px",
+    },
+    components: {
+        Button: {
+            baseStyle: {
+                borderRadius: "8px",
+            },
+            variants: {
+                primary: {
+                    bg: "grey.900",
+                    color: "white",
+                    _hover: {
+                        bg: "grey.500",
+                    },
+                },
+                secondary: {
+                    bg: "beige.100",
+                    color: "grey.900",
+                    _hover: {
+                        bg: "white",
+                        border: "1px solid",
+                        borderColor: "beige.500",
+                        boxSizing: "border-box",
+                    },
+                },
+                tertiary: {
+                    bg: "white",
+                    color: "grey.500",
+                    svg: {
+                        color: "grey.500",
+                        width: "0.75em",
+                        height: "0.75em",
+                    },
+                    _hover: {
+                        color: "grey.900",
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        svg: {
+                            color: "grey.900",
+                        },
+                    },
+                    iconSpacing: '0.5rem',
+                },
+                destroy: {
+                    bg: "secondary.red",
+                    color: "white",
+                    _hover: {
+                        opacity: "0.75"
+                    },
+                },
+            },
+        },
     },
 });
 

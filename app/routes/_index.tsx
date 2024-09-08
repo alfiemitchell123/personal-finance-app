@@ -9,8 +9,9 @@ export default function Home() {
   console.log(userLoggedIn);
 
   return (
-    <Box fontFamily="sans-serif" p={4}>
-      {userLoggedIn
+    <Box fontFamily="sans-serif" p={0}>
+
+      {/* {userLoggedIn
         ?
         <>
           <Heading>Welcome, {currentUser?.displayName || currentUser?.email}!</Heading>
@@ -23,7 +24,7 @@ export default function Home() {
             <Link to={'/register'}>Register</Link>
           </Box>
         </>
-      }
+      } */}
     </Box>
   );
 }

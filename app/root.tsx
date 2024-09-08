@@ -5,6 +5,8 @@ import { json, MetaFunction, Outlet, Links, LiveReload, Meta, Scripts, ScrollRes
 import theme from "./theme";
 import { LoaderFunction } from "@remix-run/node";
 import { AuthProvider } from "~/contexts/authContext";
+import { Box } from "@chakra-ui/react";
+import Sidebar from "~/components/layout/sidebar/sidebar";
 
 // Meta configuration using Remix's MetaFunction
 export const meta: MetaFunction = () => {
@@ -37,6 +39,9 @@ export function Layout() {
           <ChakraProvider theme={theme}>
             <Outlet />
             <ScrollRestoration />
+            <Box>
+              <Sidebar />
+            </Box>
             <Scripts />
           </ChakraProvider>
         </AuthProvider>

@@ -83,7 +83,7 @@ const Login = () => {
                         </FormControl>
                         <Button
                             type="submit"
-                            colorScheme="teal"
+                            variant="primary"
                             isLoading={isSigningIn}
                         >
                             Sign In
