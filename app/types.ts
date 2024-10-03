@@ -10,3 +10,9 @@ export interface LoaderData {
         VITE_FIREBASE_APP_ID: string;
     };
 }
+
+export interface UserData {
+    currentBalance: number;
+    income: number;
+    expenses: number;
+}

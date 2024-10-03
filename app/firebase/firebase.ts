@@ -1,6 +1,7 @@
 // firebase/firebase.ts
 
 import { initializeApp, getApps, getApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -14,6 +15,7 @@ const firebaseConfig = {
 
 // Check if a Firebase app has already been initialized
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const db = getFirestore(app);
 const auth = getAuth(app);
 
-export { app, auth };
+export { app, db, auth };

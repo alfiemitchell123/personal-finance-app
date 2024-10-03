@@ -21,12 +21,14 @@ export function useAuth() {
 export function AuthProvider({ children }: AuthContextProps) {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [userLoggedIn, setUserLoggedIn] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             try {
                 if (user) {
+                    console.log("User authenticated:", user);
+                    console.log("User UID:", user.uid);
                     setCurrentUser(user);
                     setUserLoggedIn(true);
                 } else {
@@ -50,7 +52,7 @@ export function AuthProvider({ children }: AuthContextProps) {
 
     return (
         <AuthContext.Provider value={value}>
-            {loading ? <p>Loading...</p> : children}
+            {children}
         </AuthContext.Provider>
     );
 }

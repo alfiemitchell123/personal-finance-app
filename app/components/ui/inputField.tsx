@@ -1,0 +1,140 @@
+import React, { useState, SVGProps } from "react";
+import { Flex, Input, InputGroup, InputLeftAddon, InputRightAddon, InputLeftElement, InputRightElement, Text, FormControl, FormLabel, FormHelperText } from "@chakra-ui/react";
+import { IconType } from "react-icons";
+import { IconWeight } from "phosphor-react";
+import theme from "~/theme";
+import { s } from "node_modules/vite/dist/node/types.d-aGj9QkWt";
+
+interface InputFieldProps {
+    label?: string;
+    helperText?: string;
+    icon?: React.ComponentType<SVGProps<SVGSVGElement> & { weight?: IconWeight }>;
+    size?: number;
+    prefix?: string;
+    colorTag?: string;
+    id: string;
+    type: string;
+    placeholder?: string;
+    isRequired: boolean;
+    autoComplete?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onIconClick?: () => void;
+}
+
+const InputField: React.FC<InputFieldProps> = ({
+    label,
+    helperText,
+    icon: Icon,
+    size = 16,
+    prefix,
+    colorTag,
+    id,
+    type,
+    placeholder,
+    isRequired,
+    autoComplete,
+    onChange,
+    onIconClick,
+    ...props
+}) => {
+    const [inputValue, setInputValue] = useState("");
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+        setInputValue(value); // Update local state
+        if (onChange) {
+            onChange(event); // Call the provided onChange function with the event
+        }
+    };
+
+    return (
+        <FormControl
+            display="flex"
+            flexDirection="column"
+            alignItems="flex-start"
+            // gap={theme.spacing[50]}
+            id={id}
+            isRequired={isRequired}
+        >
+            {label &&
+                <FormLabel
+                    fontSize={theme.textStyles.preset5bold.fontSize}
+                    fontWeight={theme.textStyles.preset5bold.fontWeight}
+                    color="grey.500"
+                    htmlFor={id}
+                >
+                    {label}
+                </FormLabel>}
+            <InputGroup>
+                {colorTag &&
+                    <InputLeftElement ml="4px" mr={prefix ? theme.spacing[150] : 0} pointerEvents="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 16 17" fill="none">
+                            <circle cx="8" cy="8.5" r="8" fill={colorTag} />
+                        </svg>
+                    </InputLeftElement>
+                }
+                {prefix &&
+                    <InputLeftElement pl="48px" pointerEvents="none">
+                        <Text textStyle="preset4" color="beige.500">{prefix}</Text>
+                    </InputLeftElement>
+                }
+                <Input
+                    sx={{
+                        display: "flex",
+                        padding: `${theme.spacing[150]} ${theme.spacing[250]}`,
+                        alignItems: "center",
+                        gap: `${theme.spacing[200]}`,
+                        borderRadius: `${theme.spacing[100]}`,
+                        border: "1px solid #98908B",
+                        bg: "white",
+                        flex: "1 0 0",
+                        outline: "none",
+                        fontSize: "0.875rem",
+                        pl:
+                            prefix && colorTag
+                                ? "4rem" // Both prefix and colorTag are present
+                                : prefix
+                                    ? theme.spacing[450] // Only prefix
+                                    : colorTag
+                                        ? theme.spacing[450] // Only colorTag
+                                        : theme.spacing[150], // None are present
+                    }}
+                    _placeholder={{
+                        color: "beige.500",
+                        textStyle: "preset4",
+                    }}
+                    _hover={{
+                        borderColor: "grey.500",
+                        _placeholder: {
+                            color: "grey.900",
+                            transition: "color 0.2s ease",
+                        },
+                        outline: "none",
+                    }}
+                    _focus={{
+                        borderColor: "grey.900",
+                        _placeholder: {
+                            color: "grey.900",
+                        },
+                        outline: "none",
+                        boxShadow: "none",
+                    }}
+                    placeholder={placeholder}
+                    value={inputValue}
+                    onChange={handleChange}
+                    type={type}
+                    {...props}
+                    autoComplete={autoComplete}
+                />
+                {Icon &&
+                    <InputRightElement>
+                        <Icon onClick={onIconClick} width="1rem" height="1rem" weight="fill" />
+                    </InputRightElement>
+                }
+            </InputGroup>
+            {helperText && <FormHelperText width="100%" textStyle="preset5" color="grey.500" textAlign="right">{helperText}</FormHelperText>}
+        </FormControl>
+    )
+}
+
+export default InputField;

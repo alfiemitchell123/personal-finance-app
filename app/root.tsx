@@ -1,12 +1,13 @@
 // app/root.tsx
 
+import { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { json, MetaFunction, Outlet, Links, LiveReload, Meta, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
 import theme from "./theme";
-import { LoaderFunction } from "@remix-run/node";
 import { AuthProvider } from "~/contexts/authContext";
-import { Box } from "@chakra-ui/react";
-import Sidebar from "~/components/layout/sidebar/sidebar";
+import AppLayout from "./components/layout/app/appLayout";
+import useUserData from "./hooks/useUserData";
+import { useNavigate } from "@remix-run/react";
 
 // Meta configuration using Remix's MetaFunction
 export const meta: MetaFunction = () => {
@@ -28,6 +29,16 @@ export function links() {
 
 // Layout component that provides the main HTML structure
 export function Layout() {
+  const { userData } = useUserData();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // If the user data isn't available and we're not loading, redirect to login
+    if (!userData) {
+      navigate("/login");
+    }
+  }, [userData, navigate]);
+
   return (
     <html lang="en">
       <head>
@@ -37,11 +48,10 @@ export function Layout() {
       <body>
         <AuthProvider>
           <ChakraProvider theme={theme}>
-            <Outlet />
+            <AppLayout>
+              <Outlet />
+            </AppLayout>
             <ScrollRestoration />
-            <Box>
-              <Sidebar />
-            </Box>
             <Scripts />
           </ChakraProvider>
         </AuthProvider>
@@ -52,5 +62,7 @@ export function Layout() {
 
 // Main app entry point, can be used for route-specific content
 export default function App() {
-  return <Outlet />;
+  return (
+    <Outlet />
+  );
 }

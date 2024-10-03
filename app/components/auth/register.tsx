@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Navigate } from '@remix-run/react';
 import { useAuth } from '~/contexts/authContext';
 import { doCreateUserWithEmailAndPassword } from '~/firebase/auth';
+import { setDoc, doc } from 'firebase/firestore';
+import { db } from '~/firebase/firebase';
 import {
     Box,
     Button,
@@ -34,7 +36,17 @@ const Register = () => {
 
         setIsRegistering(true);
         try {
-            await doCreateUserWithEmailAndPassword(email, password);
+            const userCredential = await doCreateUserWithEmailAndPassword(email, password);
+            const user = userCredential.user;
+
+            // Create a user document in Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                income: 0,
+                expenses: 0,
+                currentBalance: 0,
+                displayName: "User",
+            })
+
             console.log("Registration sucessful.");
             toast({
                 title: "Registration Successful",

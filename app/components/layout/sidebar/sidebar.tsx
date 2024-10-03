@@ -1,7 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, Flex, useTheme } from "@chakra-ui/react";
 import SidebarMenuItem from './sidebarMenuItem';
 import { House, ArrowsDownUp, ChartDonut, Jar, Receipt, ArrowFatLineLeft, ArrowFatLineRight } from "@phosphor-icons/react";
+
+interface SidebarProps {
+    isMinimized: boolean;
+    toggleSidebar: () => void;
+}
 
 const menuItems = [
     { label: "Overview", icon: <House weight="fill" size={24} />, to: "/" },
@@ -11,13 +16,8 @@ const menuItems = [
     { label: "Recurring Bills", icon: <Receipt weight="fill" size={24} />, to: "/bills" }
 ];
 
-const Sidebar = () => {
+const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
     const theme = useTheme();
-    const [isMinimized, setIsMinimized] = useState(false);
-
-    const toggleSidebar = () => {
-        setIsMinimized(!isMinimized);
-    }
 
     return (
         <Box
@@ -32,7 +32,7 @@ const Sidebar = () => {
                 md: "4.625rem",
                 lg: "100vh"
             }}
-            position={{ base: 'fixed', sm: 'fixed', md: 'fixed', lg: 'relative' }}
+            position="fixed"
             bottom={{ base: 0, sm: 0, md: 0, lg: 'auto' }}
             left={{ base: 0, sm: 0, md: 0, lg: 'auto' }}
             pb={{

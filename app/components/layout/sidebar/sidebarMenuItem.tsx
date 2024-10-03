@@ -87,7 +87,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
                     fontWeight={700}
                 >{label}</Text>
             }
-        </Link >
+        </Link>
     )
 }
 
