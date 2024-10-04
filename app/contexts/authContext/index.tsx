@@ -25,18 +25,14 @@ export function AuthProvider({ children }: AuthContextProps) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            try {
-                if (user) {
-                    console.log("User authenticated:", user);
-                    console.log("User UID:", user.uid);
-                    setCurrentUser(user);
-                    setUserLoggedIn(true);
-                } else {
-                    setCurrentUser(null);
-                    setUserLoggedIn(false);
-                }
-            } catch (error) {
-                console.error("Failed to initialize user", error);
+            if (user) {
+                // User is authenticated
+                setCurrentUser(user);
+                setUserLoggedIn(true);
+            } else {
+                // User is signed out
+                setCurrentUser(null);
+                setUserLoggedIn(false);
             }
             setLoading(false);
         });

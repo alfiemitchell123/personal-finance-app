@@ -16,3 +16,12 @@ export interface UserData {
     income: number;
     expenses: number;
 }
+
+export interface Transaction {
+    id: string;
+    transactionAmt: number;
+    transactionDate: { toDate: () => Date };
+    transactionName: string;
+    transactionCategory: string;
+    transactionImg?: string;
+}

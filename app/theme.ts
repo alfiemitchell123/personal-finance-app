@@ -119,6 +119,13 @@ const theme = extendTheme({
                     _hover: {
                         bg: "grey.500",
                     },
+                    _loading: {
+                        bg: "grey.900",
+                        color: "white",
+                        _hover: {
+                            bg: "grey.900",
+                        },
+                    },
                 },
                 secondary: {
                     bg: "beige.100",

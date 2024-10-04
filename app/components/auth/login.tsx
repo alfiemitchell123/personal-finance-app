@@ -18,13 +18,10 @@ import {
     VStack,
     useToast,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import { Eye, EyeSlash } from "@phosphor-icons/react";
 import InputField from '../ui/inputField';
 import ClientOnly from '../ClientOnly';
 import theme from '~/theme';
-
-const MotionDiv = motion.div;
 
 const Login = () => {
     const { userLoggedIn } = useAuth() || { userLoggedIn: false };
@@ -51,13 +48,13 @@ const Login = () => {
             // Handle login
             try {
                 await doSignInWithEmailAndPassword(email, password);
-                toast({
-                    title: "Sign In Successful",
-                    description: "You have successfully signed in.",
-                    status: "success",
-                    duration: 5000,
-                    isClosable: true,
-                });
+                // toast({
+                //     title: "Sign In Successful",
+                //     description: "You have successfully signed in.",
+                //     status: "success",
+                //     duration: 5000,
+                //     isClosable: true,
+                // });
             } catch (error) {
                 toast({
                     title: "Sign In Error",

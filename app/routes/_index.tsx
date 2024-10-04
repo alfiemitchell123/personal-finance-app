@@ -1,6 +1,4 @@
 import { Box, Center, Flex, Grid, GridItem, Spinner, Button, Heading, UnorderedList, ListItem, Text, SimpleGrid, useTheme } from "@chakra-ui/react";
-import { Link } from "@remix-run/react";
-import { useAuth } from "~/contexts/authContext";
 import useUserData from "~/hooks/useUserData";
 import { doSignOut } from "~/firebase/auth";
 import { useNavigate } from "@remix-run/react";
@@ -65,13 +63,15 @@ export default function Home() {
         </Text>
         <Button
           onClick={() => doSignOut().then(() => navigate("/login"))}
+          isLoading={loading}
           textStyle="preset3"
           color="white"
           bg="grey.900"
           _hover={{
             bg: "grey.500"
           }}
-        >Logout</Button>
+        >
+          Logout</Button>
       </Flex>
 
       <Flex

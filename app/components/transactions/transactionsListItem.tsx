@@ -1,23 +1,39 @@
+import React from "react";
 import { Flex, Text } from "@chakra-ui/react";
-import ProfileImg from "../profile/profileImg";
-import useUserData from "~/hooks/useUserData";
+import TransactionImg from "./transactionImg";
 import theme from "~/theme";
+import { Transaction } from "~/types";
 
-const TransactionsListItem = () => {
-    const { userData } = useUserData();
+interface TransactionsListItemProps {
+    transaction: Transaction;
+}
+
+const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction }) => {
+    const formatTransactionAmount = (amount: number) => {
+        const sign = amount >= 0 ? "+" : "-";
+        return `${sign}$${Math.abs(amount).toFixed(2)}`;
+    }
+
+    const formatDate = (date: any) => {
+        const dateObj = date.toDate ? date.toDate() : date;
+        const options = { day: "numeric", month: "short", year: "numeric" } as const;
+        return new Date(dateObj).toLocaleDateString('en-UK', options);
+    }
 
     return (
         <Flex
             justify="space-between"
             align="center"
+            width="100%"
+            key={transaction.id}
         >
             <Flex
                 align="center"
                 gap={theme.spacing[200]}
                 flex="1 0 0"
             >
-                <ProfileImg />
-                <Text textStyle="preset4bold">{userData?.displayName}</Text>
+                <TransactionImg transaction={transaction} />
+                <Text textStyle="preset4bold">{transaction.transactionName}</Text>
             </Flex>
 
             <Flex
@@ -28,15 +44,15 @@ const TransactionsListItem = () => {
             >
                 <Text
                     textStyle="preset4bold"
-                    color="secondary.green"
+                    color={transaction.transactionAmt >= 0 ? "secondary.green" : "black"}
                     textAlign="right">
-                    $75.50
+                    {formatTransactionAmount(transaction.transactionAmt)}
                 </Text>
                 <Text
                     textStyle="preset5"
                     color="grey.500"
                 >
-                    19 Aug 2024
+                    {formatDate(transaction.transactionDate)}
                 </Text>
             </Flex>
         </Flex>

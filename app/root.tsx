@@ -29,18 +29,18 @@ export function links() {
 
 // Layout component that provides the main HTML structure
 export function Layout() {
-  const { userData } = useUserData();
+  const { userData, loading } = useUserData();
   const navigate = useNavigate();
 
   useEffect(() => {
     // If the user data isn't available and we're not loading, redirect to login
-    if (!userData) {
+    if (!userData && !loading) {
       navigate("/login");
     }
   }, [userData, navigate]);
 
   return (
-    <html lang="en">
+    <html style={{ backgroundColor: "#F8F4F0" }} lang="en">
       <head>
         <Meta />
         <Links />

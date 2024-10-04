@@ -19,11 +19,11 @@ const TransactionsSummary = () => {
 
             <Flex
                 direction="column"
-                align="flex-start"
+                align="space-between"
                 gap={theme.spacing[250]}
                 alignSelf="stretch"
             >
-                <TransactionsList />
+                <TransactionsList limit={5} />
             </Flex>
         </Flex>
     )
