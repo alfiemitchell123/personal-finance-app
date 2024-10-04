@@ -21,7 +21,7 @@ const SummaryTitle: React.FC<SummaryTitleProps> = ({ title, link }) => {
             >
                 {title}
             </Text>
-            <Link to={link} as={RouterLink} _hover={{ textDecoration: "none" }}>
+            <Link to={link} as={RouterLink} state={{ fromLink: true }} _hover={{ textDecoration: "none" }}>
                 <Button p={0} variant="tertiary" rightIcon={<CaretRight weight="fill" />}>
                     <Text
                         textStyle="preset4"

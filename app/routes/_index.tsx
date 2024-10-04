@@ -1,5 +1,7 @@
-import { Box, Center, Flex, Grid, GridItem, Spinner, Button, Heading, UnorderedList, ListItem, Text, SimpleGrid, useTheme } from "@chakra-ui/react";
+import { Center, Flex, Grid, GridItem, Spinner, Button, Text } from "@chakra-ui/react";
 import useUserData from "~/hooks/useUserData";
+import MainContent from "~/components/layout/app/mainContent";
+import PageHeader from "~/components/layout/app/pageHeader";
 import { doSignOut } from "~/firebase/auth";
 import { useNavigate } from "@remix-run/react";
 import SummaryCard from "~/components/dashboard/summaryCard";
@@ -39,40 +41,10 @@ export default function Home() {
   ];
 
   return (
-    <Flex
-      fontFamily="sans-serif"
-      width="100%"
-      p={{
-        sm: `${theme.spacing[300]} ${theme.spacing[200]}`,
-        lg: `${theme.spacing[400]} ${theme.spacing[500]}`,
-      }}
-      direction="column"
-      align="flex-start"
-      gap={theme.spacing[400]}
-    >
-      <Flex
-        width="100%"
-        justify="space-between"
-        align="center"
-      >
-        <Text
-          textStyle={"preset1"}
-          color="grey.900"
-        >
-          Overview
-        </Text>
-        <Button
-          onClick={() => doSignOut().then(() => navigate("/login"))}
-          isLoading={loading}
-          textStyle="preset3"
-          color="white"
-          bg="grey.900"
-          _hover={{
-            bg: "grey.500"
-          }}
-        >
-          Logout</Button>
-      </Flex>
+    <MainContent>
+      <PageHeader>
+        Overview
+      </PageHeader>
 
       <Flex
         align="flex-start"
@@ -111,6 +83,6 @@ export default function Home() {
           <BillsSummary />
         </GridItem>
       </Grid>
-    </Flex>
+    </MainContent>
   );
 }

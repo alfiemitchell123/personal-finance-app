@@ -1,5 +1,8 @@
-import { Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import { Button, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import MainContent from "~/components/layout/app/mainContent";
+import PageHeader from "~/components/layout/app/pageHeader";
 import PotCard from "~/components/pots/potCard";
+import { ArrowLeft } from "phosphor-react";
 import usePotsData from "~/hooks/usePots";
 import { Pot } from "~/types";
 import theme from "~/theme";
@@ -15,29 +18,8 @@ export default function PotsRoute() {
     }
 
     return (
-        <Flex
-            fontFamily="sans-serif"
-            width="100%"
-            p={{
-                sm: `${theme.spacing[300]} ${theme.spacing[200]}`,
-                lg: `${theme.spacing[400]} ${theme.spacing[500]}`,
-            }}
-            direction="column"
-            align="flex-start"
-            gap={theme.spacing[400]}
-        >
-            <Flex
-                width="100%"
-                justify="space-between"
-                align="center"
-            >
-                <Text
-                    textStyle="preset1"
-                    color="grey.900"
-                >
-                    Pots
-                </Text>
-            </Flex>
+        <MainContent>
+            <PageHeader>Pots</PageHeader>
             <Flex
                 maxW="90rem"
                 direction="column"
@@ -51,6 +33,6 @@ export default function PotsRoute() {
                     ))}
                 </SimpleGrid>
             </Flex>
-        </Flex>
+        </MainContent>
     )
 }
