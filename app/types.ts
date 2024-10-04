@@ -25,3 +25,11 @@ export interface Transaction {
     transactionCategory: string;
     transactionImg?: string;
 }
+
+export interface Pot {
+    id: string;
+    potName: string;
+    potColor: string;
+    targetAmt: number;
+    totalSaved: number;
+}

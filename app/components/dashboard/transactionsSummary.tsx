@@ -15,7 +15,7 @@ const TransactionsSummary = () => {
             bg="white"
             height="100%"
         >
-            <SummaryTitle title="Transactions" />
+            <SummaryTitle title="Transactions" link="/transactions" />
 
             <Flex
                 direction="column"

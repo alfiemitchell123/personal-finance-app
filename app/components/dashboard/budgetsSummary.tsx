@@ -69,10 +69,10 @@ const BudgetsSummary = () => {
                         justify="center"
                         gap={theme.spacing[200]}
                     >
-                        <MicroSummaryTag color="secondary.green" label="Entertainment" amount={50} />
+                        {/* <MicroSummaryTag color="secondary.green" label="Entertainment" amount={50} />
                         <MicroSummaryTag color="secondary.cyan" label="Bills" amount={750} />
                         <MicroSummaryTag color="secondary.yellow" label="Dining Out" amount={75} />
-                        <MicroSummaryTag color="secondary.navy" label="Personal Care" amount={100} />
+                        <MicroSummaryTag color="secondary.navy" label="Personal Care" amount={100} /> */}
                     </Flex>
                 </Flex>
             </Flex>

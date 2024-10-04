@@ -1,12 +1,14 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
+import { Button, Flex, Link, Text } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { CaretRight } from "@phosphor-icons/react";
 import React from "react";
 
 interface SummaryTitleProps {
     title: string;
+    link: string;
 }
 
-const SummaryTitle: React.FC<SummaryTitleProps> = ({ title }) => {
+const SummaryTitle: React.FC<SummaryTitleProps> = ({ title, link }) => {
     return (
         <Flex
             align="center"
@@ -19,18 +21,16 @@ const SummaryTitle: React.FC<SummaryTitleProps> = ({ title }) => {
             >
                 {title}
             </Text>
-            <Button
-                p={0}
-                variant="tertiary"
-                rightIcon={<CaretRight weight="fill" />}
-            >
-                <Text
-                    textStyle="preset4"
-                    fontWeight="400"
-                >
-                    See Details
-                </Text>
-            </Button>
+            <Link to={link} as={RouterLink} _hover={{ textDecoration: "none" }}>
+                <Button p={0} variant="tertiary" rightIcon={<CaretRight weight="fill" />}>
+                    <Text
+                        textStyle="preset4"
+                        fontWeight="400"
+                    >
+                        See Details
+                    </Text>
+                </Button>
+            </Link>
         </Flex>
     )
 }

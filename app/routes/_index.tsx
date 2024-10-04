@@ -111,22 +111,6 @@ export default function Home() {
           <BillsSummary />
         </GridItem>
       </Grid>
-
-      {/* 
-      {userData
-        ?
-        <>
-          <Heading>Welcome, {userData?.displayName}!</Heading>
-          <Button onClick={() => { doSignOut().then(() => { <Navigate to={'/login'} /> }) }}>Sign Out</Button>
-        </>
-        :
-        <>
-          <Box>
-            <Link to={'/login'}>Login</Link>
-            <Link to={'/register'}>Register</Link>
-          </Box>
-        </>
-      } */}
     </Flex>
   );
 }

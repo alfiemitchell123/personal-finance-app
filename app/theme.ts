@@ -130,6 +130,8 @@ const theme = extendTheme({
                 secondary: {
                     bg: "beige.100",
                     color: "grey.900",
+                    border: "1px solid",
+                    borderColor: "beige.100",
                     _hover: {
                         bg: "white",
                         border: "1px solid",
