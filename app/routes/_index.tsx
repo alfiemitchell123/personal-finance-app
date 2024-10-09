@@ -2,7 +2,7 @@ import { Center, Flex, Grid, GridItem, Spinner, Button, Text } from "@chakra-ui/
 import useUserData from "~/hooks/useUserData";
 import MainContent from "~/components/layout/app/mainContent";
 import PageHeader from "~/components/layout/app/pageHeader";
-import { doSignOut } from "~/firebase/auth";
+import PageLoading from "~/components/ui/pageLoading";
 import { useNavigate } from "@remix-run/react";
 import SummaryCard from "~/components/dashboard/summaryCard";
 import PotsSummary from "~/components/dashboard/potsSummary";
@@ -17,16 +17,7 @@ export default function Home() {
 
   // Handle the loading and error state
   if (loading) return (
-    <Flex
-      height="100vh"
-      align="center"
-      justify="center"
-    >
-      <Center>
-        <Spinner mr={2} />
-        Loading...
-      </Center>
-    </Flex>
+    <PageLoading />
   );
   if (error) return <div>{error}</div>;
 

@@ -1,5 +1,7 @@
 // app/types.ts
 
+import { Timestamp } from "firebase/firestore";
+
 export interface LoaderData {
     ENV: {
         VITE_FIREBASE_API_KEY: string;
@@ -20,7 +22,7 @@ export interface UserData {
 export interface Transaction {
     id: string;
     transactionAmt: number;
-    transactionDate: { toDate: () => Date };
+    transactionDate: Timestamp;
     transactionName: string;
     transactionCategory: string;
     transactionImg?: string;

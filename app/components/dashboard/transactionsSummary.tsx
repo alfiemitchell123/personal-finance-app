@@ -1,9 +1,12 @@
 import { Flex } from "@chakra-ui/react";
 import SummaryTitle from "./summaryTitle";
 import TransactionsList from "../transactions/transactionsList";
+import useTransactionData from "~/hooks/useTransactions";
 import theme from "~/theme";
 
 const TransactionsSummary = () => {
+    const { transactions } = useTransactionData();
+
     return (
         <Flex
             p={theme.spacing[400]}
@@ -23,7 +26,7 @@ const TransactionsSummary = () => {
                 gap={theme.spacing[250]}
                 alignSelf="stretch"
             >
-                <TransactionsList limit={5} />
+                <TransactionsList transactions={transactions} limit={5} />
             </Flex>
         </Flex>
     )

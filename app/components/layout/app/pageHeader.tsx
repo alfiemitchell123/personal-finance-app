@@ -27,7 +27,7 @@ const PageHeader = ({ children }: PageHeaderProps) => {
             align="center"
         >
             {cameFromLink && (
-                <Button variant="none" onClick={() => navigate(-1)}>
+                <Button variant="none" color="grey.500" onClick={() => navigate(-1)} _hover={{ color: "grey.900" }}>
                     <ArrowLeft />
                 </Button>
             )}

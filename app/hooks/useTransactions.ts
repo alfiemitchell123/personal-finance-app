@@ -4,7 +4,7 @@ import { db } from "~/firebase/firebase";
 import { Transaction } from "~/types";
 
 const useTransactionData = () => {
-    const [transactions, setTransactions] = useState<any>(null);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 

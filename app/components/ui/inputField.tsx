@@ -19,6 +19,7 @@ interface InputFieldProps {
     autoComplete?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onIconClick?: () => void;
+    iconWeight?: IconWeight;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -35,6 +36,7 @@ const InputField: React.FC<InputFieldProps> = ({
     autoComplete,
     onChange,
     onIconClick,
+    iconWeight = 'fill',
     ...props
 }) => {
     const [inputValue, setInputValue] = useState("");
@@ -128,7 +130,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 />
                 {Icon &&
                     <InputRightElement>
-                        <Icon onClick={onIconClick} width="1rem" height="1rem" weight="fill" />
+                        <Icon onClick={onIconClick} width="1rem" height="1rem" weight={iconWeight} />
                     </InputRightElement>
                 }
             </InputGroup>
