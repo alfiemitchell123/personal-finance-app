@@ -6,9 +6,11 @@ import React from "react";
 interface SummaryTitleProps {
     title: string;
     link: string;
+    linkText: string;
+    titleStyle: string;
 }
 
-const SummaryTitle: React.FC<SummaryTitleProps> = ({ title, link }) => {
+const SummaryTitle: React.FC<SummaryTitleProps> = ({ title, link, linkText, titleStyle }) => {
     return (
         <Flex
             align="center"
@@ -16,18 +18,18 @@ const SummaryTitle: React.FC<SummaryTitleProps> = ({ title, link }) => {
             alignSelf="stretch"
         >
             <Text
-                textStyle="preset2"
+                textStyle={titleStyle}
                 color="grey.900"
             >
                 {title}
             </Text>
             <Link to={link} as={RouterLink} state={{ fromLink: true }} _hover={{ textDecoration: "none" }}>
-                <Button p={0} variant="tertiary" rightIcon={<CaretRight weight="fill" />}>
+                <Button p={0} variant="tertiary" background="none" rightIcon={<CaretRight weight="fill" />}>
                     <Text
                         textStyle="preset4"
                         fontWeight="400"
                     >
-                        See Details
+                        {linkText}
                     </Text>
                 </Button>
             </Link>

@@ -2,6 +2,8 @@ import { useState, ReactNode } from "react";
 import { Box } from "@chakra-ui/react";
 import Sidebar from "../sidebar/sidebar";
 import { useLocation } from "@remix-run/react";
+import useUserData from "~/hooks/useUserData";
+import PageLoading from "~/components/ui/pageLoading";
 
 interface AppLayoutProps {
     children: ReactNode;
@@ -24,7 +26,6 @@ const AppLayout = ({ children }: AppLayoutProps) => {
             {useAppLayout ?
                 <>
                     <Box
-                        as="main"
                         display="flex"
                         bg="beige.100"
                         minHeight="100%"

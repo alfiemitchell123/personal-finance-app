@@ -15,7 +15,12 @@ const BillsSummary = () => {
             height="100%"
             flex="1 0 0"
         >
-            <SummaryTitle title="Recurring Bills" />
+            <SummaryTitle
+                title="Recurring Bills"
+                titleStyle="preset2"
+                link="/bills"
+                linkText="See Details"
+            />
         </Flex>
     )
 }

@@ -26,6 +26,7 @@ const PotsSummary = () => {
 
     return (
         <Flex
+            height="100%"
             p={theme.spacing[400]}
             direction="column"
             align="flex-start"
@@ -34,7 +35,12 @@ const PotsSummary = () => {
             borderRadius={theme.spacing[150]}
             background="white"
         >
-            <SummaryTitle title="Pots" link="/pots" />
+            <SummaryTitle
+                title="Pots"
+                titleStyle="preset2"
+                link="/pots"
+                linkText="See Details"
+            />
 
             <Flex
                 align="center"

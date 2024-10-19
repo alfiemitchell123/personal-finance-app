@@ -14,9 +14,12 @@ export interface LoaderData {
 }
 
 export interface UserData {
+    id: string;
     currentBalance: number;
     income: number;
     expenses: number;
+    profileImgUrl: string;
+    displayName: string;
 }
 
 export interface Transaction {
@@ -26,6 +29,8 @@ export interface Transaction {
     transactionName: string;
     transactionCategory: string;
     transactionImg?: string;
+    recurringBill: boolean;
+    recurringDate?: Timestamp;
 }
 
 export interface Pot {
@@ -34,4 +39,13 @@ export interface Pot {
     potColor: string;
     targetAmt: number;
     totalSaved: number;
+}
+
+export interface Budget {
+    id: string;
+    budgetCategory: string;
+    budgetColor: string;
+    maxSpend: number;
+    totalSpent: number;
+    totalRemaining: number;
 }

@@ -32,6 +32,7 @@ const PageHeader = ({ children }: PageHeaderProps) => {
                 </Button>
             )}
             <Text
+                as="h1"
                 textStyle="preset1"
                 color="grey.900"
             >

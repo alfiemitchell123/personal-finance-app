@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
-import { Pot } from "~/types";
+import { Budget } from "~/types";
 
-const usePotsData = () => {
-    const [pots, setPots] = useState<Pot[]>([]);
+const useBudgetsData = () => {
+    const [budgets, setBudgets] = useState<Budget[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const unsubscribe = onSnapshot(
-            query(collection(db, "pots"), orderBy("createdAt", "asc")),
+            query(collection(db, "budgets"), orderBy("createdAt", "asc")),
             (snapshot) => {
-                const fetchedPots: Pot[] = snapshot.docs.map((doc) => ({
+                const fetchedBudgets: Budget[] = snapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
-                })) as Pot[];
-                setPots(fetchedPots);
+                })) as Budget[];
+                setBudgets(fetchedBudgets);
                 setLoading(false);
             },
             (err) => {
-                setError("Error fetching pots");
+                setError("Error fetching budgets");
+                console.log(err);
                 setLoading(false);
             }
         );
@@ -28,7 +29,7 @@ const usePotsData = () => {
         return () => unsubscribe();
     }, []);
 
-    return { pots, loading, error };
+    return { budgets, loading, error };
 }
 
-export default usePotsData;
+export default useBudgetsData;

@@ -1,9 +1,8 @@
-import { Center, Flex, Grid, GridItem, Spinner, Button, Text } from "@chakra-ui/react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import useUserData from "~/hooks/useUserData";
 import MainContent from "~/components/layout/app/mainContent";
 import PageHeader from "~/components/layout/app/pageHeader";
 import PageLoading from "~/components/ui/pageLoading";
-import { useNavigate } from "@remix-run/react";
 import SummaryCard from "~/components/dashboard/summaryCard";
 import PotsSummary from "~/components/dashboard/potsSummary";
 import BudgetSummary from "~/components/dashboard/budgetsSummary";
@@ -13,7 +12,6 @@ import theme from "~/theme";
 
 export default function Home() {
   const { userData, loading, error } = useUserData();
-  const navigate = useNavigate();
 
   // Handle the loading and error state
   if (loading) return (
@@ -21,9 +19,9 @@ export default function Home() {
   );
   if (error) return <div>{error}</div>;
 
-  if (!userData) {
+  if (!userData) return (
     <div>Please log in!</div>
-  }
+  );
 
   const summaryData = [
     { label: "Current Balance", amount: userData?.currentBalance, labelColor: "white", amountColor: "white", bg: "grey.900" },
@@ -47,7 +45,7 @@ export default function Home() {
           <SummaryCard
             key={index}
             label={item.label}
-            amount={item.amount}
+            amount={item.amount ?? 0}
             labelColor={item.labelColor}
             amountColor={item.amountColor}
             bg={item.bg}
@@ -59,7 +57,7 @@ export default function Home() {
         templateColumns="repeat(12, 1fr)"
         templateRows="repeat(8, 1fr)"
         gap={theme.spacing[300]}
-
+        width="100%"
       >
         <GridItem gridArea="1 / 1 / 4 / 8">
           <PotsSummary />

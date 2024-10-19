@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Flex, useTheme } from "@chakra-ui/react";
 import SidebarMenuItem from './sidebarMenuItem';
 import { House, ArrowsDownUp, ChartDonut, Jar, Receipt, ArrowFatLineLeft, ArrowFatLineRight } from "@phosphor-icons/react";
@@ -21,11 +21,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
 
     return (
         <Box
+            zIndex={1}
             width={{
                 sm: "full",
                 lg: (isMinimized ? "5.5rem" : "18.75rem")
             }}
-            as="nav"
+            as="header"
             display="flex"
             height={{
                 sm: "3.5rem",
@@ -64,6 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
                 {isMinimized ? <img src="assets/logoSmall.svg" alt="Finance" /> : <img src="assets/logoFull.svg" alt="Finance" />}
             </Flex>
             <Flex
+                as="nav"
                 width={
                     {
                         md: "100%",

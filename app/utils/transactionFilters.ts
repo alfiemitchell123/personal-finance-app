@@ -29,3 +29,14 @@ export const filterTransactionsByCategory = (transactions: Transaction[], catego
     if (category === 'All Transactions') return transactions;
     return transactions.filter(transaction => transaction.transactionCategory === category);
 }
+
+export const filterTransactionsByRecurringBill = (transactions: Transaction[]) => {
+    return transactions
+        .filter(transaction => transaction.recurringBill === true)
+}
+
+export const filterTransactionsByName = (transactions: Transaction[], name: string) => {
+    return transactions.filter(transaction =>
+        transaction.transactionName.toLowerCase().startsWith(name.toLowerCase())
+    );
+}

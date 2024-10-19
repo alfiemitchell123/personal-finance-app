@@ -1,17 +1,17 @@
-import { Button, Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import { Flex, SimpleGrid } from "@chakra-ui/react";
 import MainContent from "~/components/layout/app/mainContent";
 import PageHeader from "~/components/layout/app/pageHeader";
 import PotCard from "~/components/pots/potCard";
-import { ArrowLeft } from "phosphor-react";
 import usePotsData from "~/hooks/usePots";
 import { Pot } from "~/types";
 import theme from "~/theme";
+import PageLoading from "~/components/ui/pageLoading";
 
 export default function PotsRoute() {
     const { pots, loading, error } = usePotsData();
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <PageLoading />;
     }
     if (error) {
         return <div>{error}</div>;

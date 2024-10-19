@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { json, MetaFunction, Outlet, Links, LiveReload, Meta, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
+import { MetaFunction, Outlet, Links, Meta, Scripts, ScrollRestoration } from "@remix-run/react";
 import theme from "./theme";
 import { AuthProvider } from "~/contexts/authContext";
 import AppLayout from "./components/layout/app/appLayout";
@@ -33,11 +33,13 @@ export function Layout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // If the user data isn't available and we're not loading, redirect to login
+    console.log("userData:", userData);
+    console.log("loading:", loading);
+
     if (!userData && !loading) {
       navigate("/login");
     }
-  }, [userData, navigate]);
+  }, [userData, loading, navigate]);
 
   return (
     <html style={{ backgroundColor: "#F8F4F0" }} lang="en">

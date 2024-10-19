@@ -44,7 +44,7 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
             return;
         }
 
-        let sortedTransactions = sortTransactions(transactions, filter);
+        const sortedTransactions = sortTransactions(transactions, filter);
         let result = filterTransactionsByCategory(sortedTransactions, selectedCategory);
 
         if (selectedCategory === 'All Transactions') {

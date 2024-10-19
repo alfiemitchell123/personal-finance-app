@@ -25,7 +25,12 @@ const BudgetsSummary = () => {
             height="100%"
             flex="1 0 0"
         >
-            <SummaryTitle title="Budgets" />
+            <SummaryTitle
+                title="Budgets"
+                titleStyle="preset2"
+                link="/budgets"
+                linkText="See Details"
+            />
 
             <Flex
                 align="center"
@@ -47,14 +52,15 @@ const BudgetsSummary = () => {
                     gap={theme.spacing[200]}
                     flex="1 0 0"
                 >
-                    {/* <Flex
-                        align="center"
+                    <Flex
+                        direction="column"
+                        align="flex-start"
                         gap={theme.spacing[200]}
                         alignSelf="stretch"
                     >
                         <>
-                            {savingsMicroData.map((savings, index) => (
-                                <SavingsMicro
+                            {budgetsMicroData.map((savings, index) => (
+                                <MicroSummaryTag
                                     key={index}
                                     color={savings.color}
                                     label={savings.label}
@@ -62,17 +68,6 @@ const BudgetsSummary = () => {
                                 />
                             ))}
                         </>
-                    </Flex> */}
-                    <Flex
-                        direction="column"
-                        align="flex-start"
-                        justify="center"
-                        gap={theme.spacing[200]}
-                    >
-                        {/* <MicroSummaryTag color="secondary.green" label="Entertainment" amount={50} />
-                        <MicroSummaryTag color="secondary.cyan" label="Bills" amount={750} />
-                        <MicroSummaryTag color="secondary.yellow" label="Dining Out" amount={75} />
-                        <MicroSummaryTag color="secondary.navy" label="Personal Care" amount={100} /> */}
                     </Flex>
                 </Flex>
             </Flex>

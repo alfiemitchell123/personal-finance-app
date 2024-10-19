@@ -9,6 +9,7 @@ interface MainContentProps {
 const MainContent = ({ children }: MainContentProps) => {
     return (
         <Flex
+            as="main"
             fontFamily="sans-serif"
             width="100%"
             p={{
