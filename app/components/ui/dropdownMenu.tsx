@@ -11,11 +11,13 @@ export interface DropdownMenuItem {
 
 interface DropdownMenuProps {
     label: string;
+    colorTag?: string;
+    fieldTitle?: string;
     items: DropdownMenuItem[];
     onChange?: (item: DropdownMenuItem) => void;
 }
 
-const DropdownMenu: React.FC<DropdownMenuProps> = ({ label, items, onChange }) => {
+const DropdownMenu: React.FC<DropdownMenuProps> = ({ label, items, colorTag, fieldTitle, onChange }) => {
     const [activeItem, setActiveItem] = useState<string>(label);
 
     const handleItemClick = (item: DropdownMenuItem) => {
@@ -59,9 +61,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ label, items, onChange }) =
                         padding={`${theme.spacing[150]} ${theme.spacing[250]}`}
                     >
                         {items.map((item: DropdownMenuItem, index: number) => (
-                            <Box>
+                            <Box key={index}>
                                 <MenuItem
-                                    key={index}
                                     onClick={() => handleItemClick(item)}
                                     textStyle={activeItem === item.itemLabel ? "preset4bold" : "preset4"}
                                     pb={theme.spacing[150]}

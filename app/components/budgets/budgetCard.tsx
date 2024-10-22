@@ -19,6 +19,9 @@ const BudgetCard: React.FC<BudgetCardProps> = ({ budget }) => {
         return <PageLoading />;
     }
 
+    // const filteredTransactions = transactions.filter((t: Transaction) => t.transactionAmt < 0);
+    // console.log(filteredTransactions);
+
     return (
         <Flex
             padding={theme.spacing[400]}

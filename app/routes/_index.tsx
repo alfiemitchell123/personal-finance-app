@@ -53,25 +53,30 @@ export default function Home() {
         ))}
       </Flex>
 
-      <Grid
-        templateColumns="repeat(12, 1fr)"
-        templateRows="repeat(8, 1fr)"
+      <Flex
+        wrap="wrap"
+        maxW="90rem"
         gap={theme.spacing[300]}
-        width="100%"
       >
-        <GridItem gridArea="1 / 1 / 4 / 8">
+        <Flex
+          width="38rem"
+          direction="column"
+          align="flex-start"
+          gap={theme.spacing[300]}
+        >
           <PotsSummary />
-        </GridItem>
-        <GridItem gridArea="1 / 8 / 6 / 13">
-          <BudgetSummary />
-        </GridItem>
-        <GridItem gridArea="4 / 1 / 9 / 8">
           <TransactionsSummary />
-        </GridItem>
-        <GridItem gridArea="6 / 8 / 9 / 13">
+        </Flex>
+        <Flex
+          direction="column"
+          align="flex-start"
+          gap={theme.spacing[300]}
+          flex="1 0 0"
+        >
+          <BudgetSummary />
           <BillsSummary />
-        </GridItem>
-      </Grid>
+        </Flex>
+      </Flex>
     </MainContent>
   );
 }

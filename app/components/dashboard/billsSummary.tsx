@@ -1,6 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import SummaryTitle from "./summaryTitle";
 import theme from "~/theme";
+import BillsSummaryTag from "./billsSummaryTag";
 
 const BillsSummary = () => {
     return (
@@ -21,6 +22,17 @@ const BillsSummary = () => {
                 link="/bills"
                 linkText="See Details"
             />
+
+            <Flex
+                direction="column"
+                align="flex-start"
+                gap={theme.spacing[150]}
+                alignSelf="stretch"
+            >
+                <BillsSummaryTag color={`${theme.colors.secondary.green}`} label="Paid Bills" amount={190} />
+                <BillsSummaryTag color={`${theme.colors.secondary.yellow}`} label="Total Upcoming" amount={194.98} />
+                <BillsSummaryTag color={`${theme.colors.secondary.cyan}`} label="Due Soon" amount={59.98} />
+            </Flex>
         </Flex>
     )
 }
