@@ -4,8 +4,12 @@ import AddNewModal from "../ui/addNewModal";
 import useModal from "~/hooks/useModal";
 import theme from "~/theme";
 import InputField from "../ui/inputField";
-import { collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
+import DropdownMenu from "../ui/dropdownMenu";
+import { categoryMenuItems, themeMenuItems } from "~/utils/menuItems";
+import { Budget } from "~/types";
+import useBudgetsData from "~/hooks/useBudgets";
 
 interface BudgetModalProps {
     isOpen: boolean;
@@ -18,20 +22,45 @@ interface BudgetModalProps {
 const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budgetId, existingBudget }) => {
     const [budgetCategory, setBudgetCategory] = useState("");
     const [maxSpend, setMaxSpend] = useState(0);
-    const [budgetColor, setBudgetColor] = useState("#277C78");
+    const [budgetColor, setBudgetColor] = useState("");
     const [totalSpent, setTotalSpent] = useState(0);
     const [totalRemaining, setTotalRemaining] = useState(0);
-
+    const { budgets: existingBudgets, addBudget } = useBudgetsData();
     const toast = useToast();
 
     // Pre-fill form if in edit mode
     useEffect(() => {
         if (mode === "edit" && existingBudget) {
-            setBudgetCategory(existingBudget.budgetCategory);
-            setMaxSpend(existingBudget.maxSpend);
-            setBudgetColor(existingBudget.budgetColor);
+            setBudgetCategory(existingBudget.budgetCategory || "");
+            setMaxSpend(existingBudget.maxSpend || 0);
+            setBudgetColor(existingBudget.budgetColor || "");
+            console.log("Editing mode: ", existingBudget);
         }
     }, [mode, existingBudget]);
+
+    useEffect(() => {
+        // Get the used categories from the existing budgets
+        const usedCategories = existingBudgets.map(budget => budget.budgetCategory);
+        const usedColors = existingBudgets.map(budget => budget.budgetColor);
+
+        // Filter out used categories from allCategories
+        const availableCategories = categoryMenuItems
+            .map(item => item.value) // Extract the values (e.g., "Bills", "Dining Out", etc.)
+            .filter(category => !usedCategories.includes(category));
+
+        const availableColors = themeMenuItems
+            .map(item => item.colorTag)
+            .filter(color => !usedColors.includes(color));
+
+        // Pre-select the first available category if there are any
+        if (availableCategories.length > 0) {
+            setBudgetCategory(availableCategories[0]);
+        }
+
+        if (availableColors.length > 0) {
+            setBudgetColor(availableColors[0]);
+        }
+    }, [existingBudgets]); // Run whenever budgets change
 
     const handleSaveBudget = async () => {
         if (!budgetCategory || !maxSpend || !budgetColor) return;
@@ -39,16 +68,15 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
         try {
             if (mode === "add") {
                 // Add new budget to database
-                const budgetCollection = collection(db, 'budgets');
-                await addDoc(budgetCollection, {
+                const newBudget = {
                     budgetCategory: budgetCategory,
                     budgetColor: budgetColor,
-                    maxSpend: maxSpend,
+                    maxSpend: Number(maxSpend),
                     totalSpent: totalSpent,
                     totalRemaining: maxSpend,
                     createdAt: new Date(),
-                });
-                onClose();
+                };
+                await addBudget(newBudget);
                 toast({
                     title: "Budget added successfully.",
                     status: "success",
@@ -62,8 +90,8 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                     budgetCategory: budgetCategory,
                     budgetColor: budgetColor,
                     maxSpend: maxSpend,
+                    totalRemaining: maxSpend,
                 });
-                onClose();
                 toast({
                     title: "Budget edited successfully.",
                     status: "success",
@@ -72,6 +100,7 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                 });
             }
 
+            // Reset form and close the modal
             setBudgetCategory("");
             setMaxSpend(0);
             setBudgetColor("");
@@ -106,6 +135,10 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
         }
     };
 
+    // Extract used colors and categories from existing budgets
+    const usedColors = existingBudgets.map(budget => budget.budgetColor);
+    const usedCategories = existingBudgets.map(budget => budget.budgetCategory);
+
     return (
         <AddNewModal
             isOpen={isOpen}
@@ -119,13 +152,14 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                     align="flex-start"
                     gap={theme.spacing[200]}
                 >
-                    <InputField
-                        placeholder="Entertainment"
-                        id="search"
-                        type="text"
-                        isRequired={true}
-                        label="Budget Category"
-                        onChange={(e) => setBudgetCategory(e.target.value)}
+                    <DropdownMenu
+                        label="Entertainment"
+                        items={categoryMenuItems}
+                        fieldTitle="Budget Category"
+                        onChange={(item) => setBudgetCategory(item.value || "")}
+                        usedCategories={usedCategories}
+                        value={budgetCategory}
+                        flexGap="0.5rem"
                     />
                     <InputField
                         placeholder="e.g. 2000"
@@ -135,15 +169,18 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                         label="Maximum Spend"
                         prefix="$"
                         onChange={(e) => setMaxSpend(parseFloat(e.target.value))}
+                        value={maxSpend.toString()}
                     />
-                    <InputField
-                        placeholder="e.g. 2000"
-                        id="search"
-                        type="text"
-                        isRequired={true}
-                        label="Maximum Spend"
+                    <DropdownMenu
+                        label="Green"
+                        items={themeMenuItems}
+                        fieldTitle="Theme"
                         colorTag={theme.colors.secondary.green}
-                        onChange={(e) => setBudgetColor(e.target.value)}
+                        usedColors={usedColors}
+                        usedCategories={usedCategories}
+                        onChange={(item) => setBudgetColor(item.colorTag || "")}
+                        value={budgetColor}
+                        flexGap="0.5rem"
                     />
                 </Flex>
             )}

@@ -1,5 +1,5 @@
-import React, { useState, SVGProps } from "react";
-import { Flex, Input, InputGroup, InputLeftAddon, InputRightAddon, InputLeftElement, InputRightElement, Text, FormControl, FormLabel, FormHelperText } from "@chakra-ui/react";
+import React, { useState, SVGProps, useEffect } from "react";
+import { Flex, Input, InputGroup, InputLeftElement, InputRightElement, Text, FormControl, FormLabel, FormHelperText } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { IconWeight } from "phosphor-react";
 import theme from "~/theme";
@@ -20,6 +20,7 @@ interface InputFieldProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onIconClick?: () => void;
     iconWeight?: IconWeight;
+    value?: string;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -37,9 +38,16 @@ const InputField: React.FC<InputFieldProps> = ({
     onChange,
     onIconClick,
     iconWeight = 'fill',
+    value,
     ...props
 }) => {
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState<string>("");
+
+    // useEffect(() => {
+    //     if (value !== undefined) {
+    //         setInputValue(value.toString());  // Always convert to string for input
+    //     }
+    // }, [value]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
@@ -64,6 +72,7 @@ const InputField: React.FC<InputFieldProps> = ({
                     fontWeight={theme.textStyles.preset5bold.fontWeight}
                     color="grey.500"
                     htmlFor={id}
+                    requiredIndicator={false}
                 >
                     {label}
                 </FormLabel>}
@@ -76,7 +85,7 @@ const InputField: React.FC<InputFieldProps> = ({
                     </InputLeftElement>
                 }
                 {prefix &&
-                    <InputLeftElement pl="48px" pointerEvents="none">
+                    <InputLeftElement pl="0.5rem" pointerEvents="none">
                         <Text textStyle="preset4" color="beige.500">{prefix}</Text>
                     </InputLeftElement>
                 }
@@ -92,14 +101,15 @@ const InputField: React.FC<InputFieldProps> = ({
                         flex: "1 0 0",
                         outline: "none",
                         fontSize: "0.875rem",
-                        pl:
-                            prefix && colorTag
-                                ? "4rem" // Both prefix and colorTag are present
-                                : prefix
-                                    ? theme.spacing[450] // Only prefix
-                                    : colorTag
-                                        ? theme.spacing[450] // Only colorTag
-                                        : theme.spacing[150], // None are present
+                        pl: prefix ? "2.5rem" : theme.spacing[150]
+                        // pl:
+                        //     prefix && colorTag
+                        //         ? "4rem" // Both prefix and colorTag are present
+                        //         : prefix
+                        //             ? theme.spacing[450] // Only prefix
+                        //             : colorTag
+                        //                 ? theme.spacing[450] // Only colorTag
+                        //                 : theme.spacing[150], // None are present
                     }}
                     _placeholder={{
                         color: "beige.500",

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, query, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import { Budget } from "~/types";
 
@@ -29,7 +29,19 @@ const useBudgetsData = () => {
         return () => unsubscribe();
     }, []);
 
-    return { budgets, loading, error };
+    const addBudget = async (newBudget: Omit<Budget, 'id'>) => {
+        try {
+            const budgetCollection = collection(db, 'budgets');
+            const docRef = await addDoc(budgetCollection, newBudget);
+            const addedBudget = { id: docRef.id, ...newBudget };
+            setBudgets((prevBudgets) => [addedBudget, ...prevBudgets]);
+        } catch (err) {
+            setError("Error adding budget");
+            console.log(err);
+        }
+    };
+
+    return { budgets, loading, error, addBudget };
 }
 
 export default useBudgetsData;

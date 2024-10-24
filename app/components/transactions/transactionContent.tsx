@@ -107,11 +107,11 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                     gap={theme.spacing[300]}
                 >
                     <Flex align="center" gap={theme.spacing[100]}>
-                        <Text textStyle="preset4" color="grey.500">Sort by</Text>
+                        <Text textStyle="preset4" color="grey.500" width="100%">Sort by</Text>
                         <DropdownMenu label="Latest" items={sortMenuItems} onChange={handleFilterChange} />
                     </Flex>
                     <Flex align="center" gap={theme.spacing[100]}>
-                        <Text textStyle="preset4" color="grey.500">Category</Text>
+                        <Text textStyle="preset4" color="grey.500" width="100%">Category</Text>
                         <DropdownMenu label="All Transactions" items={transactionMenuItems} onChange={handleCategoryChange} />
                     </Flex>
                 </Flex>

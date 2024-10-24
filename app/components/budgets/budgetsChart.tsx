@@ -1,17 +1,35 @@
-import { Box, Flex, Text, useTheme } from "@chakra-ui/react";
+import { useEffect, useMemo } from "react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import useBudgetsData from "~/hooks/useBudgets";
+import theme from "~/theme";
+import { Budget } from "~/types";
 
-const data = [
-    { name: "Entertainment", value: 50 },
-    { name: "Bills", value: 750 },
-    { name: "Dining Out", value: 75 },
-    { name: "Personal Care", value: 100 },
-];
+interface BudgetsChartProps {
+    budgets: Budget[];
+}
 
-const COLORS = ["#277C78", "#82C9D7", "#F2CDAC", "#626070"];
+const BudgetsChart: React.FC<BudgetsChartProps> = ({ budgets }) => {
+    const data = useMemo(() => {
+        return budgets.map(budget => ({
+            category: budget.budgetCategory,
+            totalSpent: budget.totalSpent,
+            maxSpend: budget.maxSpend,
+            color: budget.budgetColor || "#8884d8",
+        }));
+    }, [budgets]);
 
-const BudgetsChart = () => {
-    const theme = useTheme();
+    const overallSpent = useMemo(() => {
+        return budgets.reduce((sum, budget) => sum + budget.totalSpent, 0);
+    }, [budgets]);
+
+    const overallMaxLimit = useMemo(() => {
+        return budgets.reduce((sum, budget) => sum + budget.maxSpend, 0);
+    }, [budgets]);
+
+    useEffect(() => {
+        console.log("Chart Data:", data);
+    }, [data]);
 
     return (
         <Flex
@@ -33,16 +51,18 @@ const BudgetsChart = () => {
                     outerRadius={120}
                     fill="#8884d8"
                     stroke="none"
-                    dataKey="value"
+                    dataKey="totalSpent"
                     startAngle={90}
                     endAngle={-270}
                     style={{ outline: "none" }}
                 >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
+                    {data && data.length > 0 && (
+                        data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))
+                    )}
                 </Pie>
-                <Tooltip />
+                {/* <Tooltip /> */}
             </PieChart>
 
             <Box
@@ -56,10 +76,10 @@ const BudgetsChart = () => {
                 gap={theme.spacing[100]}
             >
                 <Text textStyle="preset1" color="grey.900">
-                    $338
+                    ${Math.floor(overallSpent)}
                 </Text>
                 <Text textStyle="preset4" color="grey.500">
-                    of $975 limit
+                    of ${overallMaxLimit} limit
                 </Text>
             </Box>
         </Flex>

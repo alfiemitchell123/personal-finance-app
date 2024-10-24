@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useModal = <T,>() => {
+const useModal = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalMode, setModalMode] = useState<"add" | "edit" | "delete">("add");
     const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
@@ -11,15 +11,15 @@ const useModal = <T,>() => {
         setIsModalOpen(true);
     }
 
-    const openEditModal = (item: string) => {
+    const openEditModal = (id: string) => {
         setModalMode("edit");
-        setSelectedItem(item);
+        setSelectedItem(id);
         setIsModalOpen(true);
     }
 
-    const openDeleteModal = (item: string) => {
+    const openDeleteModal = (id: string) => {
         setModalMode("delete");
-        setSelectedItem(item);
+        setSelectedItem(id);
         setIsModalOpen(true);
     }
 
