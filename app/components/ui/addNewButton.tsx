@@ -7,7 +7,7 @@ interface AddNewButtonProps {
     onClick: () => void;
 }
 
-const AddNewButton: React.FC<AddNewButtonProps> = ({ btnTag }) => {
+const AddNewButton: React.FC<AddNewButtonProps> = ({ btnTag, onClick }) => {
     return (
         <Button
             alignItems="center"
@@ -16,6 +16,7 @@ const AddNewButton: React.FC<AddNewButtonProps> = ({ btnTag }) => {
             textStyle="preset4bold"
             padding={theme.spacing[200]}
             height="100%"
+            onClick={onClick}
         >
             + Add New {btnTag}
         </Button>

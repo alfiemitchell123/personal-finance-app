@@ -10,10 +10,10 @@ import AddNewModal from "~/components/ui/addNewModal";
 
 interface PageHeaderProps {
     children: React.ReactNode;
-    openModal: () => void;
+    openModal?: () => void;
 }
 
-const PageHeader = ({ children, openModal }: PageHeaderProps) => {
+const PageHeader = ({ children, openModal = () => { } }: PageHeaderProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { loading } = useUserData();
@@ -31,24 +31,25 @@ const PageHeader = ({ children, openModal }: PageHeaderProps) => {
 
     return (
         <>
-            {cameFromLink && (
-                <Button variant="none" color="grey.500" onClick={() => navigate(-1)} _hover={{ color: "grey.900" }}>
-                    <ArrowLeft />
-                </Button>
-            )}
             <Flex
                 width="100%"
                 justify={"space-between"}
-                gap={cameFromLink ? theme.spacing[150] : "none"}
                 align="center"
             >
-                <Text
-                    as="h1"
-                    textStyle="preset1"
-                    color="grey.900"
-                >
-                    {children}
-                </Text>
+                <Flex align="center" gap={cameFromLink ? theme.spacing[150] : "none"}>
+                    {cameFromLink && (
+                        <Button variant="none" color="grey.500" onClick={() => navigate(-1)} _hover={{ color: "grey.900" }}>
+                            <ArrowLeft />
+                        </Button>
+                    )}
+                    <Text
+                        as="h1"
+                        textStyle="preset1"
+                        color="grey.900"
+                    >
+                        {children}
+                    </Text>
+                </Flex>
 
                 {['/transactions', '/budgets', '/pots'].includes(location.pathname) && (
                     <AddNewButton btnTag={pageTitle} onClick={() => openModal()} />

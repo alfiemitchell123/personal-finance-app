@@ -10,17 +10,16 @@ import PageLoading from "../ui/pageLoading";
 
 interface BudgetCardProps {
     budget: Budget;
+    onEdit: (id: string) => void;
+    onDelete: (id: string) => void;
 }
 
-const BudgetCard: React.FC<BudgetCardProps> = ({ budget }) => {
+const BudgetCard: React.FC<BudgetCardProps> = ({ budget, onEdit, onDelete }) => {
     const { transactions, loading } = useTransactionData();
 
     if (loading) {
         return <PageLoading />;
     }
-
-    // const filteredTransactions = transactions.filter((t: Transaction) => t.transactionAmt < 0);
-    // console.log(filteredTransactions);
 
     return (
         <Flex
@@ -32,7 +31,12 @@ const BudgetCard: React.FC<BudgetCardProps> = ({ budget }) => {
             borderRadius={theme.spacing[150]}
             bg="white"
         >
-            <BudgetTitle fill={budget.budgetColor} budgetCategory={budget.budgetCategory} />
+            <BudgetTitle
+                fill={budget.budgetColor}
+                budgetCategory={budget.budgetCategory}
+                onEdit={() => onEdit(budget.id)}
+                onDelete={() => onDelete(budget.id)}
+            />
 
             <Flex
                 direction="column"

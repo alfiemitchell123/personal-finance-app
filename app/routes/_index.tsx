@@ -56,6 +56,7 @@ export default function Home() {
       <Flex
         wrap="wrap"
         maxW="90rem"
+        width="100%"
         gap={theme.spacing[300]}
       >
         <Flex

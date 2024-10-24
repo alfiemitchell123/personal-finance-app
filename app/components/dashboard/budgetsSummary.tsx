@@ -17,7 +17,7 @@ const BudgetsSummary = () => {
         <Flex
             p={theme.spacing[400]}
             direction="column"
-            align="flex-start"
+            align="center"
             gap={theme.spacing[250]}
             alignSelf="stretch"
             borderRadius={theme.spacing[150]}

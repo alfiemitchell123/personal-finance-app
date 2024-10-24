@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Box, Flex, Grid, GridItem, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Box, Button, Flex, Grid, GridItem, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import BudgetCard from "~/components/budgets/budgetCard";
 import BudgetsChart from "~/components/budgets/budgetsChart";
 import MainContent from "~/components/layout/app/mainContent";
@@ -10,17 +10,31 @@ import theme from "~/theme";
 import AddNewModal from "~/components/ui/addNewModal";
 import InputField from "~/components/ui/inputField";
 import DropdownMenu from "~/components/ui/dropdownMenu";
+import useModal from "~/hooks/useModal";
+import BudgetModal from "~/components/budgets/budgetModal";
 
 export default function BudgetsRoute() {
     const { budgets, loading, error } = useBudgetsData();
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isModalOpen, modalMode, selectedItem, openAddModal, openEditModal, openDeleteModal, closeModal } = useModal();
 
     if (error) {
         return <div>{error}</div>;
     }
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    const selectedBudget = budgets.find((budget) => budget.id === selectedItem);
+
+    useEffect(() => {
+        console.log("selectedItem:", selectedItem);
+        console.log("selectedBudget:", selectedBudget);
+    }, [selectedItem, selectedBudget]);
+
+    const handleEdit = (id: string) => {
+        openEditModal(id);
+    };
+
+    const handleDelete = (id: string) => {
+        openDeleteModal(id);
+    };
 
     return (
         <MainContent>
@@ -35,15 +49,16 @@ export default function BudgetsRoute() {
                 </Flex>
             ) : (
                 <>
-                    <PageHeader openModal={openModal}>Budgets</PageHeader>
-                    <AddNewModal isOpen={isModalOpen} onClose={closeModal} headerTitle="Add New Budget">
-                        <Text
-                            textStyle="preset4"
-                            color="grey.500"
-                        >
-                            Choose a category to set a spending budget. These categories can help you monitor spending.
-                        </Text>
-                    </AddNewModal>
+                    <PageHeader openModal={openAddModal}>Budgets</PageHeader>
+                    {isModalOpen && (
+                        <BudgetModal
+                            mode={modalMode}
+                            isOpen={isModalOpen}
+                            onClose={closeModal}
+                            budgetId={selectedBudget?.id}
+                            existingBudget={selectedBudget}
+                        />
+                    )}
 
                     <Grid width="100%" templateColumns="repeat(12, 1fr)" templateRows="1fr" gap={theme.spacing[300]}>
                         <GridItem gridArea="1 / 1 / 2 / 6">
@@ -134,7 +149,12 @@ export default function BudgetsRoute() {
                             >
                                 {budgets && budgets.length > 0 ? (
                                     budgets.map((budget) => (
-                                        <BudgetCard key={budget.id} budget={budget} />
+                                        <BudgetCard
+                                            key={budget.id}
+                                            budget={budget}
+                                            onEdit={handleEdit}
+                                            onDelete={handleDelete}
+                                        />
                                     ))
                                 ) : (
                                     <Text>No budgets available</Text>
