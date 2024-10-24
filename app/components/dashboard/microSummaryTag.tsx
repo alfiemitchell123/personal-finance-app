@@ -39,7 +39,7 @@ const MicroSummaryTag: React.FC<MicroSummaryProps> = ({ color, label, amount }) 
                     textStyle="preset4bold"
                     color="grey.900"
                 >
-                    ${amount}
+                    ${amount.toFixed(2)}
                 </Text>
             </Flex>
         </Flex>

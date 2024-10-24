@@ -4,15 +4,14 @@ import SummaryTitle from "./summaryTitle";
 import BudgetsChart from "../budgets/budgetsChart";
 import MicroSummaryTag from "./microSummaryTag";
 import theme from "~/theme";
+import { Budget } from "~/types";
+import React from "react";
 
-const budgetsMicroData = [
-    { color: "secondary.green", label: "Entertainment", amount: 50 },
-    { color: "secondary.cyan", label: "Bills", amount: 750 },
-    { color: "secondary.yellow", label: "Dining Out", amount: 75 },
-    { color: "secondary.navy", label: "Personal Care", amount: 100 },
-]
+interface BudgetsSummaryProps {
+    budgets: Budget[];
+}
 
-const BudgetsSummary = () => {
+const BudgetsSummary: React.FC<BudgetsSummaryProps> = ({ budgets }) => {
     return (
         <Flex
             p={theme.spacing[400]}
@@ -43,7 +42,7 @@ const BudgetsSummary = () => {
                     flex="1 0 0"
                     alignSelf="stretch"
                 >
-                    <BudgetsChart />
+                    <BudgetsChart budgets={budgets} />
                 </Flex>
                 <Flex
                     direction="column"
@@ -59,12 +58,12 @@ const BudgetsSummary = () => {
                         alignSelf="stretch"
                     >
                         <>
-                            {budgetsMicroData.map((savings, index) => (
+                            {budgets.slice(0, 4).map((savings, index) => (
                                 <MicroSummaryTag
                                     key={index}
-                                    color={savings.color}
-                                    label={savings.label}
-                                    amount={savings.amount}
+                                    color={savings.budgetColor}
+                                    label={savings.budgetCategory}
+                                    amount={savings.totalSpent}
                                 />
                             ))}
                         </>

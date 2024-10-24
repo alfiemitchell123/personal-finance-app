@@ -159,7 +159,6 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                         onChange={(item) => setBudgetCategory(item.value || "")}
                         usedCategories={usedCategories}
                         value={budgetCategory}
-                        flexGap="0.5rem"
                     />
                     <InputField
                         placeholder="e.g. 2000"
@@ -180,7 +179,6 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                         usedCategories={usedCategories}
                         onChange={(item) => setBudgetColor(item.colorTag || "")}
                         value={budgetColor}
-                        flexGap="0.5rem"
                     />
                 </Flex>
             )}

@@ -81,7 +81,7 @@ const BillsListItem: React.FC<BillsListItemProps> = ({ transaction }) => {
                 align="flex-end"
                 gap={theme.spacing[100]}
             >
-                <Text textStyle="preset4bold" textAlign="right" color={amountColor}>{formattedAmount}</Text>
+                <Text textStyle="preset4bold" textAlign="right" color={amountColor}>${formattedAmount}</Text>
             </Flex>
         </Flex>
     )
