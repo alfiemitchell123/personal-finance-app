@@ -39,6 +39,7 @@ export interface Pot {
     potColor: string;
     targetAmt: number;
     totalSaved: number;
+    createdAt: Timestamp;
 }
 
 export interface Budget {

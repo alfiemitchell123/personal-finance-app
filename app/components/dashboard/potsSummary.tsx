@@ -26,7 +26,7 @@ const PotsSummary = () => {
 
     return (
         <Flex
-            height="100%"
+            height="50%"
             p={theme.spacing[400]}
             direction="column"
             align="flex-start"
