@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate } from '@remix-run/react';
 import { doSignInWithEmailAndPassword } from '~/firebase/auth';
-import { useAuth } from '~/contexts/authContext';
+import { useAuth } from '~/contexts/authContext/authProvider';
 import { doCreateUserWithEmailAndPassword } from '~/firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { db } from '~/firebase/firebase';
@@ -24,7 +24,7 @@ import ClientOnly from '../ClientOnly';
 import theme from '~/theme';
 
 const Login = () => {
-    const { userLoggedIn } = useAuth() || { userLoggedIn: false };
+    const { user } = useAuth();
     const [passwordIsVisible, setPasswordIsVisible] = useState(false);
     const [isSigningUp, setIsSigningUp] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -101,7 +101,7 @@ const Login = () => {
         setIsLoading(false);
     };
 
-    if (userLoggedIn) {
+    if (user) {
         return <Navigate to='/' replace />;
     }
 

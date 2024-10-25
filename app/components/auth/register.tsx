@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from '@remix-run/react';
-import { useAuth } from '~/contexts/authContext';
+import { useAuth } from '~/contexts/authContext/authProvider';
 import { doCreateUserWithEmailAndPassword } from '~/firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
 import { db } from '~/firebase/firebase';

@@ -1,38 +1,74 @@
-import { useEffect, useState } from "react";
-import { collection, addDoc, query, orderBy, onSnapshot } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
+import { collection, getDocs, query, where, addDoc, onSnapshot } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import { Budget } from "~/types";
+import { useAuth } from "~/contexts/authContext/authProvider";
 
-const useBudgetsData = () => {
+const useBudgets = () => {
+    const { user } = useAuth();
     const [budgets, setBudgets] = useState<Budget[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Fetch budgets data
     useEffect(() => {
-        const unsubscribe = onSnapshot(
-            query(collection(db, "budgets"), orderBy("createdAt", "asc")),
-            (snapshot) => {
-                const fetchedBudgets: Budget[] = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                })) as Budget[];
-                setBudgets(fetchedBudgets);
-                setLoading(false);
-            },
-            (err) => {
-                setError("Error fetching budgets");
-                console.log(err);
-                setLoading(false);
+        const fetchBudgets = async () => {
+            if (user) {
+                try {
+                    const budgetsRef = collection(db, `users/${user.uid}/budgets`);
+                    const querySnapshot = await getDocs(budgetsRef);
+
+                    const budgetsData: Budget[] = [];
+                    querySnapshot.forEach((doc) => {
+                        budgetsData.push({ id: doc.id, ...doc.data() } as Budget);
+                    });
+
+                    setBudgets(budgetsData);
+                    console.log("Budgets data fetched:", budgetsData);
+                } catch {
+                    setError("Error fetching budgets data");
+                } finally {
+                    setLoading(false);
+                }
             }
-        );
+        };
 
+        fetchBudgets();
+    }, [user]);
+
+    // Listener for budgets
+    useEffect(() => {
+        if (!user) return; // Ensure user is authenticated
+
+        const budgetCollection = collection(db, `users/${user.uid}/budgets`);
+
+        const unsubscribe = onSnapshot(budgetCollection, (snapshot) => {
+            const budgetsData: Budget[] = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+            })) as Budget[];
+
+            const sortedBudgets = budgetsData.sort((a, b) => {
+                const dateA = a.createdAt.toMillis(); // Convert Firestore Timestamp to milliseconds
+                const dateB = b.createdAt.toMillis();
+                return dateB - dateA; // Sort in descending order
+            });
+
+            setBudgets(sortedBudgets);
+        }, (error) => {
+            setError("Error fetching budgets");
+            console.log(error);
+        });
+
+        // Cleanup function to unsubscribe
         return () => unsubscribe();
-    }, []);
+    }, [user]);
 
+    // Add a new budget
     const addBudget = async (newBudget: Omit<Budget, 'id'>) => {
         try {
-            const budgetCollection = collection(db, 'budgets');
-            const docRef = await addDoc(budgetCollection, newBudget);
+            const budgetCollection = collection(db, `users/${user?.uid}/budgets`);
+            const docRef = await addDoc(budgetCollection, { ...newBudget, userId: user?.uid }); // Add userId to the budget
             const addedBudget = { id: docRef.id, ...newBudget };
             setBudgets((prevBudgets) => [addedBudget, ...prevBudgets]);
         } catch (err) {
@@ -44,4 +80,4 @@ const useBudgetsData = () => {
     return { budgets, loading, error, addBudget };
 }
 
-export default useBudgetsData;
+export default useBudgets;

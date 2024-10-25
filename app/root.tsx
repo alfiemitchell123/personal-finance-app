@@ -4,10 +4,11 @@ import { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { MetaFunction, Outlet, Links, Meta, Scripts, ScrollRestoration } from "@remix-run/react";
 import theme from "./theme";
-import { AuthProvider } from "~/contexts/authContext";
+import { AuthProvider } from "~/contexts/authContext/authProvider";
 import AppLayout from "./components/layout/app/appLayout";
 import useUserData from "./hooks/useUserData";
 import { useNavigate } from "@remix-run/react";
+import useBudgets from "./hooks/useBudgets";
 
 // Meta configuration using Remix's MetaFunction
 export const meta: MetaFunction = () => {
@@ -29,18 +30,6 @@ export function links() {
 
 // Layout component that provides the main HTML structure
 export function Layout() {
-  const { userData, loading } = useUserData();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    console.log("userData:", userData);
-    console.log("loading:", loading);
-
-    if (!userData && !loading) {
-      navigate("/login");
-    }
-  }, [userData, loading, navigate]);
-
   return (
     <html style={{ backgroundColor: "#F8F4F0" }} lang="en">
       <head>

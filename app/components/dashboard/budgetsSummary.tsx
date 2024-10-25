@@ -58,14 +58,17 @@ const BudgetsSummary: React.FC<BudgetsSummaryProps> = ({ budgets }) => {
                         alignSelf="stretch"
                     >
                         <>
-                            {budgets.slice(0, 4).map((savings, index) => (
-                                <MicroSummaryTag
-                                    key={index}
-                                    color={savings.budgetColor}
-                                    label={savings.budgetCategory}
-                                    amount={savings.totalSpent}
-                                />
-                            ))}
+                            {budgets
+                                .sort((a, b) => b.totalSpent - a.totalSpent)
+                                .slice(0, 4)
+                                .map((savings, index) => (
+                                    <MicroSummaryTag
+                                        key={index}
+                                        color={savings.budgetColor}
+                                        label={savings.budgetCategory}
+                                        amount={savings.totalSpent}
+                                    />
+                                ))}
                         </>
                     </Flex>
                 </Flex>

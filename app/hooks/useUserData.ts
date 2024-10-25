@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "~/contexts/authContext";
-import { doc, getDoc } from "firebase/firestore";
+import { useAuth } from "~/contexts/authContext/authProvider";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import { UserData } from "~/types";
 
 const useUserData = () => {
-    const { currentUser } = useAuth() || { currentUser: null };
+    const { user } = useAuth();
     const [userData, setUserData] = useState<UserData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -13,9 +13,9 @@ const useUserData = () => {
     // Fetch user data
     useEffect(() => {
         const fetchUserData = async () => {
-            if (currentUser) {
+            if (user) {
                 try {
-                    const userRef = doc(db, "users", currentUser.uid);
+                    const userRef = doc(db, "users", user.uid);
                     const userSnap = await getDoc(userRef);
 
                     if (userSnap.exists()) {
@@ -33,7 +33,7 @@ const useUserData = () => {
         };
 
         fetchUserData();
-    }, [currentUser]);
+    }, [user]);
 
     return { userData, loading, error };
 }

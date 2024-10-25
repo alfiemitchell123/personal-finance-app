@@ -48,4 +48,5 @@ export interface Budget {
     maxSpend: number;
     totalSpent: number;
     totalRemaining: number;
+    createdAt: Timestamp;
 }

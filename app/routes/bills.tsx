@@ -12,6 +12,7 @@ import PageLoading from "~/components/ui/pageLoading";
 import React from "react";
 import { Transaction } from "~/types";
 import { sortTransactions, filterTransactionsByRecurringBill, filterTransactionsByName } from "~/utils/transactionFilters";
+import { Protected } from "./protected";
 
 const sortMenuItems: DropdownMenuItem[] = [
     { itemLabel: 'Latest', value: 'latest' },
@@ -59,178 +60,180 @@ export default function BillsRoute() {
     }, 0) || 0;
 
     return (
-        <MainContent>
-            {loading ? (
-                <Flex
-                    height="100vh"
-                    width="100%"
-                    align="center"
-                    justify="center"
-                >
-                    <PageLoading />
-                </Flex>
-            ) : (
-                <>
-                    <PageHeader>
-                        Recurring Bills
-                    </PageHeader>
-                    <Grid width="100%" templateColumns="repeat(12, 1fr)" templateRows="1fr" gap={theme.spacing[300]}>
-                        <GridItem gridArea="1 / 1 / 2 / 5">
-                            <Flex
-                                maxW="21.0625rem"
-                                direction="column"
-                                align="flex-start"
-                                gap={theme.spacing[300]}
-                                flex="1 0 0"
-                            >
+        <Protected>
+            <MainContent>
+                {loading ? (
+                    <Flex
+                        height="100vh"
+                        width="100%"
+                        align="center"
+                        justify="center"
+                    >
+                        <PageLoading />
+                    </Flex>
+                ) : (
+                    <>
+                        <PageHeader>
+                            Recurring Bills
+                        </PageHeader>
+                        <Grid width="100%" templateColumns="repeat(12, 1fr)" templateRows="1fr" gap={theme.spacing[300]}>
+                            <GridItem gridArea="1 / 1 / 2 / 5">
                                 <Flex
-                                    padding={theme.spacing[300]}
+                                    maxW="21.0625rem"
                                     direction="column"
                                     align="flex-start"
-                                    justify="flex-end"
-                                    gap={theme.spacing[400]}
-                                    alignSelf="stretch"
-                                    borderRadius={theme.spacing[150]}
-                                    bg="grey.900"
+                                    gap={theme.spacing[300]}
+                                    flex="1 0 0"
                                 >
-                                    <Receipt width={theme.spacing[500]} height={theme.spacing[500]} color="white" weight="light" />
                                     <Flex
+                                        padding={theme.spacing[300]}
                                         direction="column"
                                         align="flex-start"
-                                        gap="0.6785rem"
+                                        justify="flex-end"
+                                        gap={theme.spacing[400]}
                                         alignSelf="stretch"
+                                        borderRadius={theme.spacing[150]}
+                                        bg="grey.900"
                                     >
-                                        <Text textStyle="preset4" color="white">Total Bills</Text>
-                                        <Text textStyle="preset1" color="white">${totalBill.toFixed(2)}</Text>
+                                        <Receipt width={theme.spacing[500]} height={theme.spacing[500]} color="white" weight="light" />
+                                        <Flex
+                                            direction="column"
+                                            align="flex-start"
+                                            gap="0.6785rem"
+                                            alignSelf="stretch"
+                                        >
+                                            <Text textStyle="preset4" color="white">Total Bills</Text>
+                                            <Text textStyle="preset1" color="white">${totalBill.toFixed(2)}</Text>
+                                        </Flex>
+                                    </Flex>
+
+                                    <Flex
+                                        padding={theme.spacing[250]}
+                                        direction="column"
+                                        justify="center"
+                                        align="flex-start"
+                                        gap={theme.spacing[250]}
+                                        alignSelf="stretch"
+                                        borderRadius={theme.spacing[150]}
+                                        bg="white"
+                                    >
+                                        <Text textStyle="preset3" color="grey.900">Summary</Text>
+
+                                        <Flex
+                                            direction="column"
+                                            align="space-between"
+                                            gap={theme.spacing[200]}
+                                            alignSelf="stretch"
+                                        >
+                                            <Flex
+                                                justify="space-between"
+                                                align="center"
+                                                flex="1 0 0"
+                                            >
+                                                <Text textStyle="preset5" color="grey.500">Paid Bills</Text>
+                                                <Text textStyle="preset5bold" color="grey.900">4 ($190.00)</Text>
+                                            </Flex>
+                                            <Divider height="0.0625rem" />
+                                            <Flex
+                                                justify="space-between"
+                                                align="center"
+                                                flex="1 0 0"
+                                            >
+                                                <Text textStyle="preset5" color="grey.500">Total Upcoming</Text>
+                                                <Text textStyle="preset5bold" color="grey.900">4 ($194.98)</Text>
+                                            </Flex>
+                                            <Divider height="0.0625rem" />
+                                            <Flex
+                                                justify="space-between"
+                                                align="center"
+                                                flex="1 0 0"
+                                            >
+                                                <Text textStyle="preset5" color="secondary.red">Due Soon</Text>
+                                                <Text textStyle="preset5bold" color="secondary.red">2 ($59.98)</Text>
+                                            </Flex>
+                                        </Flex>
                                     </Flex>
                                 </Flex>
+                            </GridItem>
 
+                            <GridItem gridArea="1 / 5 / 2 / 13">
                                 <Flex
-                                    padding={theme.spacing[250]}
+                                    maxW="90rem"
+                                    padding={theme.spacing[400]}
                                     direction="column"
-                                    justify="center"
                                     align="flex-start"
-                                    gap={theme.spacing[250]}
-                                    alignSelf="stretch"
+                                    gap={theme.spacing[300]}
+                                    flex="1 0 0"
                                     borderRadius={theme.spacing[150]}
                                     bg="white"
                                 >
-                                    <Text textStyle="preset3" color="grey.900">Summary</Text>
-
                                     <Flex
-                                        direction="column"
-                                        align="space-between"
-                                        gap={theme.spacing[200]}
+                                        justify="space-between"
+                                        align="center"
                                         alignSelf="stretch"
                                     >
                                         <Flex
-                                            justify="space-between"
-                                            align="center"
-                                            flex="1 0 0"
+                                            width="20rem"
+                                            direction="column"
+                                            align="flex-start"
+                                            gap={theme.spacing[50]}
                                         >
-                                            <Text textStyle="preset5" color="grey.500">Paid Bills</Text>
-                                            <Text textStyle="preset5bold" color="grey.900">4 ($190.00)</Text>
+                                            <InputField
+                                                placeholder="Search bills"
+                                                id="search"
+                                                type="text"
+                                                isRequired={false}
+                                                icon={MagnifyingGlass}
+                                                iconWeight="regular"
+                                                onChange={handleSearchChange}
+                                            />
                                         </Flex>
-                                        <Divider height="0.0625rem" />
-                                        <Flex
-                                            justify="space-between"
-                                            align="center"
-                                            flex="1 0 0"
-                                        >
-                                            <Text textStyle="preset5" color="grey.500">Total Upcoming</Text>
-                                            <Text textStyle="preset5bold" color="grey.900">4 ($194.98)</Text>
-                                        </Flex>
-                                        <Divider height="0.0625rem" />
-                                        <Flex
-                                            justify="space-between"
-                                            align="center"
-                                            flex="1 0 0"
-                                        >
-                                            <Text textStyle="preset5" color="secondary.red">Due Soon</Text>
-                                            <Text textStyle="preset5bold" color="secondary.red">2 ($59.98)</Text>
-                                        </Flex>
-                                    </Flex>
-                                </Flex>
-                            </Flex>
-                        </GridItem>
 
-                        <GridItem gridArea="1 / 5 / 2 / 13">
-                            <Flex
-                                maxW="90rem"
-                                padding={theme.spacing[400]}
-                                direction="column"
-                                align="flex-start"
-                                gap={theme.spacing[300]}
-                                flex="1 0 0"
-                                borderRadius={theme.spacing[150]}
-                                bg="white"
-                            >
-                                <Flex
-                                    justify="space-between"
-                                    align="center"
-                                    alignSelf="stretch"
-                                >
+                                        <Flex align="center" gap={theme.spacing[100]}>
+                                            <Text textStyle="preset4" color="grey.500">Sort by</Text>
+                                            <DropdownMenu label="Latest" items={sortMenuItems} onChange={handleFilterChange} />
+                                        </Flex>
+
+                                    </Flex>
+
                                     <Flex
-                                        width="20rem"
+                                        padding={`${theme.spacing[150]} ${theme.spacing[200]}`}
+                                        align="center"
+                                        justify="space-between"
+                                        gap={theme.spacing[400]}
+                                        alignSelf="stretch"
+                                        borderBottom={`1px solid ${theme.colors.grey[100]}`}
+                                    >
+                                        <Text textStyle="preset5" color="grey.500" flex="2">Bill Title</Text>
+                                        <Text textStyle="preset5" color="grey.500" flex="1">Due Date</Text>
+                                        <Text textStyle="preset5" color="grey.500" textAlign="right" flex="1">Amount</Text>
+                                    </Flex>
+
+                                    <Flex
                                         direction="column"
                                         align="flex-start"
-                                        gap={theme.spacing[50]}
+                                        gap={theme.spacing[250]}
+                                        alignSelf="stretch"
                                     >
-                                        <InputField
-                                            placeholder="Search bills"
-                                            id="search"
-                                            type="text"
-                                            isRequired={false}
-                                            icon={MagnifyingGlass}
-                                            iconWeight="regular"
-                                            onChange={handleSearchChange}
-                                        />
+                                        {filteredTransactions && (
+                                            filteredTransactions
+                                                .filter((transaction) => transaction.recurringBill === true)
+                                                .map((filteredTransaction: Transaction, index: number, filteredArray) => (
+                                                    <React.Fragment key={filteredTransaction.id}>
+                                                        <BillsListItem transaction={filteredTransaction} />
+                                                        {index < filteredArray.length - 1 && (
+                                                            <Divider width="100%" height="0.0625rem" />
+                                                        )}
+                                                    </React.Fragment>
+                                                ))
+                                        )}
                                     </Flex>
-
-                                    <Flex align="center" gap={theme.spacing[100]}>
-                                        <Text textStyle="preset4" color="grey.500">Sort by</Text>
-                                        <DropdownMenu label="Latest" items={sortMenuItems} onChange={handleFilterChange} />
-                                    </Flex>
-
                                 </Flex>
-
-                                <Flex
-                                    padding={`${theme.spacing[150]} ${theme.spacing[200]}`}
-                                    align="center"
-                                    justify="space-between"
-                                    gap={theme.spacing[400]}
-                                    alignSelf="stretch"
-                                    borderBottom={`1px solid ${theme.colors.grey[100]}`}
-                                >
-                                    <Text textStyle="preset5" color="grey.500" flex="2">Bill Title</Text>
-                                    <Text textStyle="preset5" color="grey.500" flex="1">Due Date</Text>
-                                    <Text textStyle="preset5" color="grey.500" textAlign="right" flex="1">Amount</Text>
-                                </Flex>
-
-                                <Flex
-                                    direction="column"
-                                    align="flex-start"
-                                    gap={theme.spacing[250]}
-                                    alignSelf="stretch"
-                                >
-                                    {filteredTransactions && (
-                                        filteredTransactions
-                                            .filter((transaction) => transaction.recurringBill === true)
-                                            .map((filteredTransaction: Transaction, index: number, filteredArray) => (
-                                                <React.Fragment key={filteredTransaction.id}>
-                                                    <BillsListItem transaction={filteredTransaction} />
-                                                    {index < filteredArray.length - 1 && (
-                                                        <Divider width="100%" height="0.0625rem" />
-                                                    )}
-                                                </React.Fragment>
-                                            ))
-                                    )}
-                                </Flex>
-                            </Flex>
-                        </GridItem>
-                    </Grid>
-                </>
-            )}
-        </MainContent>
+                            </GridItem>
+                        </Grid>
+                    </>
+                )}
+            </MainContent>
+        </Protected>
     )
 }

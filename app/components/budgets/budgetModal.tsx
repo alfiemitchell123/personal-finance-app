@@ -4,12 +4,14 @@ import AddNewModal from "../ui/addNewModal";
 import useModal from "~/hooks/useModal";
 import theme from "~/theme";
 import InputField from "../ui/inputField";
-import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, deleteDoc, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import DropdownMenu from "../ui/dropdownMenu";
 import { categoryMenuItems, themeMenuItems } from "~/utils/menuItems";
 import { Budget } from "~/types";
 import useBudgetsData from "~/hooks/useBudgets";
+import { useAuth } from "~/contexts/authContext/authProvider";
+import { useNavigate } from "@remix-run/react";
 
 interface BudgetModalProps {
     isOpen: boolean;
@@ -25,6 +27,7 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
     const [budgetColor, setBudgetColor] = useState("");
     const [totalSpent, setTotalSpent] = useState(0);
     const [totalRemaining, setTotalRemaining] = useState(0);
+
     const { budgets: existingBudgets, addBudget } = useBudgetsData();
     const toast = useToast();
 
@@ -74,7 +77,7 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                     maxSpend: Number(maxSpend),
                     totalSpent: totalSpent,
                     totalRemaining: maxSpend,
-                    createdAt: new Date(),
+                    createdAt: Timestamp.now(),
                 };
                 await addBudget(newBudget);
                 toast({
