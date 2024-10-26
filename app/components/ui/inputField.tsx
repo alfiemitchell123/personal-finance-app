@@ -12,7 +12,7 @@ interface InputFieldProps {
     size?: number;
     prefix?: string;
     colorTag?: string;
-    id: string;
+    id?: string;
     type: string;
     placeholder?: string;
     isRequired: boolean;
@@ -21,6 +21,7 @@ interface InputFieldProps {
     onIconClick?: () => void;
     iconWeight?: IconWeight;
     value?: string;
+    usedNames?: string[];
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -39,15 +40,10 @@ const InputField: React.FC<InputFieldProps> = ({
     onIconClick,
     iconWeight = 'fill',
     value,
+    usedNames = [],
     ...props
 }) => {
     const [inputValue, setInputValue] = useState<string>("");
-
-    // useEffect(() => {
-    //     if (value !== undefined) {
-    //         setInputValue(value.toString());  // Always convert to string for input
-    //     }
-    // }, [value]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;

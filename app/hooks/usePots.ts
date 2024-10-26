@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, orderBy, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, query, orderBy, onSnapshot, addDoc } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import { Pot } from "~/types";
 import { useAuth } from "~/contexts/authContext/authProvider";
@@ -64,7 +64,20 @@ const usePotsData = () => {
         return () => unsubscribe();
     }, [user]);
 
-    return { pots, loading, error };
+    // Add a new budget
+    const addPot = async (newPot: Omit<Pot, 'id'>) => {
+        try {
+            const potCollection = collection(db, `users/${user?.uid}/pots`);
+            const docRef = await addDoc(potCollection, { ...newPot, userId: user?.uid });
+            const addedPot = { id: docRef.id, ...newPot };
+            setPots((prevPot) => [addedPot, ...prevPot]);
+        } catch (err) {
+            setError("Error adding pot");
+            console.log(err);
+        }
+    };
+
+    return { pots, loading, error, addPot };
 }
 
 export default usePotsData;

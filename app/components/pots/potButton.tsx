@@ -4,9 +4,11 @@ import theme from "~/theme";
 
 interface PotButtonProps {
     children: React.ReactNode;
+    onClick: (id: string) => void;
+    id: string;
 }
 
-const PotButton: React.FC<PotButtonProps> = ({ children }) => {
+const PotButton: React.FC<PotButtonProps> = ({ children, id, onClick }) => {
     return (
         <Button
             variant="secondary"
@@ -17,6 +19,7 @@ const PotButton: React.FC<PotButtonProps> = ({ children }) => {
             flex="1 0 0"
             borderRadius={theme.spacing[100]}
             height="100%"
+            onClick={() => onClick(id)}
         >
             {children}
         </Button>

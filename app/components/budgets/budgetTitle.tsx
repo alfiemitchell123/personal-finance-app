@@ -15,7 +15,7 @@ interface BudgetTitleProps {
 }
 
 const BudgetTitle: React.FC<BudgetTitleProps> = ({ fill, budgetCategory, onEdit, onDelete }) => {
-    const { isModalOpen, modalMode, selectedItem, openEditModal, openDeleteModal, closeModal } = useModal();
+    const { isModalOpen, budgetModalMode, selectedItem, openEditBudgetModal, openDeleteBudgetModal, closeModal } = useModal();
 
     const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -78,7 +78,7 @@ const BudgetTitle: React.FC<BudgetTitleProps> = ({ fill, budgetCategory, onEdit,
             </Box>
             {isModalOpen && (
                 <BudgetModal
-                    mode={modalMode}
+                    mode={budgetModalMode}
                     isOpen={isModalOpen}
                     onClose={closeModal}
                 />

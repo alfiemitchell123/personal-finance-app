@@ -3,7 +3,7 @@ import { Flex, Center, Spinner } from "@chakra-ui/react";
 const PageLoading = () => {
     return (
         <Flex
-            height="100vh"
+            height="100%"
             align="center"
             justify="center"
         >

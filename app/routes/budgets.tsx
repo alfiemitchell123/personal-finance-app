@@ -16,17 +16,16 @@ import { Protected } from "./protected";
 export default function BudgetsRoute() {
     const { budgets, loading: budgetsLoading } = useBudgetsData();
     const { transactions } = useTransactionData();
-    const { isModalOpen, modalMode, selectedItem, openAddModal, openEditModal, openDeleteModal, closeModal } = useModal();
+    const { isModalOpen, budgetModalMode, selectedItem, openAddBudgetModal, openEditBudgetModal, openDeleteBudgetModal, closeModal } = useModal();
 
     const selectedBudget = budgets?.find((budget) => budget.id === selectedItem);
 
     const handleEdit = (id: string) => {
-        console.log("Editing budget with id: ", id);
-        openEditModal(id);
+        openEditBudgetModal(id);
     };
 
     const handleDelete = (id: string) => {
-        openDeleteModal(id);
+        openDeleteBudgetModal(id);
     };
 
     const budgetsWithTotals = useMemo(() => {
@@ -59,10 +58,10 @@ export default function BudgetsRoute() {
                     </Flex>
                 ) : (
                     <>
-                        <PageHeader openModal={openAddModal}>Budgets</PageHeader>
+                        <PageHeader openModal={openAddBudgetModal}>Budgets</PageHeader>
                         {isModalOpen && (
                             <BudgetModal
-                                mode={modalMode}
+                                mode={budgetModalMode}
                                 isOpen={isModalOpen}
                                 onClose={closeModal}
                                 budgetId={selectedBudget?.id}

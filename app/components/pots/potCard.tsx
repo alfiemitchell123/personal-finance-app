@@ -8,9 +8,13 @@ import React from "react";
 
 interface PotCardProps {
     pot: Pot;
+    onEdit: (id: string) => void;
+    onDelete: (id: string) => void;
+    onWithdraw: (id: string) => void;
+    onAddMoney: (id: string) => void;
 }
 
-const PotCard: React.FC<PotCardProps> = ({ pot }) => {
+const PotCard: React.FC<PotCardProps> = ({ pot, onEdit, onDelete, onWithdraw, onAddMoney }) => {
     const percentageSaved = (pot.totalSaved / pot.targetAmt) * 100;
 
     return (
@@ -24,7 +28,12 @@ const PotCard: React.FC<PotCardProps> = ({ pot }) => {
             bg="white"
             key={pot.id}
         >
-            <PotTitle fill={pot.potColor} potName={pot.potName} />
+            <PotTitle
+                onEdit={() => onEdit(pot.id)}
+                onDelete={() => onDelete(pot.id)}
+                fill={pot.potColor}
+                potName={pot.potName}
+            />
             <PotChart totalSaved={pot.totalSaved} percentage={percentageSaved.toFixed(1)} targetAmt={pot.targetAmt} barColor={pot.potColor} barAmt={`${percentageSaved}%`} />
 
             <Flex
@@ -32,8 +41,8 @@ const PotCard: React.FC<PotCardProps> = ({ pot }) => {
                 gap={theme.spacing[200]}
                 alignSelf="stretch"
             >
-                <PotButton>+ Add Money</PotButton>
-                <PotButton>Withdraw</PotButton>
+                <PotButton id={pot.id} onClick={onAddMoney}>+ Add Money</PotButton>
+                <PotButton id={pot.id} onClick={onWithdraw}>Withdraw</PotButton>
             </Flex>
         </Flex>
     )

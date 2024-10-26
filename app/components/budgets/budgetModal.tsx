@@ -29,6 +29,7 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
     const [totalRemaining, setTotalRemaining] = useState(0);
 
     const { budgets: existingBudgets, addBudget } = useBudgetsData();
+    const { user } = useAuth();
     const toast = useToast();
 
     // Pre-fill form if in edit mode
@@ -88,19 +89,23 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                 });
             } else if (mode === "edit" && budgetId) {
                 // Update existing budget
-                const budgetDocRef = doc(db, "budgets", budgetId);
-                await updateDoc(budgetDocRef, {
-                    budgetCategory: budgetCategory,
-                    budgetColor: budgetColor,
-                    maxSpend: maxSpend,
-                    totalRemaining: maxSpend,
-                });
-                toast({
-                    title: "Budget edited successfully.",
-                    status: "success",
-                    duration: 3000,
-                    isClosable: true,
-                });
+                if (user) {
+                    const budgetDocRef = doc(db, `users/${user.uid}/budgets`, budgetId);
+                    await updateDoc(budgetDocRef, {
+                        budgetCategory: budgetCategory,
+                        budgetColor: budgetColor,
+                        maxSpend: maxSpend,
+                        totalRemaining: maxSpend,
+                    });
+                    toast({
+                        title: "Budget edited successfully.",
+                        status: "success",
+                        duration: 3000,
+                        isClosable: true,
+                    });
+                } else {
+                    console.error("User is not authenticated.");
+                }
             }
 
             // Reset form and close the modal
@@ -118,9 +123,9 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
     const handleDeleteBudget = async () => {
         console.log("handleDeleteBudget called, mode:", mode, "budgetId:", budgetId);
         if (mode === "delete" && budgetId) {
-            try {
+            if (user) {
                 // Delete budget
-                const budgetDocRef = doc(db, "budgets", budgetId);
+                const budgetDocRef = doc(db, `users/${user.uid}/budgets`, budgetId);
                 await deleteDoc(budgetDocRef);
                 console.log("Budget deleted successfully");
                 onClose();
@@ -130,8 +135,8 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                     duration: 3000,
                     isClosable: true,
                 });
-            } catch (error) {
-                console.error("Error deleting budget: ", error);
+            } else {
+                console.error("User is not authenticated.");
             }
         } else {
             console.error("Delete mode or budgetId is not valid");
@@ -165,7 +170,6 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                     />
                     <InputField
                         placeholder="e.g. 2000"
-                        id="search"
                         type="text"
                         isRequired={true}
                         label="Maximum Spend"
