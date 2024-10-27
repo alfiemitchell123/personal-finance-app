@@ -1,14 +1,10 @@
 // app/root.tsx
 
-import { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { MetaFunction, Outlet, Links, Meta, Scripts, ScrollRestoration } from "@remix-run/react";
 import theme from "./theme";
 import { AuthProvider } from "~/contexts/authContext/authProvider";
 import AppLayout from "./components/layout/app/appLayout";
-import useUserData from "./hooks/useUserData";
-import { useNavigate } from "@remix-run/react";
-import useBudgets from "./hooks/useBudgets";
 
 // Meta configuration using Remix's MetaFunction
 export const meta: MetaFunction = () => {

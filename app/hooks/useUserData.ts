@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "~/contexts/authContext/authProvider";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "~/firebase/firebase";
 import { UserData } from "~/types";
 
@@ -20,7 +20,7 @@ const useUserData = () => {
 
                     if (userSnap.exists()) {
                         const data = userSnap.data() as UserData;
-                        setUserData(data); // Make sure to set user data here
+                        setUserData(data);
                     } else {
                         setError("No user data available");
                     }

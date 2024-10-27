@@ -4,6 +4,7 @@ const useModal = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [budgetModalMode, setBudgetModalMode] = useState<"add" | "edit" | "delete">("add");
     const [potModalMode, setPotModalMode] = useState<"addNew" | "edit" | "delete" | "withdraw" | "addMoney">("addNew");
+    const [transactionModalMode, setTransactionModalMode] = useState<"add" | "edit" | "delete">("add");
     const [selectedItem, setSelectedItem] = useState<string | undefined>(undefined);
 
     // Budget modals
@@ -63,7 +64,47 @@ const useModal = () => {
         setSelectedItem(undefined);
     }
 
-    return { isModalOpen, budgetModalMode, potModalMode, selectedItem, openAddBudgetModal, openEditBudgetModal, openDeleteBudgetModal, openAddPotModal, openEditPotModal, openDeletePotModal, openWithdrawPotModal, openAddMoneyPotModal, closeModal };
+    // Transaction modals
+    const openAddTransactionModal = () => {
+        setTransactionModalMode("add");
+        setSelectedItem(undefined);
+        setIsModalOpen(true);
+    }
+
+    const openEditTransactionModal = (id: string) => {
+        setTransactionModalMode("edit");
+        setSelectedItem(id);
+        setIsModalOpen(true);
+    }
+
+    const openDeleteTransactionModal = (id: string) => {
+        setTransactionModalMode("delete");
+        setSelectedItem(id);
+        setIsModalOpen(true);
+    }
+
+    return {
+        isModalOpen,
+        budgetModalMode,
+        potModalMode,
+        transactionModalMode,
+        selectedItem,
+        closeModal,
+        // Budgets
+        openAddBudgetModal,
+        openEditBudgetModal,
+        openDeleteBudgetModal,
+        // Pots
+        openAddPotModal,
+        openEditPotModal,
+        openDeletePotModal,
+        openWithdrawPotModal,
+        openAddMoneyPotModal,
+        // Transactions
+        openAddTransactionModal,
+        openEditTransactionModal,
+        openDeleteTransactionModal,
+    };
 }
 
 export default useModal;

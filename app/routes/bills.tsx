@@ -79,7 +79,6 @@ export default function BillsRoute() {
                         <Grid width="100%" templateColumns="repeat(12, 1fr)" templateRows="1fr" gap={theme.spacing[300]}>
                             <GridItem gridArea="1 / 1 / 2 / 5">
                                 <Flex
-                                    maxW="21.0625rem"
                                     direction="column"
                                     align="flex-start"
                                     gap={theme.spacing[300]}
@@ -190,7 +189,7 @@ export default function BillsRoute() {
                                         </Flex>
 
                                         <Flex align="center" gap={theme.spacing[100]}>
-                                            <Text textStyle="preset4" color="grey.500">Sort by</Text>
+                                            <Text textStyle="preset4" color="grey.500" width="100%">Sort by</Text>
                                             <DropdownMenu label="Latest" items={sortMenuItems} onChange={handleFilterChange} />
                                         </Flex>
 

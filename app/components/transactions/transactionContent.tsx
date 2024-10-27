@@ -125,7 +125,7 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                 borderBottom="1px solid"
                 borderBottomColor="grey.100"
             >
-                <Text flex="1 0 0" textStyle="preset5" color="grey.500">Receipent/Sender</Text>
+                <Text flex="1" textStyle="preset5" color="grey.500">Receipent/Sender</Text>
                 <Text width="7.5rem" textStyle="preset5" color="grey.500">Category</Text>
                 <Text width="7.5rem" textStyle="preset5" color="grey.500">Transaction Date</Text>
                 <Text width="12.5rem" textStyle="preset5" color="grey.500" textAlign="right">Amount</Text>

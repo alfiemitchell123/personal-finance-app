@@ -20,7 +20,7 @@ interface InputFieldProps {
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onIconClick?: () => void;
     iconWeight?: IconWeight;
-    value?: string;
+    value?: string | number | boolean;
     usedNames?: string[];
 }
 
@@ -44,6 +44,12 @@ const InputField: React.FC<InputFieldProps> = ({
     ...props
 }) => {
     const [inputValue, setInputValue] = useState<string>("");
+
+    useEffect(() => {
+        if (value !== undefined) {
+            setInputValue(value.toString()); // Sync local state with prop
+        }
+    }, [value]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;

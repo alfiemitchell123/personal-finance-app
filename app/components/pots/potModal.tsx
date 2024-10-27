@@ -324,7 +324,7 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
                             />
                             <InputField
                                 placeholder="e.g. 2000"
-                                type="text"
+                                type="number"
                                 isRequired={true}
                                 label="Target"
                                 prefix="$"

@@ -5,23 +5,37 @@ import PageHeader from "~/components/layout/app/pageHeader";
 import TransactionContent from "~/components/transactions/transactionContent";
 import useTransactionData from "~/hooks/useTransactions";
 import { Protected } from "./protected";
+import useModal from "~/hooks/useModal";
+import TransactionModal from "~/components/transactions/transactionModal";
 
 export default function TransactionsRoute() {
-    const { transactions, loading, error } = useTransactionData();
+    const { transactions, loading } = useTransactionData();
+    const { isModalOpen, transactionModalMode, selectedItem, openAddTransactionModal, openEditTransactionModal, openDeleteTransactionModal, closeModal } = useModal();
 
-    // Handle the loading and error state
-    if (loading) return (
-        <PageLoading />
-    );
-    if (error) return <div>{error}</div>;
+    const selectedTransaction = transactions?.find((transaction) => transaction.id === selectedItem);
 
     return (
         <Protected>
             <MainContent>
-                <PageHeader>
-                    Transactions
-                </PageHeader>
-                <TransactionContent transactions={transactions} />
+                {loading ? (
+                    <PageLoading />
+                ) : (
+                    <>
+                        <PageHeader openModal={openAddTransactionModal}>
+                            Transactions
+                        </PageHeader>
+                        {isModalOpen && (
+                            <TransactionModal
+                                mode={transactionModalMode}
+                                isOpen={isModalOpen}
+                                onClose={closeModal}
+                                transactionId={selectedTransaction?.id}
+                                existingTransaction={selectedTransaction}
+                            />
+                        )}
+                        <TransactionContent transactions={transactions} />
+                    </>
+                )}
             </MainContent>
         </Protected>
     )

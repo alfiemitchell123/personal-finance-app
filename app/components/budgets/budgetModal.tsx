@@ -12,6 +12,7 @@ import { Budget } from "~/types";
 import useBudgetsData from "~/hooks/useBudgets";
 import { useAuth } from "~/contexts/authContext/authProvider";
 import { useNavigate } from "@remix-run/react";
+import PageLoading from "../ui/pageLoading";
 
 interface BudgetModalProps {
     isOpen: boolean;
@@ -28,19 +29,18 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
     const [totalSpent, setTotalSpent] = useState(0);
     const [totalRemaining, setTotalRemaining] = useState(0);
 
-    const { budgets: existingBudgets, addBudget } = useBudgetsData();
+    const { budgets: existingBudgets, loading, addBudget } = useBudgetsData();
     const { user } = useAuth();
     const toast = useToast();
 
     // Pre-fill form if in edit mode
     useEffect(() => {
-        if (mode === "edit" && existingBudget) {
-            setBudgetCategory(existingBudget.budgetCategory || "");
-            setMaxSpend(existingBudget.maxSpend || 0);
-            setBudgetColor(existingBudget.budgetColor || "");
-            console.log("Editing mode: ", existingBudget);
+        if (!loading && mode === "edit" && existingBudget) {
+            setBudgetCategory(existingBudget.budgetCategory || budgetCategory);
+            setMaxSpend(existingBudget.maxSpend || maxSpend);
+            setBudgetColor(existingBudget.budgetColor || budgetColor);
         }
-    }, [mode, existingBudget]);
+    }, [mode, existingBudget, loading]);
 
     useEffect(() => {
         // Get the used categories from the existing budgets
@@ -170,7 +170,7 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                     />
                     <InputField
                         placeholder="e.g. 2000"
-                        type="text"
+                        type="number"
                         isRequired={true}
                         label="Maximum Spend"
                         prefix="$"
