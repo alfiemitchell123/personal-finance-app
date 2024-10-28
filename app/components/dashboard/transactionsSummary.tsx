@@ -31,7 +31,7 @@ const TransactionsSummary = () => {
                 gap={theme.spacing[250]}
                 alignSelf="stretch"
             >
-                <TransactionsList transactions={transactions} limit={5} />
+                <TransactionsList transactions={transactions} limit={4} />
             </Flex>
         </Flex>
     )

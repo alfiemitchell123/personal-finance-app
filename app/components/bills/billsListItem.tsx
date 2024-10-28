@@ -3,6 +3,7 @@ import { CheckCircle, WarningCircle } from "phosphor-react";
 import { Transaction } from "~/types";
 import theme from "~/theme";
 import React from "react";
+import TransactionImg from "../transactions/transactionImg";
 
 interface BillsListItemProps {
     transaction: Transaction;
@@ -58,7 +59,7 @@ const BillsListItem: React.FC<BillsListItemProps> = ({ transaction }) => {
                 gap={theme.spacing[200]}
                 flex="2"
             >
-                <Image src={transaction.transactionImg} width={8} height={8} borderRadius="2rem" />
+                <TransactionImg transaction={transaction} />
                 <Text textStyle="preset4bold" color="grey.900">{transaction.transactionName}</Text>
             </Flex>
 

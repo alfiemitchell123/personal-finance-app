@@ -45,14 +45,14 @@ export default function BillsRoute() {
     }, [searchTerm, filter, transactions]);
 
     const handleFilterChange = (item: DropdownMenuItem) => {
-        setFilter(item.value);
+        setFilter(item.value ?? "Latest");
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
 
-    const totalBill = filteredTransactions?.reduce((sum, transaction) => {
+    const totalBill = transactions?.reduce((sum, transaction) => {
         if (transaction.recurringBill) {
             return sum + Math.abs(transaction.transactionAmt || 0);
         }
