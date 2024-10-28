@@ -87,7 +87,8 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ label, items, colorTag, fie
                             </Flex>
                         </MenuButton>
                         <MenuList
-                            width="31rem"
+                            width="100%"
+                            maxW="31rem"
                             maxH="18.75rem"
                             overflowY="auto"
                             display="flex"
