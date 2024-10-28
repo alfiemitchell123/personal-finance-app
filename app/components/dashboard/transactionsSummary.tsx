@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import SummaryTitle from "./summaryTitle";
 import TransactionsList from "../transactions/transactionsList";
 import useTransactionData from "~/hooks/useTransactions";
@@ -25,14 +25,28 @@ const TransactionsSummary = () => {
                 linkText="See Details"
             />
 
-            <Flex
-                direction="column"
-                align="space-between"
-                gap={theme.spacing[250]}
-                alignSelf="stretch"
-            >
-                <TransactionsList transactions={transactions} limit={4} />
-            </Flex>
+            {transactions ? (
+                <Flex
+                    direction="column"
+                    align="space-between"
+                    gap={theme.spacing[250]}
+                    alignSelf="stretch"
+                >
+                    <TransactionsList transactions={transactions} limit={4} />
+                </Flex>
+            ) : (
+                <Flex
+                    width="100%"
+                    justify="center"
+                    align="center"
+                    direction="column"
+                    mt={theme.spacing[500]}
+                >
+                    <Text textStyle="preset4">
+                        Add transactions to get started.
+                    </Text>
+                </Flex>
+            )}
         </Flex>
     )
 }

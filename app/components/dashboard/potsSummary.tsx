@@ -43,86 +43,100 @@ const PotsSummary = () => {
                 link="/pots"
                 linkText="See Details"
             />
-
-            <Flex
-                width="100%"
-                align="center"
-                gap={theme.spacing[250]}
-            >
+            {pots ? (
                 <Flex
-                    width="15.4375rem"
-                    height="6.875rem"
-                    p={theme.spacing[200]}
+                    width="100%"
                     align="center"
-                    gap={theme.spacing[200]}
-                    borderRadius={theme.spacing[150]}
-                    bg="beige.100"
-                >
-                    <TipJar weight="light" width="2.5rem" height="2.5rem" fill="#277C78" />
-                    <Flex
-                        direction="column"
-                        align="flex-start"
-                        gap="0.6875rem"
-                    >
-                        <Text
-                            textStyle="preset4"
-                            color="grey.500"
-                        >
-                            Total Saved
-                        </Text>
-                        <Text
-                            textStyle="preset1"
-                            color="grey.900"
-                        >
-                            ${totalSavedAllPots.toFixed(0)}
-                        </Text>
-                    </Flex>
-                </Flex>
-                <Flex
-                    direction="column"
-                    justify="center"
-                    align="flex-start"
-                    gap={theme.spacing[200]}
-                    flex="1 0 0"
+                    gap={theme.spacing[250]}
                 >
                     <Flex
+                        width="15.4375rem"
+                        height="6.875rem"
+                        p={theme.spacing[200]}
                         align="center"
                         gap={theme.spacing[200]}
-                        alignSelf="stretch"
+                        borderRadius={theme.spacing[150]}
+                        bg="beige.100"
                     >
+                        <TipJar weight="light" width="2.5rem" height="2.5rem" fill="#277C78" />
                         <Flex
                             direction="column"
-                            justify="center"
                             align="flex-start"
-                            gap={theme.spacing[200]}
-                            flex="1 0 0"
+                            gap="0.6875rem"
                         >
-                            <Flex align="center" gap={theme.spacing[200]} alignSelf="stretch">
-                                {displayedPots.slice(0, 2).map((pot: Pot) => (
-                                    <MicroSummaryTag
-                                        key={pot.id}
-                                        pot={pot}
-                                        color={pot.potColor}
-                                        label={pot.potName}
-                                        amount={pot.totalSaved}
-                                    />
-                                ))}
-                            </Flex>
-                            <Flex align="center" gap={theme.spacing[200]} alignSelf="stretch">
-                                {displayedPots.slice(2, 4).map((pot: Pot) => (
-                                    <MicroSummaryTag
-                                        key={pot.id}
-                                        pot={pot}
-                                        color={pot.potColor}
-                                        label={pot.potName}
-                                        amount={pot.totalSaved}
-                                    />
-                                ))}
+                            <Text
+                                textStyle="preset4"
+                                color="grey.500"
+                            >
+                                Total Saved
+                            </Text>
+                            <Text
+                                textStyle="preset1"
+                                color="grey.900"
+                            >
+                                ${totalSavedAllPots.toFixed(0)}
+                            </Text>
+                        </Flex>
+                    </Flex>
+                    <Flex
+                        direction="column"
+                        justify="center"
+                        align="flex-start"
+                        gap={theme.spacing[200]}
+                        flex="1 0 0"
+                    >
+                        <Flex
+                            align="center"
+                            gap={theme.spacing[200]}
+                            alignSelf="stretch"
+                        >
+                            <Flex
+                                direction="column"
+                                justify="center"
+                                align="flex-start"
+                                gap={theme.spacing[200]}
+                                flex="1 0 0"
+                            >
+                                <Flex align="center" gap={theme.spacing[200]} alignSelf="stretch">
+                                    {displayedPots.slice(0, 2).map((pot: Pot) => (
+                                        <MicroSummaryTag
+                                            key={pot.id}
+                                            pot={pot}
+                                            color={pot.potColor}
+                                            label={pot.potName}
+                                            amount={pot.totalSaved}
+                                        />
+                                    ))}
+                                </Flex>
+                                <Flex align="center" gap={theme.spacing[200]} alignSelf="stretch">
+                                    {displayedPots.slice(2, 4).map((pot: Pot) => (
+                                        <MicroSummaryTag
+                                            key={pot.id}
+                                            pot={pot}
+                                            color={pot.potColor}
+                                            label={pot.potName}
+                                            amount={pot.totalSaved}
+                                        />
+                                    ))}
+                                </Flex>
                             </Flex>
                         </Flex>
                     </Flex>
                 </Flex>
-            </Flex>
+            ) : (
+                <Flex
+                    width="100%"
+                    justify="center"
+                    align="center"
+                    direction="column"
+                    mt={theme.spacing[500]}
+                >
+                    <Text textStyle="preset4">
+                        Add pots to get started.
+                    </Text>
+                </Flex>
+            )}
+
         </Flex>
 
     )

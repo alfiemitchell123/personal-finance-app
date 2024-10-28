@@ -55,7 +55,10 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
             bg={isActive ? "beige.100" : "grey.900"}
             _hover={{
                 textDecoration: "none",
-                color: isActive ? "grey.900" : "grey.100"
+                color: isActive ? "grey.900" : "grey.100",
+                '& > span': {
+                    color: isActive ? "secondary.green" : "grey.100"
+                },
             }}
             _active={{
                 bg: activeState ? "beige.100" : "grey.900",
@@ -66,13 +69,18 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
                 color: activeState ? "grey.900" : "grey.100",
             }}
         >
-            {icon && <Box
-                as="span"
-                color={isActive ? "secondary.green" : "grey.300"}
-                mr={{
-                    sm: "none",
-                    lg: theme.spacing[200],
-                }}>{icon}</Box>}
+            {icon &&
+                <Box
+                    as="span"
+                    color={isActive ? "secondary.green" : "grey.300"}
+                    mr={{
+                        sm: "none",
+                        lg: theme.spacing[200],
+                    }}
+                >
+                    {icon}
+                </Box>
+            }
             {
                 !isMinimized &&
                 <Text
