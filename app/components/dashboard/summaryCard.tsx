@@ -31,7 +31,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ label, amount, bg, labelColor
                 color={amountColor}
                 textStyle="preset1"
             >
-                ${amount.toFixed(2)}
+                ${amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </Text>
         </Flex>
     )
