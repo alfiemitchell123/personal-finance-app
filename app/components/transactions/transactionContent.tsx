@@ -61,11 +61,11 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
     }, [transactions, filter, selectedCategory, searchTerm]);
 
     const handleFilterChange = (item: DropdownMenuItem) => {
-        setFilter(item.value);
+        setFilter(item.value ?? "Latest");
     };
 
     const handleCategoryChange = (item: DropdownMenuItem) => {
-        setSelectedCategory(item.value);
+        setSelectedCategory(item.value ?? "All Transactions");
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

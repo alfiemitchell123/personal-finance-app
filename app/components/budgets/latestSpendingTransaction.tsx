@@ -3,6 +3,8 @@ import SummaryTitle from "../dashboard/summaryTitle";
 import theme from "~/theme";
 import { Transaction } from "~/types";
 import React from "react";
+import { Timestamp } from "firebase/firestore";
+import TransactionImg from "../transactions/transactionImg";
 
 interface LatestSpendingTransactionProps {
     transaction: Transaction;
@@ -14,9 +16,9 @@ const LatestSpendingTransaction: React.FC<LatestSpendingTransactionProps> = ({ t
         return `${sign}$${Math.abs(amount).toFixed(2)}`;
     }
 
-    const formatDate = (date: any) => {
+    const formatDate = (date: Date | Timestamp) => {
         // Handle Firestore Timestamp or regular JS Date
-        const dateObj = date?.toDate ? date.toDate() : new Date(date);
+        const dateObj = date instanceof Timestamp ? date.toDate() : new Date(date);
 
         // Make sure the date is valid
         if (isNaN(dateObj.getTime())) {
@@ -38,12 +40,7 @@ const LatestSpendingTransaction: React.FC<LatestSpendingTransactionProps> = ({ t
                 gap={theme.spacing[200]}
                 flex="1 0 0"
             >
-                <Image
-                    src={transaction.transactionImg}
-                    width={8}
-                    height={8}
-                    borderRadius="2rem"
-                />
+                <TransactionImg transaction={transaction} />
 
                 <Text textStyle="preset5bold" color="grey.900">
                     {transaction.transactionName}

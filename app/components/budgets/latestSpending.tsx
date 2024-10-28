@@ -44,7 +44,7 @@ const LatestSpending: React.FC<LatestSpendingProps> = ({ budget }) => {
             >
                 {transactions && (
                     transactions
-                        .filter((t: Transaction) => t.transactionCategory === budget.budgetCategory)
+                        .filter((t: Transaction) => t.transactionCategory === budget.budgetCategory && t.transactionAmt < 0)
                         .sort((a, b) => (b.transactionDate).toDate().getTime() - (a.transactionDate).toDate().getTime())
                         .slice(0, 3)
                         .map((filteredTransaction: Transaction, index: number, filteredArray) => (

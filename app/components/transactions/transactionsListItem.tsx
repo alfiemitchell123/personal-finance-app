@@ -5,6 +5,7 @@ import { useLocation } from "@remix-run/react";
 import theme from "~/theme";
 import { Transaction } from "~/types";
 import { PencilSimple, Trash } from "phosphor-react";
+import { Timestamp } from "firebase/firestore";
 
 interface TransactionsListItemProps {
     transaction: Transaction;
@@ -20,8 +21,8 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
         return `${sign}$${Math.abs(amount).toFixed(2)}`;
     }
 
-    const formatDate = (date: any) => {
-        const dateObj = date.toDate ? date.toDate() : date;
+    const formatDate = (date: Date | Timestamp) => {
+        const dateObj = date instanceof Timestamp ? date.toDate() : date;
         const options = { day: "numeric", month: "short", year: "numeric" } as const;
         return new Date(dateObj).toLocaleDateString('en-UK', options);
     }

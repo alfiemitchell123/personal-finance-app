@@ -104,7 +104,7 @@ const BudgetCard: React.FC<BudgetCardProps> = ({ budget, onEdit, onDelete }) => 
                 </Flex>
                 {transactions &&
                     transactions
-                        .filter((t: Transaction) => t.transactionCategory === budget.budgetCategory)
+                        .filter((t: Transaction) => t.transactionCategory === budget.budgetCategory && t.transactionAmt < 0)
                         .length > 0 && (
                         <LatestSpending budget={budget} />
                     )}

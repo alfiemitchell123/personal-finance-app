@@ -48,7 +48,7 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, mo
         }
     }, [mode, existingTransaction]);
 
-    if (loadingTransactions) return <PageLoading />;
+    // if (loadingTransactions) return <PageLoading />;
     console.log("Transaction Modal Props:", { isOpen, mode, existingTransaction });
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {

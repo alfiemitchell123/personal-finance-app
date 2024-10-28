@@ -11,9 +11,10 @@ import AddNewModal from "~/components/ui/addNewModal";
 interface PageHeaderProps {
     children: React.ReactNode;
     openModal?: () => void;
+    maxCount?: number;
 }
 
-const PageHeader = ({ children, openModal = () => { } }: PageHeaderProps) => {
+const PageHeader = ({ children, openModal = () => { }, maxCount }: PageHeaderProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { loading } = useUserData();
@@ -52,7 +53,7 @@ const PageHeader = ({ children, openModal = () => { } }: PageHeaderProps) => {
                 </Flex>
 
                 {['/transactions', '/budgets', '/pots'].includes(location.pathname) && (
-                    <AddNewButton btnTag={pageTitle} onClick={() => openModal()} />
+                    <AddNewButton btnTag={pageTitle} onClick={() => openModal()} maxCount={maxCount} />
                 )}
 
                 {location.pathname === "/" && (
