@@ -18,7 +18,6 @@ const MicroSummaryTag: React.FC<MicroSummaryProps> = ({ color, label, amount }) 
             align="center"
             gap={theme.spacing[200]}
             flex="1 0 0"
-
         >
             <Box
                 width={theme.spacing[50]}

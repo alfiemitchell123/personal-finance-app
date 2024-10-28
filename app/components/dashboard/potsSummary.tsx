@@ -22,7 +22,9 @@ const PotsSummary = () => {
     }, 0);
 
     // Limit pots to the specified amount
-    const displayedPots = 4 ? pots?.slice(0, 4) : pots || [];
+    const displayedPots = pots
+        ?.slice(0, 4)
+        .sort((a, b) => (b.totalSaved || 0) - (a.totalSaved || 0));
 
     return (
         <Flex
@@ -43,6 +45,7 @@ const PotsSummary = () => {
             />
 
             <Flex
+                width="100%"
                 align="center"
                 gap={theme.spacing[250]}
             >
@@ -87,17 +90,36 @@ const PotsSummary = () => {
                         gap={theme.spacing[200]}
                         alignSelf="stretch"
                     >
-                        <SimpleGrid columns={2} spacing={4}>
-                            {displayedPots.map((pot: Pot) => (
-                                <MicroSummaryTag
-                                    key={pot.id}
-                                    pot={pot}
-                                    color={pot.potColor}
-                                    label={pot.potName}
-                                    amount={pot.totalSaved}
-                                />
-                            ))}
-                        </SimpleGrid>
+                        <Flex
+                            direction="column"
+                            justify="center"
+                            align="flex-start"
+                            gap={theme.spacing[200]}
+                            flex="1 0 0"
+                        >
+                            <Flex align="center" gap={theme.spacing[200]} alignSelf="stretch">
+                                {displayedPots.slice(0, 2).map((pot: Pot) => (
+                                    <MicroSummaryTag
+                                        key={pot.id}
+                                        pot={pot}
+                                        color={pot.potColor}
+                                        label={pot.potName}
+                                        amount={pot.totalSaved}
+                                    />
+                                ))}
+                            </Flex>
+                            <Flex align="center" gap={theme.spacing[200]} alignSelf="stretch">
+                                {displayedPots.slice(2, 4).map((pot: Pot) => (
+                                    <MicroSummaryTag
+                                        key={pot.id}
+                                        pot={pot}
+                                        color={pot.potColor}
+                                        label={pot.potName}
+                                        amount={pot.totalSaved}
+                                    />
+                                ))}
+                            </Flex>
+                        </Flex>
                     </Flex>
                 </Flex>
             </Flex>
