@@ -2,8 +2,12 @@ import { Flex } from "@chakra-ui/react";
 import SummaryTitle from "./summaryTitle";
 import theme from "~/theme";
 import BillsSummaryTag from "./billsSummaryTag";
+import useBillsData from "~/hooks/useBillsData";
+import useTransactionData from "~/hooks/useTransactions";
 
 const BillsSummary = () => {
+    const billsData = useBillsData();
+
     return (
         <Flex
             p={theme.spacing[400]}
@@ -29,9 +33,9 @@ const BillsSummary = () => {
                 gap={theme.spacing[150]}
                 alignSelf="stretch"
             >
-                <BillsSummaryTag color={`${theme.colors.secondary.green}`} label="Paid Bills" amount={190} />
-                <BillsSummaryTag color={`${theme.colors.secondary.yellow}`} label="Total Upcoming" amount={194.98} />
-                <BillsSummaryTag color={`${theme.colors.secondary.cyan}`} label="Due Soon" amount={59.98} />
+                <BillsSummaryTag color={`${theme.colors.secondary.green}`} label="Paid Bills" amount={billsData.totalPaidAmount} />
+                <BillsSummaryTag color={`${theme.colors.secondary.yellow}`} label="Total Upcoming" amount={billsData.totalUpcoming} />
+                <BillsSummaryTag color={`${theme.colors.secondary.cyan}`} label="Due Soon" amount={billsData.totalDueSoon} />
             </Flex>
         </Flex>
     )

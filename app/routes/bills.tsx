@@ -13,6 +13,7 @@ import React from "react";
 import { Transaction } from "~/types";
 import { sortTransactions, filterTransactionsByRecurringBill, filterTransactionsByName } from "~/utils/transactionFilters";
 import { Protected } from "./protected";
+import useBillsData from "~/hooks/useBillsData";
 
 const sortMenuItems: DropdownMenuItem[] = [
     { itemLabel: 'Latest', value: 'latest' },
@@ -28,6 +29,7 @@ export default function BillsRoute() {
     const [filter, setFilter] = useState<string>("latest");
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
+    const billsData = useBillsData();
 
     useEffect(() => {
         // First filter by recurring bills
@@ -130,7 +132,7 @@ export default function BillsRoute() {
                                                 flex="1 0 0"
                                             >
                                                 <Text textStyle="preset5" color="grey.500">Paid Bills</Text>
-                                                <Text textStyle="preset5bold" color="grey.900">4 ($190.00)</Text>
+                                                <Text textStyle="preset5bold" color="grey.900">{billsData.numberOfPaidBills} (${billsData.totalPaidAmount.toFixed(2)})</Text>
                                             </Flex>
                                             <Divider height="0.0625rem" />
                                             <Flex
@@ -139,7 +141,7 @@ export default function BillsRoute() {
                                                 flex="1 0 0"
                                             >
                                                 <Text textStyle="preset5" color="grey.500">Total Upcoming</Text>
-                                                <Text textStyle="preset5bold" color="grey.900">4 ($194.98)</Text>
+                                                <Text textStyle="preset5bold" color="grey.900">{billsData.numberOfUpcomingBills} (${billsData.totalUpcoming.toFixed(2)})</Text>
                                             </Flex>
                                             <Divider height="0.0625rem" />
                                             <Flex
@@ -148,7 +150,7 @@ export default function BillsRoute() {
                                                 flex="1 0 0"
                                             >
                                                 <Text textStyle="preset5" color="secondary.red">Due Soon</Text>
-                                                <Text textStyle="preset5bold" color="secondary.red">2 ($59.98)</Text>
+                                                <Text textStyle="preset5bold" color="secondary.red">{billsData.numberOfDueSoonBills} (${billsData.totalDueSoon.toFixed(2)})</Text>
                                             </Flex>
                                         </Flex>
                                     </Flex>
