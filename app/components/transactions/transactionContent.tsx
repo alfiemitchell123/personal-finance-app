@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text, MenuItem } from "@chakra-ui/react";
+import { Flex, Text, MenuItem, Button } from "@chakra-ui/react";
 import InputField from "../ui/inputField";
 import DropdownMenu, { DropdownMenuItem } from "../ui/dropdownMenu";
-import { CaretDown, MagnifyingGlass } from "phosphor-react";
+import { CaretLeft, CaretDown, MagnifyingGlass } from "phosphor-react";
 import TransactionsList from "./transactionsList";
 import { Transaction } from "~/types";
 import { sortTransactions, filterTransactionsByCategory } from "~/utils/transactionFilters";
 import useTransactionData from "~/hooks/useTransactions";
 import theme from "~/theme";
+import Pagination from "./pagination";
 
 interface TransactionContentProps {
     transactions: Transaction[];
@@ -37,6 +38,9 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
     const [filter, setFilter] = useState<string>('latest');
     const [selectedCategory, setSelectedCategory] = useState<string>('All Transactions');
     const [searchTerm, setSearchTerm] = useState<string>('');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+
+    const TRANSACTIONS_PER_PAGE = 10;
 
     useEffect(() => {
         if (!transactions || transactions.length === 0) {
@@ -58,7 +62,15 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
         }
 
         setFilteredTransactions(result);
-    }, [transactions, filter, selectedCategory, searchTerm]);
+
+        const newTotalPages = Math.ceil(filteredTransactions.length / TRANSACTIONS_PER_PAGE);
+        if (currentPage < 1) {
+            setCurrentPage(1); // Reset to 1 if currentPage goes below 1
+        } else if (currentPage > newTotalPages) {
+            setCurrentPage(newTotalPages > 0 ? newTotalPages : 1); // Adjust to last page if exists
+        }
+        console.log("Total pages: ", newTotalPages);
+    }, [transactions, filter, selectedCategory, searchTerm, filteredTransactions.length, currentPage]);
 
     const handleFilterChange = (item: DropdownMenuItem) => {
         setFilter(item.value ?? "Latest");
@@ -71,6 +83,13 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(event.target.value);
     };
+
+    const startIndex = (currentPage - 1) * TRANSACTIONS_PER_PAGE;
+    const displayedTransactions = filteredTransactions.slice(startIndex, startIndex + TRANSACTIONS_PER_PAGE);
+
+    console.log("Number of filtered transactions: ", filteredTransactions.length);
+    console.log("Number of displayed transactions: ", displayedTransactions.length);
+    console.log("Current page: ", currentPage);
 
     return (
         <Flex
@@ -130,7 +149,15 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                 <Text width="7.5rem" textStyle="preset5" color="grey.500">Transaction Date</Text>
                 <Text width="12.5rem" textStyle="preset5" color="grey.500" textAlign="right">Amount</Text>
             </Flex>
-            <TransactionsList transactions={filteredTransactions} />
+
+            <TransactionsList transactions={displayedTransactions} />
+
+            <Pagination
+                totalTransactions={filteredTransactions.length}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                transactionsPerPage={TRANSACTIONS_PER_PAGE}
+            />
         </Flex>
     )
 }
