@@ -13,9 +13,9 @@ export const sortTransactions = (transactions: Transaction[], filter: string) =>
         case 'oldest':
             return [...transactions].sort((a, b) => a.transactionDate.toDate().getTime() - b.transactionDate.toDate().getTime());
         case 'aToZ':
-            return [...transactions].sort((a, b) => a.transactionCategory.localeCompare(b.transactionCategory));
+            return [...transactions].sort((a, b) => a.transactionName.localeCompare(b.transactionName));
         case 'zToA':
-            return [...transactions].sort((a, b) => b.transactionCategory.localeCompare(a.transactionCategory));
+            return [...transactions].sort((a, b) => b.transactionName.localeCompare(a.transactionName));
         case 'lowest':
             return [...transactions].sort((a, b) => a.transactionAmt - b.transactionAmt);
         case 'highest':

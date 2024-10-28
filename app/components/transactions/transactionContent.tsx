@@ -87,10 +87,6 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
     const startIndex = (currentPage - 1) * TRANSACTIONS_PER_PAGE;
     const displayedTransactions = filteredTransactions.slice(startIndex, startIndex + TRANSACTIONS_PER_PAGE);
 
-    console.log("Number of filtered transactions: ", filteredTransactions.length);
-    console.log("Number of displayed transactions: ", displayedTransactions.length);
-    console.log("Current page: ", currentPage);
-
     return (
         <Flex
             maxW="90rem"

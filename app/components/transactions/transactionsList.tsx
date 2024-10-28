@@ -25,7 +25,6 @@ const TransactionsList = ({ limit, transactions = [] }: TransactionsListProps) =
         openDeleteTransactionModal(id);
     };
 
-
     return (
         <Flex
             direction="column"

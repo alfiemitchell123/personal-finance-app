@@ -25,8 +25,8 @@ const sortMenuItems: DropdownMenuItem[] = [
 
 export default function BillsRoute() {
     const { transactions, loading } = useTransactionData();
-    const [filter, setFilter] = useState<string>('latest');
-    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [filter, setFilter] = useState<string>("latest");
+    const [searchTerm, setSearchTerm] = useState<string>("");
     const [filteredTransactions, setFilteredTransactions] = useState<Transaction[]>([]);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ export default function BillsRoute() {
     }, [searchTerm, filter, transactions]);
 
     const handleFilterChange = (item: DropdownMenuItem) => {
-        setFilter(item.value ?? "Latest");
+        setFilter(item.value ?? "latest");
     };
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
