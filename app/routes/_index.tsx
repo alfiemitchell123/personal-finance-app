@@ -111,7 +111,6 @@ export default function Home() {
             md: "column",
             sm: "column",
           }}
-          wrap="wrap"
           maxWidth={{
             lg: "90rem",
             sm: "100%",
