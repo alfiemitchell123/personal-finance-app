@@ -6,12 +6,13 @@ interface AddNewButtonProps {
     btnTag: string;
     onClick: () => void;
     maxCount?: number;
+    maxCountLabel?: string;
 }
 
-const AddNewButton: React.FC<AddNewButtonProps> = ({ btnTag, onClick, maxCount = 0 }) => {
+const AddNewButton: React.FC<AddNewButtonProps> = ({ btnTag, onClick, maxCount = 0, maxCountLabel }) => {
     return (
         <Tooltip
-            label={maxCount >= 8 ? "Remove existing budgets to add more." : ""}
+            label={maxCount >= 8 ? `Remove existing ${maxCountLabel} to add more.` : ""}
             bg="grey.500"
             hasArrow
             placement="left"

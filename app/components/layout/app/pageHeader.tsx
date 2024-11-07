@@ -12,9 +12,10 @@ interface PageHeaderProps {
     children: React.ReactNode;
     openModal?: () => void;
     maxCount?: number;
+    maxCountLabel?: string;
 }
 
-const PageHeader = ({ children, openModal = () => { }, maxCount }: PageHeaderProps) => {
+const PageHeader = ({ children, openModal = () => { }, maxCount, maxCountLabel }: PageHeaderProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const { loading } = useUserData();
@@ -53,7 +54,7 @@ const PageHeader = ({ children, openModal = () => { }, maxCount }: PageHeaderPro
                 </Flex>
 
                 {['/transactions', '/budgets', '/pots'].includes(location.pathname) && (
-                    <AddNewButton btnTag={pageTitle} onClick={() => openModal()} maxCount={maxCount} />
+                    <AddNewButton btnTag={pageTitle} onClick={() => openModal()} maxCount={maxCount} maxCountLabel={maxCountLabel} />
                 )}
 
                 {location.pathname === "/" && (

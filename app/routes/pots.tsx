@@ -47,7 +47,7 @@ export default function PotsRoute() {
                     </Flex>
                 ) : (
                     <>
-                        <PageHeader openModal={openAddPotModal}>Pots</PageHeader>
+                        <PageHeader openModal={openAddPotModal} maxCount={8} maxCountLabel="pots">Pots</PageHeader>
                         {isModalOpen && (
                             <PotModal
                                 mode={potModalMode}

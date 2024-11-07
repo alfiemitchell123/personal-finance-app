@@ -58,7 +58,7 @@ export default function BudgetsRoute() {
                     </Flex>
                 ) : (
                     <>
-                        <PageHeader openModal={openAddBudgetModal} maxCount={budgets.length}>Budgets</PageHeader>
+                        <PageHeader openModal={openAddBudgetModal} maxCount={budgets.length} maxCountLabel="budgets">Budgets</PageHeader>
                         {isModalOpen && (
                             <BudgetModal
                                 mode={budgetModalMode}
