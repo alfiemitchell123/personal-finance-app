@@ -4,6 +4,8 @@ import Sidebar from "../sidebar/sidebar";
 import { useLocation } from "@remix-run/react";
 import useUserData from "~/hooks/useUserData";
 import PageLoading from "~/components/ui/pageLoading";
+import { useSidebar } from "~/contexts/sidebarProvider";
+import theme from "~/theme";
 
 interface AppLayoutProps {
     children: ReactNode;
@@ -15,11 +17,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     const noAppLayoutRoutes = ["/login", "/register"];
     const useAppLayout = !noAppLayoutRoutes.includes(location.pathname);
 
-    const [isMinimized, setIsMinimized] = useState<boolean>(false);
-
-    const toggleSidebar = () => {
-        setIsMinimized(!isMinimized);
-    }
+    const sidebar = useSidebar();
 
     return (
         <Box>
@@ -30,11 +28,20 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                         bg="beige.100"
                         minHeight="100%"
                     >
-                        <Sidebar isMinimized={isMinimized} toggleSidebar={toggleSidebar} />
+                        <Sidebar isMinimized={sidebar.isMinimized} toggleSidebar={sidebar.toggleSidebar} />
 
                         <Box
                             width="100%"
-                            ml={isMinimized ? "5.5rem" : "18.75rem"}
+                            ml={{
+                                lg: sidebar.isMinimized ? "5.5rem" : "18.75rem",
+                                md: "0",
+                                sm: "0",
+                            }}
+                            mb={{
+                                lg: "0",
+                                md: "5rem",
+                                sm: "4rem",
+                            }}
                         >
                             {children}
                         </Box>

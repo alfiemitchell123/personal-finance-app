@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Flex, useTheme } from "@chakra-ui/react";
 import SidebarMenuItem from './sidebarMenuItem';
 import { House, ArrowsDownUp, ChartDonut, Jar, Receipt, ArrowFatLineLeft, ArrowFatLineRight } from "@phosphor-icons/react";
+import { useSidebar } from "~/contexts/sidebarProvider";
 
 interface SidebarProps {
     isMinimized: boolean;
@@ -18,13 +19,14 @@ const menuItems = [
 
 const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
     const theme = useTheme();
+    const sidebar = useSidebar();
 
     return (
         <Box
             zIndex={1}
             width={{
                 sm: "full",
-                lg: (isMinimized ? "5.5rem" : "18.75rem")
+                lg: (sidebar.isMinimized ? "5.5rem" : "18.75rem")
             }}
             as="header"
             display="flex"
@@ -57,19 +59,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
                 }}
                 direction="column"
                 justify="center"
-                align={isMinimized ? "center" : "flex-start"}
+                align={sidebar.isMinimized ? "center" : "flex-start"}
                 gap={theme.spacing[100]}
                 alignSelf="stretch"
                 p={`${theme.spacing[500]} ${theme.spacing[400]}`}
             >
-                {isMinimized ? <img src="assets/logoSmall.svg" alt="Finance" /> : <img src="assets/logoFull.svg" alt="Finance" />}
+                {sidebar.isMinimized ? <img src="assets/logoSmall.svg" alt="Finance" /> : <img src="assets/logoFull.svg" alt="Finance" />}
             </Flex>
             <Flex
                 as="nav"
                 width={
                     {
                         md: "100%",
-                        lg: isMinimized ? "5.5rem" : "18.75rem",
+                        lg: sidebar.isMinimized ? "5.5rem" : "18.75rem",
 
                     }}
                 max-height="50rem"
@@ -91,7 +93,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
                         label={item.label}
                         icon={item.icon}
                         to={item.to}
-                        isMinimized={isMinimized}
+                        isMinimized={sidebar.isMinimized}
                         activeState={true}
                     />
                 ))}
@@ -109,9 +111,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
             >
                 <SidebarMenuItem
                     label={'Minimize Menu'}
-                    icon={isMinimized ? <ArrowFatLineRight weight="fill" size={24} /> : < ArrowFatLineLeft weight="fill" size={24} />}
-                    isMinimized={isMinimized}
-                    onClick={toggleSidebar}
+                    icon={sidebar.isMinimized ? <ArrowFatLineRight weight="fill" size={24} /> : < ArrowFatLineLeft weight="fill" size={24} />}
+                    isMinimized={sidebar.isMinimized}
+                    onClick={sidebar.toggleSidebar}
                     activeState={false}
                 />
             </Flex>

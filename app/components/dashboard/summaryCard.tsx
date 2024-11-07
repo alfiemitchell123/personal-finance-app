@@ -20,6 +20,7 @@ const SummaryCard: React.FC<SummaryCardProps> = ({ label, amount, bg, labelColor
             flex="1 0 0"
             bg={bg}
             borderRadius={theme.spacing[150]}
+            width="100%"
         >
             <Text
                 color={labelColor}

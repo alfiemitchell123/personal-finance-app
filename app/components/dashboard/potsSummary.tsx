@@ -46,11 +46,20 @@ const PotsSummary = () => {
             {pots ? (
                 <Flex
                     width="100%"
+                    direction={{
+                        lg: "row",
+                        md: "row",
+                        sm: "column",
+                    }}
                     align="center"
                     gap={theme.spacing[250]}
                 >
                     <Flex
-                        width="15.4375rem"
+                        width={{
+                            lg: "15.4375rem",
+                            md: "15.4375rem",
+                            sm: "100%",
+                        }}
                         height="6.875rem"
                         p={theme.spacing[200]}
                         align="center"
@@ -79,6 +88,7 @@ const PotsSummary = () => {
                         </Flex>
                     </Flex>
                     <Flex
+                        width="100%"
                         direction="column"
                         justify="center"
                         align="flex-start"

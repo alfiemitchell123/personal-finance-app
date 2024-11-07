@@ -32,8 +32,19 @@ const BudgetsSummary: React.FC<BudgetsSummaryProps> = ({ budgets }) => {
             />
 
             <Flex
+                width={{
+                    lg: "auto",
+                    md: "auto",
+                    sm: "100%",
+                }}
+                direction={{
+                    lg: "row",
+                    md: "row",
+                    sm: "column",
+                }}
                 align="center"
                 gap={theme.spacing[250]}
+                alignSelf="stretch"
             >
                 <Flex
                     p={`${theme.spacing[100]} 0rem`}
@@ -41,6 +52,8 @@ const BudgetsSummary: React.FC<BudgetsSummaryProps> = ({ budgets }) => {
                     gap="1rem"
                     flex="1 0 0"
                     alignSelf="stretch"
+                    margin="auto"
+                    justify="center"
                 >
                     <BudgetsChart budgets={budgets} />
                 </Flex>
@@ -49,26 +62,72 @@ const BudgetsSummary: React.FC<BudgetsSummaryProps> = ({ budgets }) => {
                     justify="center"
                     align="flex-start"
                     gap={theme.spacing[200]}
-                    flex="1 0 0"
+                    flex="0"
                 >
                     <Flex
-                        direction="column"
+                        direction={{
+                            lg: "column",
+                            md: "column",
+                            sm: "row",
+                        }}
                         align="flex-start"
                         gap={theme.spacing[200]}
                         alignSelf="stretch"
+                        width={{
+                            lg: "auto",
+                            md: "auto",
+                            sm: "100%",
+                        }}
                     >
                         <>
-                            {budgets
-                                .sort((a, b) => b.totalSpent - a.totalSpent)
-                                .slice(0, 4)
-                                .map((savings, index) => (
-                                    <MicroSummaryTag
-                                        key={index}
-                                        color={savings.budgetColor}
-                                        label={savings.budgetCategory}
-                                        amount={savings.totalSpent}
-                                    />
-                                ))}
+                            <Flex direction={{
+                                lg: "column",
+                                md: "column",
+                                sm: "column",
+                            }}
+                                gap={theme.spacing[200]}
+                                width={{
+                                    lg: "auto",
+                                    md: "auto",
+                                    sm: "100%",
+                                }}
+                            >
+                                {budgets
+                                    .sort((a, b) => b.totalSpent - a.totalSpent)
+                                    .slice(0, 2)
+                                    .map((savings, index) => (
+                                        <MicroSummaryTag
+                                            key={index}
+                                            color={savings.budgetColor}
+                                            label={savings.budgetCategory}
+                                            amount={savings.totalSpent}
+                                        />
+                                    ))}
+                            </Flex>
+                            <Flex direction={{
+                                lg: "column",
+                                md: "column",
+                                sm: "column",
+                            }}
+                                gap={theme.spacing[200]}
+                                width={{
+                                    lg: "auto",
+                                    md: "auto",
+                                    sm: "100%",
+                                }}
+                            >
+                                {budgets
+                                    .sort((a, b) => b.totalSpent - a.totalSpent)
+                                    .slice(2, 4)
+                                    .map((savings, index) => (
+                                        <MicroSummaryTag
+                                            key={index}
+                                            color={savings.budgetColor}
+                                            label={savings.budgetCategory}
+                                            amount={savings.totalSpent}
+                                        />
+                                    ))}
+                            </Flex>
                         </>
                     </Flex>
                 </Flex>

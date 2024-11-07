@@ -5,6 +5,7 @@ import { MetaFunction, Outlet, Links, Meta, Scripts, ScrollRestoration } from "@
 import theme from "./theme";
 import { AuthProvider } from "~/contexts/authContext/authProvider";
 import AppLayout from "./components/layout/app/appLayout";
+import { SidebarProvider } from "./contexts/sidebarProvider";
 
 // Meta configuration using Remix's MetaFunction
 export const meta: MetaFunction = () => {
@@ -34,13 +35,15 @@ export function Layout() {
       </head>
       <body>
         <AuthProvider>
-          <ChakraProvider theme={theme}>
-            <AppLayout>
-              <Outlet />
-            </AppLayout>
-            <ScrollRestoration />
-            <Scripts />
-          </ChakraProvider>
+          <SidebarProvider>
+            <ChakraProvider theme={theme}>
+              <AppLayout>
+                <Outlet />
+              </AppLayout>
+              <ScrollRestoration />
+              <Scripts />
+            </ChakraProvider>
+          </SidebarProvider>
         </AuthProvider>
       </body>
     </html>
@@ -50,6 +53,6 @@ export function Layout() {
 // Main app entry point, can be used for route-specific content
 export default function App() {
   return (
-    <Outlet />
+    null
   );
 }

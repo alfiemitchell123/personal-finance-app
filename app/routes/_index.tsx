@@ -75,10 +75,23 @@ export default function Home() {
         </PageHeader>
 
         <Flex
+          direction={{
+            lg: "row",
+            md: "row",
+            sm: "column",
+          }}
           align="flex-start"
           alignSelf="stretch"
-          gap={theme.spacing[300]}
-          maxWidth="90rem"
+          gap={{
+            lg: theme.spacing[300],
+            md: theme.spacing[300],
+            sm: theme.spacing[150],
+          }}
+          maxWidth={{
+            lg: "90rem",
+            md: "90rem",
+            sm: "90rem",
+          }}
         >
           {summaryData.map((item, index) => (
             <SummaryCard
@@ -93,13 +106,25 @@ export default function Home() {
         </Flex>
 
         <Flex
+          direction={{
+            lg: "row",
+            md: "column",
+            sm: "column",
+          }}
           wrap="wrap"
-          maxW="90rem"
+          maxWidth={{
+            lg: "90rem",
+            sm: "100%",
+          }}
           width="100%"
           gap={theme.spacing[300]}
         >
           <Flex
-            width="38rem"
+            width={{
+              lg: "38rem",
+              md: "100%",
+              sm: "100%",
+            }}
             direction="column"
             align="flex-start"
             gap={theme.spacing[300]}
@@ -108,6 +133,11 @@ export default function Home() {
             <TransactionsSummary />
           </Flex>
           <Flex
+            height={{
+              lg: "auto",
+              md: "47.5625rem",
+              sm: "55.5625rem",
+            }}
             direction="column"
             align="flex-start"
             gap={theme.spacing[300]}
