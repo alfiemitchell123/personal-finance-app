@@ -22,6 +22,7 @@ interface InputFieldProps {
     iconWeight?: IconWeight;
     value?: string | number | boolean;
     usedNames?: string[];
+    maxLength?: number;
 }
 
 const InputField: React.FC<InputFieldProps> = ({
@@ -41,6 +42,7 @@ const InputField: React.FC<InputFieldProps> = ({
     iconWeight = 'fill',
     value,
     usedNames = [],
+    maxLength,
     ...props
 }) => {
     const [inputValue, setInputValue] = useState<string>("");
@@ -92,6 +94,7 @@ const InputField: React.FC<InputFieldProps> = ({
                     </InputLeftElement>
                 }
                 <Input
+                    maxLength={maxLength}
                     sx={{
                         display: "flex",
                         padding: `${theme.spacing[150]} ${theme.spacing[250]}`,

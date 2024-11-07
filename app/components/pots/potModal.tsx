@@ -321,6 +321,7 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
                                 onChange={(e) => setPotName(e.target.value)}
                                 value={potName || ""}
                                 isRequired={true}
+                                maxLength={30}
                             />
                             <InputField
                                 placeholder="e.g. 2000"
