@@ -65,7 +65,7 @@ export default function PotsRoute() {
                             gap={theme.spacing[300]}
                             alignSelf="stretch"
                         >
-                            <SimpleGrid width="100%" columns={2} spacing={theme.spacing[300]}>
+                            <SimpleGrid width="100%" columns={{ lg: 2, sm: 1 }} spacing={theme.spacing[300]}>
                                 {pots.map((pot: Pot) => (
                                     <PotCard
                                         key={pot.id}
