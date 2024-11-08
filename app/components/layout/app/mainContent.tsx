@@ -14,6 +14,7 @@ const MainContent = ({ children }: MainContentProps) => {
             width="100%"
             p={{
                 sm: `${theme.spacing[300]} ${theme.spacing[200]}`,
+                md: `${theme.spacing[400]} ${theme.spacing[500]}`,
                 lg: `${theme.spacing[400]} ${theme.spacing[500]}`,
             }}
             direction="column"

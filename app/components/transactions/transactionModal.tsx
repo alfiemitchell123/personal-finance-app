@@ -44,12 +44,8 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, mo
             setTransactionAmt(existingTransaction.transactionAmt || transactionAmt);
             setRecurringBill(existingTransaction.recurringBill || recurringBill);
             setLoadingTransactions(false);
-            console.log("Editing mode: ", existingTransaction);
         }
     }, [mode, existingTransaction]);
-
-    // if (loadingTransactions) return <PageLoading />;
-    console.log("Transaction Modal Props:", { isOpen, mode, existingTransaction });
 
     const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setRecurringBill(e.target.checked);

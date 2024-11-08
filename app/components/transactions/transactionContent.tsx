@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Flex, Text, MenuItem, Button } from "@chakra-ui/react";
+import { Flex, Text, MenuItem, Button, Box, Menu, MenuList } from "@chakra-ui/react";
 import InputField from "../ui/inputField";
 import DropdownMenu, { DropdownMenuItem } from "../ui/dropdownMenu";
-import { CaretLeft, CaretDown, MagnifyingGlass } from "phosphor-react";
+import { SortAscending, Funnel, MagnifyingGlass } from "phosphor-react";
 import TransactionsList from "./transactionsList";
 import { Transaction } from "~/types";
 import { sortTransactions, filterTransactionsByCategory } from "~/utils/transactionFilters";
@@ -39,6 +39,8 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
     const [selectedCategory, setSelectedCategory] = useState<string>('All Transactions');
     const [searchTerm, setSearchTerm] = useState<string>('');
     const [currentPage, setCurrentPage] = useState<number>(1);
+    const [showSortDropdown, setShowSortDropdown] = useState<boolean>(false);
+    const [showCategoryDropdown, setShowCategoryDropdown] = useState<boolean>(false);
 
     const TRANSACTIONS_PER_PAGE = 10;
 
@@ -87,6 +89,16 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
     const startIndex = (currentPage - 1) * TRANSACTIONS_PER_PAGE;
     const displayedTransactions = filteredTransactions.slice(startIndex, startIndex + TRANSACTIONS_PER_PAGE);
 
+    const handleSortIconClick = () => {
+        setShowSortDropdown((prev) => !prev);
+        setShowCategoryDropdown(false);
+    };
+
+    const handleCategoryIconClick = () => {
+        setShowCategoryDropdown((prev) => !prev);
+        setShowSortDropdown(false);
+    };
+
     return (
         <Flex
             maxW="90rem"
@@ -99,9 +111,14 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
             bg="white"
         >
             <Flex
-                justify="space-between"
+                justify={{
+                    lg: "space-between",
+                    md: "center",
+                    sm: "normal"
+                }}
                 align="center"
                 alignSelf="stretch"
+                gap={theme.spacing[300]}
             >
                 <Flex
                     width="20rem"
@@ -120,6 +137,11 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                     justify="flex-end"
                     align="center"
                     gap={theme.spacing[300]}
+                    display={{
+                        lg: "flex",
+                        md: "flex",
+                        sm: "none"
+                    }}
                 >
                     <Flex align="center" gap={theme.spacing[100]}>
                         <Text textStyle="preset4" color="grey.500" width="100%">Sort by</Text>
@@ -130,6 +152,33 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                         <DropdownMenu label="All Transactions" items={transactionMenuItems} onChange={handleCategoryChange} />
                     </Flex>
                 </Flex>
+
+                <Flex
+                    justify="flex-end"
+                    display={{
+                        lg: "none",
+                        md: "none",
+                        sm: "flex"
+                    }}
+                    align="center"
+                    gap={theme.spacing[300]}
+                >
+                    <Box as="button" onClick={handleSortIconClick}>
+                        <SortAscending weight="fill" size={24} />
+                    </Box>
+                    <Box as="button" onClick={handleCategoryIconClick}>
+                        <Funnel weight="fill" size={24} />
+                    </Box>
+                </Flex>
+
+                {/* <Flex direction="column" display={{ base: "flex", lg: "none" }} gap={4}>
+                    {showSortDropdown && (
+                        // Mobile dropdown menu for sorting
+                    )}
+                    {showCategoryDropdown && (
+                        <DropdownMenu label="All Transactions" items={transactionMenuItems} onChange={handleCategoryChange} />
+                    )}
+                </Flex> */}
             </Flex>
 
             <Flex
@@ -139,6 +188,11 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                 alignSelf="stretch"
                 borderBottom="1px solid"
                 borderBottomColor="grey.100"
+                display={{
+                    lg: "flex",
+                    md: "flex",
+                    sm: "none"
+                }}
             >
                 <Text flex="1" textStyle="preset5" color="grey.500">Receipent/Sender</Text>
                 <Text width="7.5rem" textStyle="preset5" color="grey.500">Category</Text>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Text, useBreakpointValue } from "@chakra-ui/react";
 import TransactionImg from "./transactionImg";
 import { useLocation } from "@remix-run/react";
 import theme from "~/theme";
@@ -32,7 +32,13 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
 
     return (
         <Box width="100%" position="relative" _hover={{ ".action-buttons": { opacity: 1 } }}>
+            {/* Desktop view */}
             <Flex
+                display={{
+                    lg: "flex",
+                    md: "flex",
+                    sm: "none"
+                }}
                 justify={locationTransactionRoute ? "normal" : "space-between"}
                 align="center"
                 width="100%"
@@ -142,6 +148,55 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
                         />
                     </Flex>
                 )}
+            </Flex>
+
+            {/* Mobile view */}
+            <Flex
+                display={{
+                    lg: "none",
+                    md: "none",
+                    sm: "flex"
+                }}
+                justify={locationTransactionRoute ? "normal" : "space-between"}
+                align="center"
+                width="100%"
+                key={transaction.id}
+                padding={locationTransactionRoute ? `0rem ${theme.spacing[150]}` : "none"}
+                gap={locationTransactionRoute ? theme.spacing[400] : "none"}
+            >
+                <Flex
+                    align="center"
+                    gap={theme.spacing[200]}
+                    flex="1"
+                >
+                    <TransactionImg transaction={transaction} />
+
+                    <Flex
+                        direction="column"
+                        justify="center"
+                        align="flex-start"
+                        gap={theme.spacing[100]}
+                        alignSelf="stretch"
+                    >
+                        <Text textStyle="preset4bold">{transaction.transactionName}</Text>
+                        <Text textStyle="preset5" color="grey.500">{transaction.transactionCategory}</Text>
+                    </Flex>
+                </Flex>
+
+                <Flex
+                    direction="column"
+                    justify="center"
+                    align="flex-end"
+                    gap={theme.spacing[50]}
+                >
+                    <Text
+                        textStyle="preset4bold"
+                        color={transaction.transactionAmt >= 0 ? "secondary.green" : "black"}
+                        textAlign="right">
+                        {formatTransactionAmount(transaction.transactionAmt)}
+                    </Text>
+                    <Text textStyle="preset5" color="grey.500">{formatDate(transaction.transactionDate)}</Text>
+                </Flex>
             </Flex>
         </Box>
     )

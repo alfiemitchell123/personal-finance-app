@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Flex, Grid, GridItem } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import useUserData from "~/hooks/useUserData";
 import MainContent from "~/components/layout/app/mainContent";
 import PageHeader from "~/components/layout/app/pageHeader";
@@ -12,7 +12,6 @@ import BillsSummary from "~/components/dashboard/billsSummary";
 import theme from "~/theme";
 import useBudgetsData from "~/hooks/useBudgets";
 import useTransactionData from "~/hooks/useTransactions";
-import { useNavigate } from "@remix-run/react";
 import { Protected } from "./protected";
 
 export default function Home() {
