@@ -148,27 +148,35 @@ const Login = () => {
                         bgPosition="top center"
                         bgRepeat="no-repeat"
                         borderRadius="0.75rem"
-                        padding={theme.spacing[500]}
+                        // padding={theme.spacing[500]}
                         direction="column"
                         justify="space-between"
                         align="flex-start"
                         flex="1 0 0"
                         alignSelf="stretch"
                     >
-                        <Image src="assets/logoFull.svg" alt="Finance" />
+                        <Image src="assets/logoFull.svg" alt="Finance" padding={theme.spacing[500]} />
                         <Flex
-                            direction="column"
-                            color="white"
-                            align="flex-start"
-                            gap={theme.spacing[300]}
+                            bg="linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(32,31,36,1) 24%, rgba(32,31,36,0.7049413515406162) 57%, rgba(32,31,36,0.4360337885154062) 77%, rgba(0,212,255,0) 100%)"
+                            backdropFilter="blur(0.4px)"
+                            width="100%"
+                            borderRadius="0.75rem"
+                            padding={theme.spacing[500]}
                         >
-                            <Text textStyle="preset1">
-                                Keep track of your money
-                                and save for your future
-                            </Text>
-                            <Text textStyle="preset4">
-                                Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.
-                            </Text>
+                            <Flex
+                                direction="column"
+                                color="white"
+                                align="flex-start"
+                                gap={theme.spacing[300]}
+                            >
+                                <Text textStyle="preset1">
+                                    Keep track of your money
+                                    and save for your future
+                                </Text>
+                                <Text textStyle="preset4">
+                                    Personal finance app puts you in control of your spending. Track transactions, set budgets, and add to savings pots easily.
+                                </Text>
+                            </Flex>
                         </Flex>
                     </Flex>
                 </Flex>

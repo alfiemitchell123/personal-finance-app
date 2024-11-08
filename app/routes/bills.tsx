@@ -240,6 +240,7 @@ export default function BillsRoute() {
                                 </Flex>
 
                                 <Flex
+                                    display={{ lg: "flex", md: "flex", sm: "none" }}
                                     padding={`${theme.spacing[150]} ${theme.spacing[200]}`}
                                     align="center"
                                     justify="space-between"
