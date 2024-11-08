@@ -48,13 +48,6 @@ const Login = () => {
             // Handle login
             try {
                 await doSignInWithEmailAndPassword(email, password);
-                // toast({
-                //     title: "Sign In Successful",
-                //     description: "You have successfully signed in.",
-                //     status: "success",
-                //     duration: 5000,
-                //     isClosable: true,
-                // });
             } catch (error) {
                 toast({
                     title: "Sign In Error",
@@ -108,12 +101,39 @@ const Login = () => {
     return (
         <ClientOnly>
             <Flex
-                width="90rem"
+                width={{
+                    lg: "90rem",
+                    sm: "auto"
+                }}
                 height="100vh"
                 align="flex-start"
                 bg="beige.100"
+                direction={{
+                    lg: "row",
+                    sm: "column"
+                }}
             >
                 <Flex
+                    display={{
+                        lg: "none",
+                        sm: "flex"
+                    }}
+                    padding={theme.spacing[300]}
+                    direction="column"
+                    justify="center"
+                    align="center"
+                    gap={theme.spacing[500]}
+                    alignSelf="stretch"
+                    borderRadius="0 0 0.5rem 0.5rem"
+                    bg="grey.900"
+                >
+                    <Image src="assets/logoFull.svg" alt="Finance" />
+                </Flex>
+                <Flex
+                    display={{
+                        lg: "flex",
+                        sm: "none"
+                    }}
                     maxWidth="37.5rem"
                     padding={theme.spacing[250]}
                     align="center"
