@@ -1,4 +1,4 @@
-import { Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { CheckCircle, WarningCircle } from "phosphor-react";
 import { Transaction } from "~/types";
 import theme from "~/theme";
@@ -54,35 +54,80 @@ const BillsListItem: React.FC<BillsListItemProps> = ({ transaction }) => {
             alignSelf="stretch"
             borderRadius={theme.spacing[100]}
         >
-            <Flex
-                align="center"
-                gap={theme.spacing[200]}
-                flex="2"
-            >
-                <TransactionImg transaction={transaction} />
-                <Text textStyle="preset4bold" color="grey.900">{transaction.transactionName}</Text>
+            {/* Desktop and tablet view */}
+            <Flex width="100%" display={{ lg: "flex", md: "flex", sm: "none" }}>
+                <Flex
+                    align="center"
+                    gap={theme.spacing[200]}
+                    flex="2"
+                >
+                    <TransactionImg transaction={transaction} />
+                    <Text textStyle="preset4bold" color="grey.900">{transaction.transactionName}</Text>
+                </Flex>
+
+                <Flex
+                    flex="1"
+                    align="center"
+                    gap={theme.spacing[100]}
+                >
+
+                    <Text textStyle="preset5" color={textColor}>
+                        {formattedDate}
+                    </Text>
+                    {checkIcon()}
+                </Flex>
+
+                <Flex
+                    flex="1"
+                    direction="column"
+                    justify="center"
+                    align="flex-end"
+                    gap={theme.spacing[100]}
+                >
+                    <Text textStyle="preset4bold" textAlign="right" color={amountColor}>${formattedAmount}</Text>
+                </Flex>
             </Flex>
 
+            {/* Mobile view */}
             <Flex
-                flex="1"
-                align="center"
-                gap={theme.spacing[100]}
-            >
-
-                <Text textStyle="preset5" color={textColor}>
-                    {formattedDate}
-                </Text>
-                {checkIcon()}
-            </Flex>
-
-            <Flex
-                flex="1"
+                width="100%"
+                display={{ lg: "none", md: "none", sm: "flex" }}
                 direction="column"
                 justify="center"
-                align="flex-end"
                 gap={theme.spacing[100]}
             >
-                <Text textStyle="preset4bold" textAlign="right" color={amountColor}>${formattedAmount}</Text>
+                <Flex
+                    align="center"
+                    gap={theme.spacing[200]}
+                    flex="2"
+                >
+                    <TransactionImg transaction={transaction} />
+                    <Text textStyle="preset4bold" color="grey.900">{transaction.transactionName}</Text>
+                </Flex>
+
+                <Flex width="100%" justify="space-between" align="flex-start" alignSelf="stretch">
+                    <Flex
+                        flex="1"
+                        align="center"
+                        gap={theme.spacing[100]}
+                    >
+
+                        <Text textStyle="preset5" color={textColor}>
+                            {formattedDate}
+                        </Text>
+                        {checkIcon()}
+                    </Flex>
+
+                    <Flex
+                        flex="1"
+                        direction="column"
+                        justify="center"
+                        align="flex-end"
+                        gap={theme.spacing[100]}
+                    >
+                        <Text textStyle="preset4bold" textAlign="right" color={amountColor}>${formattedAmount}</Text>
+                    </Flex>
+                </Flex>
             </Flex>
         </Flex>
     )
