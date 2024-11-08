@@ -152,6 +152,7 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
 
             {/* Mobile view */}
             <Flex
+                mt={theme.spacing[100]}
                 display={{
                     lg: "none",
                     md: "none",
