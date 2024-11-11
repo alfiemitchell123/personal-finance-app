@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, IconButton, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Flex, IconButton, Text } from "@chakra-ui/react";
 import TransactionImg from "./transactionImg";
 import { useLocation } from "@remix-run/react";
 import theme from "~/theme";
@@ -42,7 +42,7 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
                 justify={locationTransactionRoute ? "normal" : "space-between"}
                 align="center"
                 width="100%"
-                key={transaction.id}
+                key={`${transaction.id}-desktop`}
                 padding={locationTransactionRoute ? `0rem ${theme.spacing[150]}` : "none"}
                 gap={locationTransactionRoute ? theme.spacing[400] : "none"}
             >
@@ -161,7 +161,7 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
                 justify={locationTransactionRoute ? "normal" : "space-between"}
                 align="center"
                 width="100%"
-                key={transaction.id}
+                key={`${transaction.id}-mobile`}
                 padding={locationTransactionRoute ? `0rem ${theme.spacing[150]}` : "none"}
                 gap={locationTransactionRoute ? theme.spacing[400] : "none"}
             >

@@ -9,13 +9,9 @@ import {
     Box,
     Button,
     Flex,
-    FormControl,
-    FormLabel,
-    Input,
     Image,
     Heading,
     Text,
-    VStack,
     useToast,
 } from '@chakra-ui/react';
 import { Eye, EyeSlash } from "@phosphor-icons/react";
@@ -67,9 +63,6 @@ const Login = () => {
                 // Create a user document in Firestore
                 await setDoc(doc(db, "users", user.uid), {
                     displayName: name || "User",
-                    income: 0,
-                    expenses: 0,
-                    currentBalance: 0,
                 })
 
                 console.log("Registration sucessful.");
@@ -148,7 +141,6 @@ const Login = () => {
                         bgPosition="top center"
                         bgRepeat="no-repeat"
                         borderRadius="0.75rem"
-                        // padding={theme.spacing[500]}
                         direction="column"
                         justify="space-between"
                         align="flex-start"
@@ -231,7 +223,6 @@ const Login = () => {
                                     isRequired={true}
                                     label="Email"
                                     onChange={(e) => setEmail(e.target.value)}
-                                // autoComplete={isSigningUp ? "new-email" : "email"} (currently not working)
                                 />
                                 <InputField
                                     id="password"
@@ -242,7 +233,6 @@ const Login = () => {
                                     icon={passwordIsVisible ? Eye : EyeSlash}
                                     onIconClick={togglePasswordVisibility}
                                     helperText={isSigningUp ? "Passwords must be at least 8 characters" : ""}
-                                // autoComplete={isSigningUp ? "new-password" : "current-password"} (currently not working)
                                 />
                             </Flex>
                             <Button

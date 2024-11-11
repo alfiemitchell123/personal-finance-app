@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Flex, useTheme } from "@chakra-ui/react";
 import SidebarMenuItem from './sidebarMenuItem';
-import { House, ArrowsDownUp, ChartDonut, Jar, Receipt, ArrowFatLineLeft, ArrowFatLineRight } from "@phosphor-icons/react";
+import { House, ArrowsDownUp, ChartDonut, TipJar, Receipt, ArrowFatLineLeft, ArrowFatLineRight } from "@phosphor-icons/react";
 import { useSidebar } from "~/contexts/sidebarProvider";
 
 interface SidebarProps {
@@ -13,7 +13,7 @@ const menuItems = [
     { label: "Overview", icon: <House weight="fill" size={24} />, to: "/" },
     { label: "Transactions", icon: <ArrowsDownUp weight="fill" size={24} />, to: "/transactions" },
     { label: "Budgets", icon: <ChartDonut weight="fill" size={24} />, to: "/budgets" },
-    { label: "Pots", icon: <Jar weight="fill" size={24} />, to: "/pots" },
+    { label: "Pots", icon: <TipJar weight="fill" size={24} />, to: "/pots" },
     { label: "Recurring Bills", icon: <Receipt weight="fill" size={24} />, to: "/bills" }
 ];
 
@@ -28,6 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
                 sm: "full",
                 lg: (sidebar.isMinimized ? "5.5rem" : "18.75rem")
             }}
+            transition="width 0.15s linear"
             as="header"
             display="flex"
             height={{
@@ -74,6 +75,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isMinimized, toggleSidebar }) => {
                         lg: sidebar.isMinimized ? "5.5rem" : "18.75rem",
 
                     }}
+                transition="width 0.15s linear"
                 max-height="50rem"
                 direction={{
                     sm: "row",

@@ -96,7 +96,7 @@ export function AuthProvider({ children }: AuthContextProps) {
             setLoading(false);
             if (currentUser) {
                 setUser(currentUser);
-                console.log("User set in AuthProvider:", currentUser);
+                // console.log("User set in AuthProvider:", currentUser);
             } else {
                 setUser(null);
                 console.log("User set to null in AuthProvider");
@@ -109,10 +109,10 @@ export function AuthProvider({ children }: AuthContextProps) {
         }
     }, [auth]);
 
-    useEffect(() => {
-        console.log("AuthProvider user state:", user);
-        console.log("AuthProvider loading state:", loading);
-    }, [user, loading]);
+    // useEffect(() => {
+    //     console.log("AuthProvider user state:", user);
+    //     console.log("AuthProvider loading state:", loading);
+    // }, [user, loading]);
 
     const values = {
         user,

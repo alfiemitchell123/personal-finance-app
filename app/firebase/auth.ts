@@ -3,9 +3,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'fire
 
 export const doCreateUserWithEmailAndPassword = async (email: string, password: string) => {
     try {
-        console.log("Attempting to register user.");
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        console.log("User registered successfully:", userCredential.user);
         return userCredential; // Return the user credential object if needed
     } catch (error) {
         console.error("Error registering user:", error);

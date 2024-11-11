@@ -101,7 +101,6 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
 
     // Logic for deleting pots
     const handleDeletePot = async () => {
-        console.log("handleDeletePot called, mode:", mode, "potId:", potId);
         if (mode === "delete" && potId) {
             if (user) {
                 // Delete pot
@@ -382,7 +381,6 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
                         textStyle="preset4bold"
                         fontSize=" 0.875rem"
                         onClick={() => {
-                            console.log("Button clicked, mode:", mode);
                             if (mode === "addNew" || mode === "edit") {
                                 handleSavePot();
                             } else if (mode === "delete") {
