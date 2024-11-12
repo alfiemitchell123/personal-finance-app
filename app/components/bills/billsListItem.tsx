@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { CheckCircle, WarningCircle } from "phosphor-react";
 import { Transaction } from "~/types";
 import theme from "~/theme";
@@ -31,7 +31,7 @@ const BillsListItem: React.FC<BillsListItemProps> = ({ transaction }) => {
     }
 
     const getOrdinalSuffix = (day: number) => {
-        if (day > 3 && day < 21) return 'th';
+        if (day > 3 && day < 21) return 'th'; // Covers 11th, 12th, 13th
         switch (day % 10) {
             case 1: return 'st';
             case 2: return 'nd';

@@ -24,6 +24,7 @@ const usePotsData = () => {
                     });
 
                     setPots(potsData);
+                    console.log("Pots data fetched:", potsData);
                 } catch {
                     setError("Error fetching pots data");
                 } finally {

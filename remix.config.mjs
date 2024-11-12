@@ -19,7 +19,4 @@ export default {
         // Enable this option for better error visibility during development
         debug: true,
     },
-    future: {
-        unstable_cssModules: true,
-    },
 };

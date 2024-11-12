@@ -16,14 +16,14 @@ import { Protected } from "./protected";
 
 export default function Home() {
   const { budgets } = useBudgetsData();
-  const { loading, error } = useUserData();
+  const { userData, loading, error } = useUserData();
   const { transactions } = useTransactionData();
 
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalExpenses, setTotalExpenses] = useState(0);
   const [currentBalance, setCurrentBalance] = useState(0);
 
-  const budgetsWithTotals = useMemo(() => {
+  const budgetsWithTotals = useMemo(() => { // Note to self: this hook should be put into a custom hook to reuse throughout the app
     return budgets.map(budget => {
       const budgetTransactions = transactions.filter(transaction =>
         transaction.transactionCategory === budget.budgetCategory && transaction.transactionAmt < 0);

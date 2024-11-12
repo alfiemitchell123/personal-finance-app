@@ -1,4 +1,4 @@
-import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import { Flex, SimpleGrid } from "@chakra-ui/react";
 import MainContent from "~/components/layout/app/mainContent";
 import PageHeader from "~/components/layout/app/pageHeader";
 import PotCard from "~/components/pots/potCard";
@@ -17,6 +17,7 @@ export default function PotsRoute() {
     const selectedPot = pots?.find((pot) => pot.id === selectedItem);
 
     const handleEdit = (id: string) => {
+        console.log("Editing pot with id: ", id);
         openEditPotModal(id);
     };
 
@@ -46,7 +47,7 @@ export default function PotsRoute() {
                     </Flex>
                 ) : (
                     <>
-                        <PageHeader openModal={openAddPotModal} maxCount={pots.length} maxCountLabel="pots">Pots</PageHeader>
+                        <PageHeader openModal={openAddPotModal} maxCount={8} maxCountLabel="pots">Pots</PageHeader>
                         {isModalOpen && (
                             <PotModal
                                 mode={potModalMode}
@@ -65,22 +66,16 @@ export default function PotsRoute() {
                             alignSelf="stretch"
                         >
                             <SimpleGrid width="100%" columns={{ lg: 2, sm: 1 }} spacing={theme.spacing[300]}>
-                                {pots && pots.length > 0 ? (
-                                    pots.map((pot: Pot) => (
-                                        <PotCard
-                                            key={pot.id}
-                                            pot={pot}
-                                            onEdit={handleEdit}
-                                            onDelete={handleDelete}
-                                            onWithdraw={handleWithdraw}
-                                            onAddMoney={handleAddMoney}
-                                        />
-                                    ))
-                                ) : (
-                                    <Flex width="100%" height="50vh" justify="center" align="center">
-                                        <Text textStyle="preset4bold">Add a pot to get started.</Text>
-                                    </Flex>
-                                )}
+                                {pots.map((pot: Pot) => (
+                                    <PotCard
+                                        key={pot.id}
+                                        pot={pot}
+                                        onEdit={handleEdit}
+                                        onDelete={handleDelete}
+                                        onWithdraw={handleWithdraw}
+                                        onAddMoney={handleAddMoney}
+                                    />
+                                ))}
                             </SimpleGrid>
                         </Flex>
                     </>

@@ -29,6 +29,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
             height="3.5rem"
             p={{
                 sm: `${theme.spacing[200]} ${theme.spacing[400]}`,
+                // md: `${theme.spacing[100]} 0rem ${theme.spacing[150]} 0rem`,
                 lg: `${theme.spacing[200]} ${theme.spacing[400]}`,
             }}
             alignItems="center"
@@ -74,7 +75,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
                     color={isActive ? "secondary.green" : "grey.300"}
                     mr={{
                         sm: "none",
-                        lg: theme.spacing[100],
+                        lg: theme.spacing[200],
                     }}
                 >
                     {icon}
@@ -91,7 +92,6 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
                         sm: "none",
                         md: "block",
                     }}
-                    whiteSpace="nowrap"
                     fontWeight={700}
                 >{label}</Text>
             }

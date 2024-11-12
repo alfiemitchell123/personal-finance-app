@@ -71,6 +71,7 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
         } else if (currentPage > newTotalPages) {
             setCurrentPage(newTotalPages > 0 ? newTotalPages : 1); // Adjust to last page if exists
         }
+        console.log("Total pages: ", newTotalPages);
     }, [transactions, filter, selectedCategory, searchTerm, filteredTransactions.length, currentPage]);
 
     const handleFilterChange = (item: DropdownMenuItem) => {

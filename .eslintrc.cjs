@@ -49,8 +49,8 @@ module.exports = {
         },
       },
       rules: {
-        "react/react-in-jsx-scope": "on",
-        "react/prop-types": "on",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
       },
     },
 
