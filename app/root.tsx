@@ -1,11 +1,13 @@
 // app/root.tsx
 
-import { ChakraProvider } from "@chakra-ui/react";
-import { MetaFunction, Outlet, Links, Meta, Scripts, ScrollRestoration } from "@remix-run/react";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { MetaFunction, Outlet, Links, Meta, Scripts, ScrollRestoration, useNavigate } from "@remix-run/react";
 import theme from "./theme";
-import { AuthProvider } from "~/contexts/authContext/authProvider";
+import { AuthProvider, useAuth } from "~/contexts/authContext/authProvider";
 import AppLayout from "./components/layout/app/appLayout";
 import { SidebarProvider } from "./contexts/sidebarProvider";
+import { useEffect, useState } from "react";
+import { Protected } from "./routes/protected";
 
 // Meta configuration using Remix's MetaFunction
 export const meta: MetaFunction = () => {
@@ -26,20 +28,32 @@ export function links() {
 }
 
 // Layout component that provides the main HTML structure
-export function Layout() {
+export function Layout({ styles }: { styles: string }) {
+  const [colorScheme, setColorScheme] = useState("light");
+
+  useEffect(() => {
+    // Fetch theme from client-specific storage or logic, e.g., localStorage
+    const storedColorScheme = localStorage.getItem("theme") || "light";
+    setColorScheme(storedColorScheme);
+  }, []);
+
   return (
-    <html style={{ backgroundColor: "#F8F4F0" }} lang="en">
+    <html style={{ backgroundColor: "rgb(248, 244, 240)", colorScheme: "light" }} lang="en" data-theme={colorScheme}>
       <head>
         <Meta />
         <Links />
+        <style dangerouslySetInnerHTML={{ __html: styles }} />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <AuthProvider>
           <SidebarProvider>
+            <ColorModeScript />
             <ChakraProvider theme={theme}>
-              <AppLayout>
-                <Outlet />
-              </AppLayout>
+              <Protected>
+                <AppLayout>
+                  <Outlet />
+                </AppLayout>
+              </Protected>
               <ScrollRestoration />
               <Scripts />
             </ChakraProvider>

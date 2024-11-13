@@ -15,28 +15,26 @@ export default function TransactionsRoute() {
     const selectedTransaction = transactions?.find((transaction) => transaction.id === selectedItem);
 
     return (
-        <Protected>
-            <MainContent>
-                {loading ? (
-                    <PageLoading />
-                ) : (
-                    <>
-                        <PageHeader openModal={openAddTransactionModal}>
-                            Transactions
-                        </PageHeader>
-                        {isModalOpen && (
-                            <TransactionModal
-                                mode={transactionModalMode}
-                                isOpen={isModalOpen}
-                                onClose={closeModal}
-                                transactionId={selectedTransaction?.id}
-                                existingTransaction={selectedTransaction}
-                            />
-                        )}
-                        <TransactionContent transactions={transactions} />
-                    </>
-                )}
-            </MainContent>
-        </Protected>
+        <MainContent>
+            {loading ? (
+                <PageLoading />
+            ) : (
+                <>
+                    <PageHeader openModal={openAddTransactionModal}>
+                        Transactions
+                    </PageHeader>
+                    {isModalOpen && (
+                        <TransactionModal
+                            mode={transactionModalMode}
+                            isOpen={isModalOpen}
+                            onClose={closeModal}
+                            transactionId={selectedTransaction?.id}
+                            existingTransaction={selectedTransaction}
+                        />
+                    )}
+                    <TransactionContent transactions={transactions} />
+                </>
+            )}
+        </MainContent>
     )
 }

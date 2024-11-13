@@ -9,6 +9,8 @@
     "app/**/*.ts",
     "app/**/*.tsx",
     "app/global.d.ts",
+    "node_modules/cypress",
+    "cypress/**/*.ts"
   ],
   "compilerOptions": {
     "lib": [

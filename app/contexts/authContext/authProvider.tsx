@@ -1,67 +1,3 @@
-// import React, { useState, useEffect, useContext, ReactNode } from "react";
-// import { auth } from "~/firebase/firebase";
-// import { onAuthStateChanged, User } from "firebase/auth";
-
-// type AuthContextProps = {
-//     children: ReactNode;
-// };
-
-// type AuthContextType = {
-//     currentUser: User | null;
-//     userId: string | null;
-//     userLoggedIn: boolean;
-//     authLoading: boolean;
-// };
-
-// const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
-
-// export function useAuth() {
-//     const context = useContext(AuthContext);
-//     if (!context) {
-//         throw new Error('useAuth must be used within an AuthProvider');
-//     }
-//     return context;
-// }
-
-// export function AuthProvider({ children }: AuthContextProps) {
-//     const [newCurrentUser, setNewCurrentUser] = useState<currentUser>(null);
-//     const [userLoggedIn, setUserLoggedIn] = useState(false);
-//     const [authLoading, setAuthLoading] = useState(true);
-//     const [userId, setUserId] = useState<string | null>(null);
-
-//     useEffect(() => {
-//         const unsubscribe = onAuthStateChanged(auth, (user) => {
-//             if (currentUser) {
-//                 // User is authenticated
-//                 setCurrentUser(user);
-//                 setUserId(currentUser.uid); // Set userId
-//                 setUserLoggedIn(true);
-//             } else {
-//                 // User is signed out
-//                 setCurrentUser(null);
-//                 setUserId(null); // Reset userId
-//                 setUserLoggedIn(false);
-//             }
-//             setAuthLoading(false);
-//         });
-
-//         return () => unsubscribe();
-//     }, []);
-
-//     const value: AuthContextType = {
-//         currentUser,
-//         userId,
-//         userLoggedIn,
-//         authLoading,
-//     };
-
-//     return (
-//         <AuthContext.Provider value={value}>
-//             {!authLoading && children}
-//         </AuthContext.Provider>
-//     );
-// }
-
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import PageLoading from "~/components/ui/pageLoading";
@@ -92,21 +28,38 @@ export function AuthProvider({ children }: AuthContextProps) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const wasLoggedIn = localStorage.getItem("wasLoggedIn") === "true";
+        if (wasLoggedIn) {
+            setLoading(true);
+        }
+
+        console.log("Starting AuthProvider, loading:", loading);
+
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log("onAuthStateChanged fired with user:", currentUser);
+            setUser(currentUser);
             setLoading(false);
+            console.log("Loading set to false after auth state changed");
+
             if (currentUser) {
-                setUser(currentUser);
-                console.log("User set in AuthProvider:", currentUser);
+                localStorage.setItem("wasLoggedIn", "true");
             } else {
-                setUser(null);
-                console.log("User set to null in AuthProvider");
+                localStorage.removeItem("wasLoggedIn");
             }
+
+            console.log("User state in AuthProvider:", currentUser);
         });
-        return () => {
-            if (unsubscribe) {
-                unsubscribe();
+
+        if (!loading && !user) {
+            const currentUser = auth.currentUser;
+            if (currentUser) {
+                console.log("Direct check found a current user:", currentUser);
+                setUser(currentUser);
+                setLoading(false);
             }
         }
+
+        return () => unsubscribe();
     }, [auth]);
 
     useEffect(() => {

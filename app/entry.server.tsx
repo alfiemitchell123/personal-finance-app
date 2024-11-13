@@ -4,9 +4,10 @@ import { createReadableStreamFromReadable } from "@remix-run/node";
 import { RemixServer } from "@remix-run/react";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
-import { CacheProvider } from '@emotion/react';
+import { CacheProvider } from "@emotion/react";
 import { ChakraProvider } from "@chakra-ui/react";
-import { cache } from './emotionCache'; // Correctly import the cache
+import { cache } from "./emotionCache";
+import theme from "./theme";
 
 const ABORT_DELAY = 5_000;
 
@@ -42,12 +43,8 @@ function handleBotRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
       <CacheProvider value={cache}>
-        <ChakraProvider>
-          <RemixServer
-            context={remixContext}
-            url={request.url}
-            abortDelay={ABORT_DELAY}
-          />
+        <ChakraProvider theme={theme}>
+          <RemixServer context={remixContext} url={request.url} abortDelay={ABORT_DELAY} />
         </ChakraProvider>
       </CacheProvider>,
       {
@@ -93,12 +90,8 @@ function handleBrowserRequest(
     let shellRendered = false;
     const { pipe, abort } = renderToPipeableStream(
       <CacheProvider value={cache}>
-        <ChakraProvider>
-          <RemixServer
-            context={remixContext}
-            url={request.url}
-            abortDelay={ABORT_DELAY}
-          />
+        <ChakraProvider theme={theme}>
+          <RemixServer context={remixContext} url={request.url} abortDelay={ABORT_DELAY} />
         </ChakraProvider>
       </CacheProvider>,
       {

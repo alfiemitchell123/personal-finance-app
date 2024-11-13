@@ -34,53 +34,51 @@ export default function PotsRoute() {
     };
 
     return (
-        <Protected>
-            <MainContent>
-                {potsLoading ? (
-                    <Flex
-                        height="100vh"
-                        width="100%"
-                        align="center"
-                        justify="center"
-                    >
-                        <PageLoading />
-                    </Flex>
-                ) : (
-                    <>
-                        <PageHeader openModal={openAddPotModal} maxCount={8} maxCountLabel="pots">Pots</PageHeader>
-                        {isModalOpen && (
-                            <PotModal
-                                mode={potModalMode}
-                                isOpen={isModalOpen}
-                                onClose={closeModal}
-                                potId={selectedPot?.id}
-                                existingPot={selectedPot}
-                            />
-                        )}
+        <MainContent>
+            {potsLoading ? (
+                <Flex
+                    height="100vh"
+                    width="100%"
+                    align="center"
+                    justify="center"
+                >
+                    <PageLoading />
+                </Flex>
+            ) : (
+                <>
+                    <PageHeader openModal={openAddPotModal} maxCount={8} maxCountLabel="pots">Pots</PageHeader>
+                    {isModalOpen && (
+                        <PotModal
+                            mode={potModalMode}
+                            isOpen={isModalOpen}
+                            onClose={closeModal}
+                            potId={selectedPot?.id}
+                            existingPot={selectedPot}
+                        />
+                    )}
 
-                        <Flex
-                            maxW="90rem"
-                            direction="column"
-                            align="center"
-                            gap={theme.spacing[300]}
-                            alignSelf="stretch"
-                        >
-                            <SimpleGrid width="100%" columns={{ lg: 2, sm: 1 }} spacing={theme.spacing[300]}>
-                                {pots.map((pot: Pot) => (
-                                    <PotCard
-                                        key={pot.id}
-                                        pot={pot}
-                                        onEdit={handleEdit}
-                                        onDelete={handleDelete}
-                                        onWithdraw={handleWithdraw}
-                                        onAddMoney={handleAddMoney}
-                                    />
-                                ))}
-                            </SimpleGrid>
-                        </Flex>
-                    </>
-                )}
-            </MainContent>
-        </Protected>
+                    <Flex
+                        maxW="90rem"
+                        direction="column"
+                        align="center"
+                        gap={theme.spacing[300]}
+                        alignSelf="stretch"
+                    >
+                        <SimpleGrid width="100%" columns={{ lg: 2, sm: 1 }} spacing={theme.spacing[300]}>
+                            {pots.map((pot: Pot) => (
+                                <PotCard
+                                    key={pot.id}
+                                    pot={pot}
+                                    onEdit={handleEdit}
+                                    onDelete={handleDelete}
+                                    onWithdraw={handleWithdraw}
+                                    onAddMoney={handleAddMoney}
+                                />
+                            ))}
+                        </SimpleGrid>
+                    </Flex>
+                </>
+            )}
+        </MainContent>
     )
 }

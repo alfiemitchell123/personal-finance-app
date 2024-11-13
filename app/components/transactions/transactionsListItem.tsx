@@ -42,7 +42,7 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
                 justify={locationTransactionRoute ? "normal" : "space-between"}
                 align="center"
                 width="100%"
-                key={transaction.id}
+                key={`${transaction.id}-desktop`}
                 padding={locationTransactionRoute ? `0rem ${theme.spacing[150]}` : "none"}
                 gap={locationTransactionRoute ? theme.spacing[400] : "none"}
             >
@@ -161,7 +161,7 @@ const TransactionsListItem: React.FC<TransactionsListItemProps> = ({ transaction
                 justify={locationTransactionRoute ? "normal" : "space-between"}
                 align="center"
                 width="100%"
-                key={transaction.id}
+                key={`${transaction.id}-mobile`}
                 padding={locationTransactionRoute ? `0rem ${theme.spacing[150]}` : "none"}
                 gap={locationTransactionRoute ? theme.spacing[400] : "none"}
             >

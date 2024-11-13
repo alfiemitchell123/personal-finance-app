@@ -67,85 +67,83 @@ export default function Home() {
   ];
 
   return (
-    <Protected>
-      <MainContent>
-        <PageHeader>
-          Overview
-        </PageHeader>
+    <MainContent>
+      <PageHeader>
+        Overview
+      </PageHeader>
 
-        <Flex
-          direction={{
-            lg: "row",
-            md: "row",
-            sm: "column",
-          }}
-          align="flex-start"
-          alignSelf="stretch"
-          gap={{
-            lg: theme.spacing[300],
-            md: theme.spacing[300],
-            sm: theme.spacing[150],
-          }}
-          maxWidth={{
-            lg: "90rem",
-            md: "90rem",
-            sm: "90rem",
-          }}
-        >
-          {summaryData.map((item, index) => (
-            <SummaryCard
-              key={index}
-              label={item.label}
-              amount={item.amount ?? 0}
-              labelColor={item.labelColor}
-              amountColor={item.amountColor}
-              bg={item.bg}
-            />
-          ))}
-        </Flex>
+      <Flex
+        direction={{
+          lg: "row",
+          md: "row",
+          sm: "column",
+        }}
+        align="flex-start"
+        alignSelf="stretch"
+        gap={{
+          lg: theme.spacing[300],
+          md: theme.spacing[300],
+          sm: theme.spacing[150],
+        }}
+        maxWidth={{
+          lg: "90rem",
+          md: "90rem",
+          sm: "90rem",
+        }}
+      >
+        {summaryData.map((item, index) => (
+          <SummaryCard
+            key={index}
+            label={item.label}
+            amount={item.amount ?? 0}
+            labelColor={item.labelColor}
+            amountColor={item.amountColor}
+            bg={item.bg}
+          />
+        ))}
+      </Flex>
 
+      <Flex
+        direction={{
+          lg: "row",
+          md: "column",
+          sm: "column",
+        }}
+        maxWidth={{
+          lg: "90rem",
+          sm: "100%",
+        }}
+        width="100%"
+        gap={theme.spacing[300]}
+      >
         <Flex
-          direction={{
-            lg: "row",
-            md: "column",
-            sm: "column",
-          }}
-          maxWidth={{
-            lg: "90rem",
+          width={{
+            lg: "38rem",
+            md: "100%",
             sm: "100%",
           }}
-          width="100%"
+          direction="column"
+          align="flex-start"
           gap={theme.spacing[300]}
         >
-          <Flex
-            width={{
-              lg: "38rem",
-              md: "100%",
-              sm: "100%",
-            }}
-            direction="column"
-            align="flex-start"
-            gap={theme.spacing[300]}
-          >
-            <PotsSummary />
-            <TransactionsSummary />
-          </Flex>
-          <Flex
-            height={{
-              lg: "auto",
-              md: "47.5625rem",
-              sm: "55.5625rem",
-            }}
-            direction="column"
-            align="flex-start"
-            gap={theme.spacing[300]}
-            flex="1 0 0"
-          >
-            <BudgetSummary budgets={budgetsWithTotals} />
-            <BillsSummary />
-          </Flex>
+          <PotsSummary />
+          <TransactionsSummary />
         </Flex>
-      </MainContent>
-    </Protected>
+        <Flex
+          height={{
+            lg: "auto",
+            md: "47.5625rem",
+            sm: "55.5625rem",
+          }}
+          direction="column"
+          align="flex-start"
+          gap={theme.spacing[300]}
+          flex="1 0 0"
+        >
+          <BudgetSummary budgets={budgetsWithTotals} />
+          <BillsSummary />
+        </Flex>
+      </Flex>
+    </MainContent>
   );
 }

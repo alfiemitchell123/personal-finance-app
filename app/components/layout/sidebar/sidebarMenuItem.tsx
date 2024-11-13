@@ -68,6 +68,11 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
                 },
                 color: activeState ? "grey.900" : "grey.100",
             }}
+            _focus={{
+                bg: "grey.900",
+                boxShadow: "none",
+                color: "white",
+            }}
         >
             {icon &&
                 <Box
