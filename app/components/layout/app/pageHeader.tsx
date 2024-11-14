@@ -67,6 +67,7 @@ const PageHeader = ({ children, openModal = () => { }, maxCount, maxCountLabel }
                         _hover={{
                             bg: "grey.500"
                         }}
+                        tabIndex={0}
                     >
                         Logout
                     </Button>

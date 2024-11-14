@@ -73,6 +73,10 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ label, icon, to, isMi
                 boxShadow: "none",
                 color: "white",
             }}
+            _focusVisible={{
+                outline: "2px solid #277C78", // Customize outline color
+                outlineOffset: "2px",
+            }}
         >
             {icon &&
                 <Box

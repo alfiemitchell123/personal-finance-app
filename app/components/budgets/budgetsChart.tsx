@@ -55,6 +55,7 @@ const BudgetsChart: React.FC<BudgetsChartProps> = ({ budgets }) => {
                     startAngle={90}
                     endAngle={-270}
                     style={{ outline: "none" }}
+                    rootTabIndex={-1}
                 >
                     {data && data.length > 0 && (
                         data.map((entry, index) => (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Flex, useToast } from "@chakra-ui/react";
+import { Button, Flex, useToast, FormControl, FormErrorMessage } from "@chakra-ui/react";
 import AddNewModal from "../ui/addNewModal";
 import useModal from "~/hooks/useModal";
 import theme from "~/theme";
@@ -11,7 +11,7 @@ import { categoryMenuItems, themeMenuItems } from "~/utils/menuItems";
 import { Budget } from "~/types";
 import useBudgetsData from "~/hooks/useBudgets";
 import { useAuth } from "~/contexts/authContext/authProvider";
-import { useNavigate } from "@remix-run/react";
+import { Form, useNavigate } from "@remix-run/react";
 import PageLoading from "../ui/pageLoading";
 
 interface BudgetModalProps {
@@ -28,6 +28,7 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
     const [budgetColor, setBudgetColor] = useState("");
     const [totalSpent, setTotalSpent] = useState(0);
     const [totalRemaining, setTotalRemaining] = useState(0);
+    const [errors, setErrors] = useState({ maxSpend: "" });
 
     const { budgets: existingBudgets, loading, addBudget } = useBudgetsData();
     const { user } = useAuth();
@@ -66,8 +67,24 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
         }
     }, [existingBudgets]); // Run whenever budgets change
 
+    const validateForm = () => {
+        let valid = true;
+
+        // Initialize newErrors with all required fields
+        let newErrors = { maxSpend: "" };
+
+        // Only validate maxSpend; allow default values for category and color
+        if (!maxSpend || maxSpend <= 0) {
+            newErrors.maxSpend = "Maximum spend must be greater than 0.";
+            valid = false;
+        }
+
+        setErrors(newErrors);
+        return valid;
+    };
+
     const handleSaveBudget = async () => {
-        if (!budgetCategory || !maxSpend || !budgetColor) return;
+        if (!validateForm()) return;
 
         try {
             if (mode === "add") {
@@ -155,39 +172,48 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
             headerTag={mode === "add" ? "Choose a category to set a spending budget. These categories can help you monitor spending." : mode === "edit" ? "As your budgets change, feel free to update your spending limits." : mode === "delete" ? "Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever." : ""}
         >
             {(mode === "add" || mode === "edit") && (
-                <Flex
-                    direction="column"
-                    align="flex-start"
-                    gap={theme.spacing[200]}
-                >
-                    <DropdownMenu
-                        label="Entertainment"
-                        items={categoryMenuItems}
-                        fieldTitle="Budget Category"
-                        onChange={(item) => setBudgetCategory(item.value || "")}
-                        usedCategories={usedCategories}
-                        value={budgetCategory}
-                    />
-                    <InputField
-                        placeholder="e.g. 2000"
-                        type="number"
-                        isRequired={true}
-                        label="Maximum Spend"
-                        prefix="$"
-                        onChange={(e) => setMaxSpend(parseFloat(e.target.value))}
-                        value={maxSpend.toString()}
-                    />
-                    <DropdownMenu
-                        label="Green"
-                        items={themeMenuItems}
-                        fieldTitle="Theme"
-                        colorTag={theme.colors.secondary.green}
-                        usedColors={usedColors}
-                        usedCategories={usedCategories}
-                        onChange={(item) => setBudgetColor(item.colorTag || "")}
-                        value={budgetColor}
-                    />
-                </Flex>
+                <Form>
+                    <Flex
+                        direction="column"
+                        align="flex-start"
+                        gap={theme.spacing[200]}
+                    >
+                        <FormControl>
+                            <DropdownMenu
+                                label="Entertainment"
+                                items={categoryMenuItems}
+                                fieldTitle="Budget Category"
+                                onChange={(item) => setBudgetCategory(item.value || "")}
+                                usedCategories={usedCategories}
+                                value={budgetCategory}
+                            />
+                        </FormControl>
+                        <FormControl isInvalid={!!errors.maxSpend}>
+                            <InputField
+                                placeholder="e.g. 2000"
+                                type="number"
+                                isRequired={true}
+                                label="Maximum Spend"
+                                prefix="$"
+                                onChange={(e) => setMaxSpend(parseFloat(e.target.value))}
+                                value={maxSpend.toString()}
+                                helperText={errors.maxSpend}
+                            />
+                        </FormControl>
+                        <FormControl>
+                            <DropdownMenu
+                                label="Green"
+                                items={themeMenuItems}
+                                fieldTitle="Theme"
+                                colorTag={theme.colors.secondary.green}
+                                usedColors={usedColors}
+                                usedCategories={usedCategories}
+                                onChange={(item) => setBudgetColor(item.colorTag || "")}
+                                value={budgetColor}
+                            />
+                        </FormControl>
+                    </Flex>
+                </Form>
             )}
             <Button
                 variant="primary"
@@ -230,6 +256,7 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
                 >
                     No, Go Back
                 </Button>
+
             )}
         </AddNewModal>
     );

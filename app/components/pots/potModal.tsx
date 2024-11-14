@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddNewModal from "../ui/addNewModal";
 import usePotsData from "~/hooks/usePots";
-import { Button, calc, Flex, useToast } from "@chakra-ui/react";
+import { Button, calc, Flex, FormControl, Text, useToast } from "@chakra-ui/react";
 import { deleteDoc, doc, getDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { useAuth } from "~/contexts/authContext/authProvider";
 import { db } from "~/firebase/firebase";
@@ -11,6 +11,8 @@ import theme from "~/theme";
 import { themeMenuItems } from "~/utils/menuItems";
 import PotChartForModal from "./potChartForModal";
 import PageLoading from "../ui/pageLoading";
+import { Form } from "@remix-run/react";
+import errors from "node_modules/cypress/lib/errors";
 
 interface PotModalProps {
     isOpen: boolean;
@@ -30,12 +32,49 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
     const [savedAmtBarWidth, setSavedAmtBarWidth] = useState(0);
     const [addOrWithdrawAmtBarWidth, setAddOrWithdrawAmtBarWidth] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState({ potName: "", targetAmt: "" });
+    const [nameError, setNameError] = useState<string | null>(null);
 
     const { pots: existingPots, addPot } = usePotsData();
     const { user } = useAuth();
     const toast = useToast();
 
     const maxChars = 30;
+
+    // Extract used colors and categories from existing budgets
+    const usedColors = existingPots.map(pot => pot.potColor);
+    const usedNames = existingPots.map(pot => pot.potName);
+
+    const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const name = event.target.value;
+        const normalizedName = name.toLowerCase();
+        if (usedNames.some(existingName => existingName.toLowerCase() === normalizedName)) {
+            setNameError("This name is already in use. Please choose a different one.");
+        } else {
+            setNameError(null);
+        }
+        setPotName(name);
+    };
+
+    const validateForm = () => {
+        let valid = true;
+
+        // Initialize newErrors with all required fields
+        let newErrors = { potName: "", targetAmt: "" };
+
+        if (!potName || potName === "" || potName === "e.g. Rainy Days") {
+            newErrors.potName = "Pot must have a name.";
+            valid = false;
+        }
+
+        if (!targetAmt || targetAmt <= 0) {
+            newErrors.targetAmt = "Target amount must be greater than 0.";
+            valid = false;
+        }
+
+        setErrors(newErrors);
+        return valid;
+    };
 
     // Pre-fill form if in edit mode
     useEffect(() => {
@@ -49,12 +88,21 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
 
     // Logic for adding/editing pots
     const handleSavePot = async () => {
-        if (!potName || !targetAmt || !potColor) return;
+        if (!validateForm()) return;
+
+        // Check for errors before proceeding with the save
+        if (nameError) {
+            // Don't submit the form if there's an error
+            return;
+        }
+
+        const capitalizedPotName = potName.charAt(0).toUpperCase() + potName.slice(1).toLowerCase();
+
         try {
             if (mode === "addNew") {
                 // Add new pot to database
                 const newPot = {
-                    potName: potName,
+                    potName: capitalizedPotName,
                     targetAmt: Number(targetAmt),
                     potColor: potColor,
                     totalSaved: totalSaved,
@@ -72,7 +120,7 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
                 if (user) {
                     const potDocRef = doc(db, `users/${user.uid}/pots`, potId);
                     await updateDoc(potDocRef, {
-                        potName: potName,
+                        potName: capitalizedPotName,
                         targetAmt: Number(targetAmt),
                         potColor: potColor,
                         totalSaved: totalSaved,
@@ -285,10 +333,6 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
         setWithdrawAddAmt(e.target.value);
     };
 
-    // Extract used colors and categories from existing budgets
-    const usedColors = existingPots.map(pot => pot.potColor);
-    const usedNames = existingPots.map(pot => pot.potName); // Fix this later
-
     return (
         <AddNewModal
             isOpen={isOpen}
@@ -307,42 +351,51 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
             ) : (
                 <>
                     {(mode === "addNew" || mode === "edit") && (
-                        <Flex
-                            direction="column"
-                            align="flex-start"
-                            gap={theme.spacing[200]}
-                        >
-                            <InputField
-                                id="potName"
-                                label="Pot Name"
-                                type="text"
-                                placeholder="e.g. Rainy Days"
-                                helperText={`${maxChars - potName.length} characters left`}
-                                onChange={(e) => setPotName(e.target.value)}
-                                value={potName || ""}
-                                isRequired={true}
-                                maxLength={30}
-                            />
-                            <InputField
-                                placeholder="e.g. 2000"
-                                type="number"
-                                isRequired={true}
-                                label="Target"
-                                prefix="$"
-                                onChange={(e) => setTargetAmt(parseFloat(e.target.value) || 0)}
-                                value={targetAmt ? targetAmt.toString() : ""}
-                                usedNames={usedNames}
-                            />
-                            <DropdownMenu
-                                label="Green"
-                                items={themeMenuItems}
-                                fieldTitle="Theme"
-                                colorTag={theme.colors.secondary.green}
-                                usedColors={usedColors}
-                                onChange={(item) => setPotColor(item.colorTag || "")}
-                                value={potColor}
-                            />
-                        </Flex>
+                        <Form>
+                            <Flex
+                                direction="column"
+                                align="flex-start"
+                                gap={theme.spacing[200]}
+                            >
+                                <FormControl isInvalid={!!errors.potName}>
+                                    <InputField
+                                        id="potName"
+                                        label="Pot Name"
+                                        type="text"
+                                        placeholder="e.g. Rainy Days"
+                                        helperText={nameError ? nameError : errors.potName ? errors.potName : `${maxChars - potName.length} characters left`}
+                                        onChange={handleNameChange}
+                                        value={potName || ""}
+                                        usedNames={usedNames}
+                                        isRequired={true}
+                                        maxLength={30}
+                                    />
+                                </FormControl>
+                                <FormControl isInvalid={!!errors.targetAmt}>
+                                    <InputField
+                                        placeholder="e.g. 2000"
+                                        type="number"
+                                        isRequired={true}
+                                        label="Target"
+                                        prefix="$"
+                                        onChange={(e) => setTargetAmt(parseFloat(e.target.value) || 0)}
+                                        value={targetAmt ? targetAmt.toString() : ""}
+                                        helperText={errors.targetAmt}
+                                    />
+                                </FormControl>
+                                <FormControl>
+                                    <DropdownMenu
+                                        label="Green"
+                                        items={themeMenuItems}
+                                        fieldTitle="Theme"
+                                        colorTag={theme.colors.secondary.green}
+                                        usedColors={usedColors}
+                                        onChange={(item) => setPotColor(item.colorTag || "")}
+                                        value={potColor}
+                                    />
+                                </FormControl>
+                            </Flex>
+                        </Form>
                     )}
 
                     {(mode === "withdraw" || mode === "addMoney") && (

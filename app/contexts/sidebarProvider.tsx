@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 interface SidebarContextProps {
     isMinimized: boolean;
@@ -10,8 +10,19 @@ const SidebarContext = createContext<SidebarContextProps | undefined>(undefined)
 export const SidebarProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [isMinimized, setIsMinimized] = useState(false);
 
+    useEffect(() => {
+        const savedState = localStorage.getItem("sidebarMinimized");
+        if (savedState !== null) {
+            setIsMinimized(JSON.parse(savedState));
+        }
+    }, []);
+
     const toggleSidebar = () => {
-        setIsMinimized(prevState => !prevState);
+        setIsMinimized(prevState => {
+            const newState = !prevState;
+            localStorage.setItem("sidebarMinimized", JSON.stringify(newState));
+            return newState;
+        });
     };
 
     return (

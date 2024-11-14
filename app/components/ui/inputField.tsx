@@ -107,14 +107,6 @@ const InputField: React.FC<InputFieldProps> = ({
                         outline: "none",
                         fontSize: "0.875rem",
                         pl: prefix ? "2.5rem" : theme.spacing[150]
-                        // pl:
-                        //     prefix && colorTag
-                        //         ? "4rem" // Both prefix and colorTag are present
-                        //         : prefix
-                        //             ? theme.spacing[450] // Only prefix
-                        //             : colorTag
-                        //                 ? theme.spacing[450] // Only colorTag
-                        //                 : theme.spacing[150], // None are present
                     }}
                     _placeholder={{
                         color: "beige.500",
@@ -149,7 +141,7 @@ const InputField: React.FC<InputFieldProps> = ({
                     </InputRightElement>
                 }
             </InputGroup>
-            {helperText && <FormHelperText width="100%" textStyle="preset5" color="grey.500" textAlign="right">{helperText}</FormHelperText>}
+            {helperText && <FormHelperText width="100%" textStyle="preset5" color={/^\d/.test(helperText) ? "grey.500" : "secondary.red"} textAlign="right">{helperText}</FormHelperText>}
         </FormControl>
     )
 }

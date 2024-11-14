@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Checkbox, Flex, useToast } from "@chakra-ui/react";
+import { Button, Checkbox, Flex, FormControl, useToast } from "@chakra-ui/react";
 import AddNewModal from "../ui/addNewModal";
 import theme from "~/theme";
 import InputField from "../ui/inputField";
@@ -10,6 +10,7 @@ import { categoryMenuItems, themeMenuItems } from "~/utils/menuItems";
 import { useAuth } from "~/contexts/authContext/authProvider";
 import useTransactionData from "~/hooks/useTransactions";
 import PageLoading from "../ui/pageLoading";
+import { Form } from "@remix-run/react";
 
 interface TransactionModalProps {
     isOpen: boolean;
@@ -30,10 +31,31 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, mo
     const [transactionAmt, setTransactionAmt] = useState(0);
     const [recurringBill, setRecurringBill] = useState(false);
     const [loadingTransactions, setLoadingTransactions] = useState(true);
+    const [errors, setErrors] = useState({ transactionName: "", transactionAmt: "" });
 
     const { transactions: existingTransactions, addTransaction } = useTransactionData();
     const { user } = useAuth();
     const toast = useToast();
+
+    const validateForm = () => {
+        let valid = true;
+
+        // Initialize newErrors with all required fields
+        let newErrors = { transactionName: "", transactionAmt: "" };
+
+        if (!transactionName || transactionName === "" || transactionName === "e.g. Property Management Inc") {
+            newErrors.transactionName = "Transaction must have a name.";
+            valid = false;
+        }
+
+        if (!transactionAmt || transactionAmt <= 0) {
+            newErrors.transactionAmt = "Transaction amount must be greater than 0.";
+            valid = false;
+        }
+
+        setErrors(newErrors);
+        return valid;
+    };
 
     // Pre-fill form if in edit mode
     useEffect(() => {
@@ -52,7 +74,7 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, mo
     };
 
     const handleSaveTransaction = async () => {
-        if (!transactionName || !transactionCategory || !transactionAmt) return;
+        if (!validateForm()) return;
 
         try {
             if (mode === "add") {
@@ -133,51 +155,60 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, mo
             headerTag={mode === "add" ? "Enter a name for the transaction and pick a category. These categories can help you monitor income and expenses." : mode === "edit" ? "If you missed something or entered an amount incorrectly, edit it and save changes." : mode === "delete" ? "Are you sure you want to delete this transaction? This action cannot be reversed, and all the data inside it will be removed forever." : ""}
         >
             {(mode === "add" || mode === "edit") && (
-                <Flex
-                    direction="column"
-                    align="flex-start"
-                    gap={theme.spacing[200]}
-                >
-                    <InputField
-                        label="Transaction Name"
-                        placeholder="e.g. Property Management Inc"
-                        type="text"
-                        isRequired={true}
-                        onChange={(e) => setTransactionName(e.target.value)}
-                        value={transactionName}
-                    />
-                    <DropdownMenu
-                        label="Bills"
-                        items={categoryMenuItems}
-                        fieldTitle="Transaction Category"
-                        onChange={(item) => setTransactionCategory(item.value || "")}
-                        value={transactionCategory}
-                    />
-                    <InputField
-                        placeholder="e.g. 2000"
-                        type="number"
-                        isRequired={true}
-                        label="Transaction Amount"
-                        prefix="$"
-                        onChange={(e) => setTransactionAmt(parseFloat(e.target.value))}
-                        value={transactionAmt}
-                    />
-                    <Checkbox
-                        variant="outline"
-                        type="checkbox"
-                        onChange={handleCheckboxChange}
-                        isChecked={recurringBill}
-                        isRequired={true}
-                        iconColor="white"
-                        colorScheme="grey"
-                        sx={{
-                            ".chakra-checkbox__label": {
-                                color: "grey.500",
-                                textStyle: "preset5bold",
-                            }
-                        }}
-                    >Recurring Bill</Checkbox>
-                </Flex>
+                <Form>
+                    <Flex
+                        direction="column"
+                        align="flex-start"
+                        gap={theme.spacing[200]}
+                    >
+                        <FormControl isInvalid={!!errors.transactionName}>
+                            <InputField
+                                label="Transaction Name"
+                                placeholder="e.g. Property Management Inc"
+                                type="text"
+                                isRequired={true}
+                                onChange={(e) => setTransactionName(e.target.value)}
+                                value={transactionName}
+                                helperText={errors.transactionName}
+                            />
+                        </FormControl>
+                        <DropdownMenu
+                            label="Bills"
+                            items={categoryMenuItems}
+                            fieldTitle="Transaction Category"
+                            onChange={(item) => setTransactionCategory(item.value || "")}
+                            value={transactionCategory}
+                        />
+                        <FormControl isInvalid={!!errors.transactionAmt}>
+                            <InputField
+                                placeholder="e.g. 2000"
+                                type="number"
+                                isRequired={true}
+                                label="Transaction Amount"
+                                prefix="$"
+                                onChange={(e) => setTransactionAmt(parseFloat(e.target.value))}
+                                value={transactionAmt}
+                                helperText={errors.transactionAmt}
+                            />
+                        </FormControl>
+                        <Checkbox
+                            variant="outline"
+                            type="checkbox"
+                            onChange={handleCheckboxChange}
+                            isChecked={recurringBill}
+                            iconColor="white"
+                            colorScheme="grey"
+                            sx={{
+                                ".chakra-checkbox__label": {
+                                    color: "grey.500",
+                                    textStyle: "preset5bold",
+                                }
+                            }}
+                        >
+                            Recurring Bill
+                        </Checkbox>
+                    </Flex>
+                </Form>
             )}
             <Button
                 variant="primary"

@@ -29,6 +29,7 @@ const AddNewButton: React.FC<AddNewButtonProps> = ({ btnTag, onClick, maxCount =
                 _hover={{
                     bg: maxCount < 8 ? "grey.500" : "grey.900",
                 }}
+                tabIndex={0}
             >
                 {maxCount < 8 ? `+ Add New ${btnTag}` : "Max Limit Reached"}
             </Button>

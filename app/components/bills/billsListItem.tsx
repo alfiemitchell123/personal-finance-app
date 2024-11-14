@@ -4,32 +4,61 @@ import { Transaction } from "~/types";
 import theme from "~/theme";
 import React from "react";
 import TransactionImg from "../transactions/transactionImg";
+import { format, addMonths, lastDayOfMonth, getDate, isValid } from 'date-fns';
 
 interface BillsListItemProps {
     transaction: Transaction;
 }
 
-const BillsListItem: React.FC<BillsListItemProps> = ({ transaction }) => {
-    const currentDate = new Date();
-    const transactionDateAsDate = transaction.transactionDate.toDate();
-    const daysDifference = Math.ceil((transactionDateAsDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
+const getNextBillDate = (originalTransactionDate: Date, currentDate: Date) => {
+    // Get the day of the current month
+    const currentDayOfMonth = getDate(currentDate);
 
-    const getDaysDifferenceColor = () => {
-        if (daysDifference < 0) return "#277C78"; // Passed
-        if (daysDifference <= 7) return "#C94736"; // Within 7 days
-        return "grey.500"; // Further away than 7 days
-    };
+    // Initialize nextBillDate with the current month's transaction date
+    let nextBillDate = new Date(currentDate);
+    nextBillDate.setDate(originalTransactionDate.getDate());
 
-    const textColor = getDaysDifferenceColor();
-
-    const amountColor = daysDifference < 0 ? "black" : (daysDifference <= 7 ? "#C94736" : "black");
-
-    const checkIcon = () => {
-        if (daysDifference < 0) return <CheckCircle color="#277C78" weight="fill" />; // Passed
-        if (daysDifference <= 7) return <WarningCircle color="#C94736" weight="fill" />; // Within 7 days
-        return null; // Further away than 7 days
+    // If the next bill date is in the past (before today), move it to the next month
+    if (nextBillDate < currentDate) {
+        nextBillDate = addMonths(nextBillDate, 1); // Move to the next month
     }
 
+    // Format next bill date for display
+    const formattedNextBillDate = format(nextBillDate, 'E MMM dd yyyy');
+    const daysDifference = Math.floor((nextBillDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24));
+
+    return { nextBillDate, formattedNextBillDate, daysDifference };
+};
+
+const BillsListItem: React.FC<BillsListItemProps> = ({ transaction }) => {
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); // Reset time to midnight
+
+    const transactionDateAsDate = transaction.transactionDate.toDate();
+    const transactionDayOfMonth = transactionDateAsDate.getDate();
+
+    // Get the next bill date based on the original transaction date and the current date
+    const { nextBillDate, formattedNextBillDate, daysDifference } = getNextBillDate(transactionDateAsDate, currentDate);
+
+    // Determine the color based on `daysDifference`
+    const getDaysDifferenceColor = () => {
+        if (daysDifference < 0) return "#277C78"; // Past due, marked as "paid"
+        if (daysDifference <= 7) return "#C94736"; // Due within the next 7 days
+        return "grey.500"; // Due further than 7 days
+    };
+
+    // Determine icon based on `daysDifference`
+    const checkIcon = () => {
+        if (daysDifference < 0) return <CheckCircle color="#277C78" weight="fill" />; // Paid
+        if (daysDifference <= 7) return <WarningCircle color="#C94736" weight="fill" />; // Due soon
+        return null; // Further away than 7 days
+    };
+
+    // Display colors for text and amount
+    const textColor = getDaysDifferenceColor();
+    const amountColor = daysDifference < 0 ? "black" : (daysDifference <= 7 ? "#C94736" : "black");
+
+    // Helper function to get ordinal suffix
     const getOrdinalSuffix = (day: number) => {
         if (day > 3 && day < 21) return 'th'; // Covers 11th, 12th, 13th
         switch (day % 10) {
@@ -40,11 +69,10 @@ const BillsListItem: React.FC<BillsListItemProps> = ({ transaction }) => {
         }
     };
 
-    const dayOfMonth = transactionDateAsDate.getDate();
-    const ordinalSuffix = getOrdinalSuffix(dayOfMonth);
-    const formattedDate = `Monthly - ${dayOfMonth}${ordinalSuffix}`;
-
+    const ordinalSuffix = getOrdinalSuffix(transactionDayOfMonth);
+    const formattedDate = `Monthly - ${transactionDayOfMonth}${ordinalSuffix}`;
     const formattedAmount = Math.abs(transaction.transactionAmt).toFixed(2);
+
 
     return (
         <Flex

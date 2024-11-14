@@ -29,6 +29,7 @@ const SummaryTitle: React.FC<SummaryTitleProps> = ({ title, link, linkText, titl
                     variant="tertiary"
                     background="none"
                     rightIcon={<CaretRight weight="fill" />}
+                    tabIndex={-1}
                 >
                     <Text
                         textStyle="preset4"
