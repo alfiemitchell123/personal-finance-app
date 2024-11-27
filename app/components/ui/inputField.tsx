@@ -137,11 +137,11 @@ const InputField: React.FC<InputFieldProps> = ({
                 />
                 {Icon &&
                     <InputRightElement>
-                        <Icon onClick={onIconClick} width="1rem" height="1rem" weight={iconWeight} />
+                        <Icon cursor="pointer" onClick={onIconClick} width="1rem" height="1rem" weight={iconWeight} />
                     </InputRightElement>
                 }
             </InputGroup>
-            {helperText && <FormHelperText width="100%" textStyle="preset5" color={/^\d/.test(helperText) ? "grey.500" : "secondary.red"} textAlign="right">{helperText}</FormHelperText>}
+            {helperText && <FormHelperText width="100%" textStyle="preset5" color={helperText === "Passwords must be at least 8 characters" || /^\d/.test(helperText) ? "grey.500" : "secondary.red"} textAlign="right">{helperText}</FormHelperText>}
         </FormControl>
     )
 }

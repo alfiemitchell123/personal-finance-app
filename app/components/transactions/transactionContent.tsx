@@ -140,7 +140,7 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                     display={{
                         lg: "flex",
                         md: "flex",
-                        sm: "none"
+                        sm: "flex"
                     }}
                 >
                     <Flex align="center" gap={theme.spacing[100]}>
@@ -153,7 +153,7 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                     </Flex>
                 </Flex>
 
-                <Flex
+                {/* <Flex
                     justify="flex-end"
                     display={{
                         lg: "none",
@@ -169,7 +169,7 @@ const TransactionContent: React.FC<TransactionContentProps> = ({ transactions })
                     <Box as="button" onClick={handleCategoryIconClick}>
                         <Funnel weight="fill" size={24} />
                     </Box>
-                </Flex>
+                </Flex> */}
 
                 {/* <Flex direction="column" display={{ base: "flex", lg: "none" }} gap={4}>
                     {showSortDropdown && (

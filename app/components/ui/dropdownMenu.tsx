@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Flex, InputLeftElement, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, InputLeftElement, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Text, useBreakpointValue } from "@chakra-ui/react";
 import { CaretUp, CaretDown } from "phosphor-react";
 import theme from "~/theme";
 

@@ -231,7 +231,6 @@ const Login = () => {
                                     isRequired={true}
                                     label="Email"
                                     onChange={(e) => setEmail(e.target.value)}
-                                // autoComplete={isSigningUp ? "new-email" : "email"} (currently not working)
                                 />
                                 <InputField
                                     id="password"
@@ -242,7 +241,6 @@ const Login = () => {
                                     icon={passwordIsVisible ? Eye : EyeSlash}
                                     onIconClick={togglePasswordVisibility}
                                     helperText={isSigningUp ? "Passwords must be at least 8 characters" : ""}
-                                // autoComplete={isSigningUp ? "new-password" : "current-password"} (currently not working)
                                 />
                             </Flex>
                             <Button
