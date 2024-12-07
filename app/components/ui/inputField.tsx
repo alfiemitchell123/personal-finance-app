@@ -3,7 +3,6 @@ import { Flex, Input, InputGroup, InputLeftElement, InputRightElement, Text, For
 import { IconType } from "react-icons";
 import { IconWeight } from "phosphor-react";
 import theme from "~/theme";
-import { s } from "node_modules/vite/dist/node/types.d-aGj9QkWt";
 
 interface InputFieldProps {
     label?: string;
@@ -48,12 +47,14 @@ const InputField: React.FC<InputFieldProps> = ({
     const [inputValue, setInputValue] = useState<string>("");
 
     useEffect(() => {
+        console.log("value prop updated:", value);
         if (value !== undefined) {
             setInputValue(value.toString()); // Sync local state with prop
         }
     }, [value]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("Input changed:", event.target.value);
         const { value } = event.target;
         setInputValue(value); // Update local state
         if (onChange) {

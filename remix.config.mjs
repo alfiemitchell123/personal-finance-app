@@ -1,10 +1,6 @@
 // remix.config.mjs
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
-    // The paths to your application routes
-    routes: {
-        // You can specify routes or leave it empty to auto-detect
-    },
     // Specify where to serve static assets from
     assetsBuildDirectory: "public/build",
     publicPath: "/build/",
@@ -18,5 +14,8 @@ export default {
     dev: {
         // Enable this option for better error visibility during development
         debug: true,
+    },
+    future: {
+        v7_skipActionErrorRevalidation: true,
     },
 };

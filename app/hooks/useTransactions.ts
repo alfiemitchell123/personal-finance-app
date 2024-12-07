@@ -24,7 +24,6 @@ const useTransactionData = () => {
                     });
 
                     setTransactions(transactionsData);
-                    console.log("Transactions data fetched:", transactionsData);
                 } catch {
                     setError("Error fetching transactions data");
                 } finally {

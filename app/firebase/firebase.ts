@@ -1,4 +1,4 @@
-// firebase/firebase.ts
+// firebase/firebase.client.ts
 
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore, collection } from "firebase/firestore";
@@ -12,6 +12,8 @@ const firebaseConfig = {
     messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
     appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
+
+console.log("Firebase Client Config: ", firebaseConfig);
 
 // Check if a Firebase app has already been initialized
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();

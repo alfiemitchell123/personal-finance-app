@@ -1,13 +1,13 @@
 // app/root.tsx
 
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { Box, ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import { MetaFunction, Outlet, Links, Meta, Scripts, ScrollRestoration, useNavigate } from "@remix-run/react";
 import theme from "./theme";
 import { AuthProvider, useAuth } from "~/contexts/authContext/authProvider";
 import AppLayout from "./components/layout/app/appLayout";
 import { SidebarProvider } from "./contexts/sidebarProvider";
-import { useEffect, useState } from "react";
 import { Protected } from "./routes/protected";
+import { LinksFunction } from "@remix-run/node";
 
 // Meta configuration using Remix's MetaFunction
 export const meta: MetaFunction = () => {
@@ -18,7 +18,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export function links() {
+export const links: LinksFunction = () => {
   return [
     {
       rel: "stylesheet",
@@ -28,27 +28,18 @@ export function links() {
 }
 
 // Layout component that provides the main HTML structure
-export function Layout({ styles }: { styles: string }) {
-  const [colorScheme, setColorScheme] = useState("light");
-
-  useEffect(() => {
-    // Fetch theme from client-specific storage or logic, e.g., localStorage
-    const storedColorScheme = localStorage.getItem("theme") || "light";
-    setColorScheme(storedColorScheme);
-  }, []);
-
+export function Layout() {
   return (
-    <html style={{ backgroundColor: "rgb(248, 244, 240)", colorScheme: "light" }} lang="en" data-theme={colorScheme}>
+    <html lang="en">
       <head>
         <Meta />
         <Links />
-        <style dangerouslySetInnerHTML={{ __html: styles }} />
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       </head>
-      <body suppressHydrationWarning>
-        <AuthProvider>
-          <SidebarProvider>
-            <ColorModeScript />
-            <ChakraProvider theme={theme}>
+      <Box as="body">
+        <ChakraProvider theme={theme}>
+          <AuthProvider>
+            <SidebarProvider>
               <Protected>
                 <AppLayout>
                   <Outlet />
@@ -56,10 +47,10 @@ export function Layout({ styles }: { styles: string }) {
               </Protected>
               <ScrollRestoration />
               <Scripts />
-            </ChakraProvider>
-          </SidebarProvider>
-        </AuthProvider>
-      </body>
+            </SidebarProvider>
+          </AuthProvider>
+        </ChakraProvider>
+      </Box>
     </html>
   );
 }

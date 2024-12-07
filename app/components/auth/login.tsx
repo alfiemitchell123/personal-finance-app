@@ -67,9 +67,6 @@ const Login = () => {
                 // Create a user document in Firestore
                 await setDoc(doc(db, "users", user.uid), {
                     displayName: name || "User",
-                    income: 0,
-                    expenses: 0,
-                    currentBalance: 0,
                 })
 
                 console.log("Registration sucessful.");

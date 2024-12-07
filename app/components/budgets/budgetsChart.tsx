@@ -27,10 +27,6 @@ const BudgetsChart: React.FC<BudgetsChartProps> = ({ budgets }) => {
         return budgets.reduce((sum, budget) => sum + budget.maxSpend, 0);
     }, [budgets]);
 
-    useEffect(() => {
-        console.log("Chart Data:", data);
-    }, [data]);
-
     return (
         <Flex
             position="relative"
@@ -63,7 +59,6 @@ const BudgetsChart: React.FC<BudgetsChartProps> = ({ budgets }) => {
                         ))
                     )}
                 </Pie>
-                {/* <Tooltip /> */}
             </PieChart>
 
             <Box

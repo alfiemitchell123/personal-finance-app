@@ -24,7 +24,6 @@ const useBudgets = () => {
                     });
 
                     setBudgets(budgetsData);
-                    console.log("Budgets data fetched:", budgetsData);
                 } catch {
                     setError("Error fetching budgets data");
                 } finally {
