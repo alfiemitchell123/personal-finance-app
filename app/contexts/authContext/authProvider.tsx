@@ -1,6 +1,5 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { getAuth, onAuthStateChanged, User } from "firebase/auth";
-import PageLoading from "~/components/ui/pageLoading";
 
 type AuthContextProps = {
     children: React.ReactNode;
@@ -33,27 +32,20 @@ export function AuthProvider({ children }: AuthContextProps) {
             setLoading(true);
         }
 
-        console.log("Starting AuthProvider, loading:", loading);
-
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log("onAuthStateChanged fired with user:", currentUser);
             setUser(currentUser);
             setLoading(false);
-            console.log("Loading set to false after auth state changed");
 
             if (currentUser) {
                 localStorage.setItem("wasLoggedIn", "true");
             } else {
                 localStorage.removeItem("wasLoggedIn");
             }
-
-            console.log("User state in AuthProvider:", currentUser);
         });
 
         if (!loading && !user) {
             const currentUser = auth.currentUser;
             if (currentUser) {
-                console.log("Direct check found a current user:", currentUser);
                 setUser(currentUser);
                 setLoading(false);
             }
@@ -61,11 +53,6 @@ export function AuthProvider({ children }: AuthContextProps) {
 
         return () => unsubscribe();
     }, [auth]);
-
-    useEffect(() => {
-        console.log("AuthProvider user state:", user);
-        console.log("AuthProvider loading state:", loading);
-    }, [user, loading]);
 
     const values = {
         user,
