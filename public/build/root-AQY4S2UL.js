@@ -540,7 +540,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/root.tsx"
   );
-  import.meta.hot.lastModified = "1733598268892.504";
+  import.meta.hot.lastModified = "1733675139638.6301";
 }
 var meta = () => {
   return [{
@@ -629,7 +629,11 @@ function Layout() {
 }
 _c6 = Layout;
 function App() {
-  return null;
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)(Outlet, {}, void 0, false, {
+    fileName: "app/root.tsx",
+    lineNumber: 76,
+    columnNumber: 10
+  }, this);
 }
 _c22 = App;
 var _c6;
@@ -644,4 +648,4 @@ export {
   links,
   meta
 };
-//# sourceMappingURL=/build/root-N46EYPRJ.js.map
+//# sourceMappingURL=/build/root-AQY4S2UL.js.map

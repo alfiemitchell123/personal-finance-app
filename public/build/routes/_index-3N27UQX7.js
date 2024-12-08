@@ -1,31 +1,31 @@
 import {
   usePots_default
-} from "/build/_shared/chunk-HNLPZASZ.js";
+} from "/build/_shared/chunk-LV6XMHKU.js";
 import {
   transactionsList_default
-} from "/build/_shared/chunk-ZBVHDEMX.js";
+} from "/build/_shared/chunk-5CM6EAG7.js";
 import {
   budgetsChart_default,
   summaryTitle_default,
   useBudgets_default
-} from "/build/_shared/chunk-ADJMCADT.js";
-import "/build/_shared/chunk-76FYL7ER.js";
+} from "/build/_shared/chunk-74VEQR6V.js";
+import "/build/_shared/chunk-UFRS35DX.js";
 import {
   useBillsData_default
-} from "/build/_shared/chunk-Z7FWRHWT.js";
+} from "/build/_shared/chunk-XEUDDUXO.js";
 import {
   useTransactions_default
-} from "/build/_shared/chunk-GUQ6LDKD.js";
+} from "/build/_shared/chunk-SE7ILXZI.js";
 import {
   mainContent_default,
   pageHeader_default,
   pageLoading_default,
   useUserData_default
-} from "/build/_shared/chunk-TGV7UNIE.js";
+} from "/build/_shared/chunk-STRJBWB3.js";
 import {
   J2 as J
 } from "/build/_shared/chunk-5PNKOZEI.js";
-import "/build/_shared/chunk-UNK6ZALF.js";
+import "/build/_shared/chunk-AXQ3FDH7.js";
 import {
   Box,
   Flex,
@@ -656,7 +656,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/routes/_index.tsx"
   );
-  import.meta.hot.lastModified = "1733508598753.0242";
+  import.meta.hot.lastModified = "1733677571888.3357";
 }
 function Home() {
   _s4();
@@ -822,4 +822,4 @@ window.$RefreshSig$ = prevRefreshSig;
 export {
   Home as default
 };
-//# sourceMappingURL=/build/routes/_index-GGLCAOJS.js.map
+//# sourceMappingURL=/build/routes/_index-3N27UQX7.js.map

@@ -62,7 +62,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/components/ui/inputField.tsx"
   );
-  import.meta.hot.lastModified = "1733604556271.1184";
+  import.meta.hot.lastModified = "1733606004040.744";
 }
 var InputField = ({
   label,
@@ -113,30 +113,30 @@ var InputField = ({
       children: [
         label && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(FormLabel, { fontSize: theme_default.textStyles.preset5bold.fontSize, fontWeight: theme_default.textStyles.preset5bold.fontWeight, color: "grey.500", htmlFor: id, requiredIndicator: false, children: label }, void 0, false, {
           fileName: "app/components/ui/inputField.tsx",
-          lineNumber: 66,
+          lineNumber: 68,
           columnNumber: 23
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(InputGroup, { children: [
           colorTag && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(InputLeftElement, { ml: "4px", mr: prefix ? theme_default.spacing[150] : 0, pointerEvents: "none", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "1rem", height: "1rem", viewBox: "0 0 16 17", fill: "none", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("circle", { cx: "8", cy: "8.5", r: "8", fill: colorTag }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 72,
+            lineNumber: 74,
             columnNumber: 29
           }, this) }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 71,
+            lineNumber: 73,
             columnNumber: 25
           }, this) }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 70,
+            lineNumber: 72,
             columnNumber: 30
           }, this),
           prefix && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(InputLeftElement, { pl: "0.5rem", pointerEvents: "none", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Text, { textStyle: "preset4", color: "beige.500", children: prefix }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 76,
+            lineNumber: 78,
             columnNumber: 25
           }, this) }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 75,
+            lineNumber: 77,
             columnNumber: 28
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Input, { maxLength, sx: {
@@ -170,26 +170,26 @@ var InputField = ({
             boxShadow: "none"
           }, placeholder, value: inputValue, onChange: handleChange, type, ...props, autoComplete }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 78,
+            lineNumber: 80,
             columnNumber: 17
           }, this),
           Icon && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(InputRightElement, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(Icon, { cursor: "pointer", onClick: onIconClick, width: "1rem", height: "1rem", weight: iconWeight }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 109,
+            lineNumber: 111,
             columnNumber: 25
           }, this) }, void 0, false, {
             fileName: "app/components/ui/inputField.tsx",
-            lineNumber: 108,
+            lineNumber: 110,
             columnNumber: 26
           }, this)
         ] }, void 0, true, {
           fileName: "app/components/ui/inputField.tsx",
-          lineNumber: 69,
+          lineNumber: 71,
           columnNumber: 13
         }, this),
         helperText && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(FormHelperText, { width: "100%", textStyle: "preset5", color: helperText === "Passwords must be at least 8 characters" || /^\d/.test(helperText) ? "grey.500" : "secondary.red", textAlign: "right", children: helperText }, void 0, false, {
           fileName: "app/components/ui/inputField.tsx",
-          lineNumber: 112,
+          lineNumber: 114,
           columnNumber: 28
         }, this)
       ]
@@ -198,7 +198,7 @@ var InputField = ({
     true,
     {
       fileName: "app/components/ui/inputField.tsx",
-      lineNumber: 63,
+      lineNumber: 65,
       columnNumber: 10
     },
     this
@@ -12508,7 +12508,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/firebase/auth.ts"
   );
-  import.meta.hot.lastModified = "1733603633521.418";
+  import.meta.hot.lastModified = "1733615785519.2537";
 }
 var doCreateUserWithEmailAndPassword = async (email, password) => {
   try {
@@ -14329,4 +14329,4 @@ firebase/app/dist/esm/index.esm.js:
    * limitations under the License.
    *)
 */
-//# sourceMappingURL=/build/_shared/chunk-UNK6ZALF.js.map
+//# sourceMappingURL=/build/_shared/chunk-AXQ3FDH7.js.map

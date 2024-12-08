@@ -4,7 +4,7 @@ import {
   db,
   getDocs,
   onSnapshot
-} from "/build/_shared/chunk-UNK6ZALF.js";
+} from "/build/_shared/chunk-AXQ3FDH7.js";
 import {
   Box,
   Image,
@@ -30,7 +30,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/hooks/useTransactions.ts"
   );
-  import.meta.hot.lastModified = "1733603633456.173";
+  import.meta.hot.lastModified = "1733615785528.1006";
 }
 var useTransactionData = () => {
   const { user } = useAuth();
@@ -144,4 +144,4 @@ export {
   transactionImg_default,
   useTransactions_default
 };
-//# sourceMappingURL=/build/_shared/chunk-GUQ6LDKD.js.map
+//# sourceMappingURL=/build/_shared/chunk-SE7ILXZI.js.map

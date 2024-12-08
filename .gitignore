@@ -6,3 +6,7 @@ node_modules
 .DS_Store
 cypress/videos
 cypress/screenshots
+.vercel
+
+# Local Netlify folder
+.netlify

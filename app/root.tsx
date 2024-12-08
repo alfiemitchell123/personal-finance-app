@@ -58,6 +58,6 @@ export function Layout() {
 // Main app entry point, can be used for route-specific content
 export default function App() {
   return (
-    null
+    <Outlet />
   );
 }

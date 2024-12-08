@@ -5,24 +5,24 @@ import {
   budgetsChart_default,
   summaryTitle_default,
   useBudgets_default
-} from "/build/_shared/chunk-ADJMCADT.js";
+} from "/build/_shared/chunk-74VEQR6V.js";
 import {
   addNewModal_default,
   categoryMenuItems,
   themeMenuItems,
   useModal_default
-} from "/build/_shared/chunk-76FYL7ER.js";
+} from "/build/_shared/chunk-UFRS35DX.js";
 import {
   transactionImg_default,
   useTransactions_default
-} from "/build/_shared/chunk-GUQ6LDKD.js";
+} from "/build/_shared/chunk-SE7ILXZI.js";
 import {
   DotsThree_esm_default,
   dropdownMenu_default,
   mainContent_default,
   pageHeader_default,
   pageLoading_default
-} from "/build/_shared/chunk-TGV7UNIE.js";
+} from "/build/_shared/chunk-STRJBWB3.js";
 import "/build/_shared/chunk-5PNKOZEI.js";
 import {
   Timestamp,
@@ -31,7 +31,7 @@ import {
   doc,
   inputField_default,
   updateDoc
-} from "/build/_shared/chunk-UNK6ZALF.js";
+} from "/build/_shared/chunk-AXQ3FDH7.js";
 import {
   Box,
   Button,
@@ -91,7 +91,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/components/budgets/budgetModal.tsx"
   );
-  import.meta.hot.lastModified = "1733603633661.9268";
+  import.meta.hot.lastModified = "1733615785638.4028";
 }
 var BudgetModal = ({
   isOpen,
@@ -1008,4 +1008,4 @@ window.$RefreshSig$ = prevRefreshSig;
 export {
   BudgetsRoute as default
 };
-//# sourceMappingURL=/build/routes/budgets-U2VJZSMG.js.map
+//# sourceMappingURL=/build/routes/budgets-S6DF5P34.js.map

@@ -7,7 +7,7 @@ import {
   db,
   getDocs,
   onSnapshot
-} from "/build/_shared/chunk-UNK6ZALF.js";
+} from "/build/_shared/chunk-AXQ3FDH7.js";
 import {
   Box,
   Button,
@@ -4706,7 +4706,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/hooks/useBudgets.ts"
   );
-  import.meta.hot.lastModified = "1733603633537.9487";
+  import.meta.hot.lastModified = "1733615785533.8203";
 }
 var useBudgets = () => {
   const { user } = useAuth();
@@ -23647,4 +23647,4 @@ export {
 decimal.js-light/decimal.js:
   (*! decimal.js-light v2.5.1 https://github.com/MikeMcl/decimal.js-light/LICENCE *)
 */
-//# sourceMappingURL=/build/_shared/chunk-ADJMCADT.js.map
+//# sourceMappingURL=/build/_shared/chunk-74VEQR6V.js.map

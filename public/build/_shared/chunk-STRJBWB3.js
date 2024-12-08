@@ -3,7 +3,7 @@ import {
   doSignOut,
   doc,
   getDoc
-} from "/build/_shared/chunk-UNK6ZALF.js";
+} from "/build/_shared/chunk-AXQ3FDH7.js";
 import {
   Box,
   Button,
@@ -1971,7 +1971,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/hooks/useUserData.ts"
   );
-  import.meta.hot.lastModified = "1733603633582.4185";
+  import.meta.hot.lastModified = "1733615785560.7046";
 }
 var useUserData = () => {
   const { user } = useAuth();
@@ -2346,4 +2346,4 @@ export {
   pageHeader_default,
   dropdownMenu_default
 };
-//# sourceMappingURL=/build/_shared/chunk-TGV7UNIE.js.map
+//# sourceMappingURL=/build/_shared/chunk-STRJBWB3.js.map

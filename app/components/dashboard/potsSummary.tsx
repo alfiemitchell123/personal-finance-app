@@ -1,5 +1,5 @@
 import { Button, Flex, Text, SimpleGrid } from "@chakra-ui/react";
-import { TipJar, CaretRight } from "@phosphor-icons/react";
+import { TipJar } from "@phosphor-icons/react/dist/ssr/TipJar";
 import SummaryTitle from "./summaryTitle";
 import MicroSummaryTag from "./microSummaryTag";
 import usePotsData from "~/hooks/usePots";

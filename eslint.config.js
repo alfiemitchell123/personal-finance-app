@@ -1,15 +1,23 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
-
+import { ESLint } from "eslint";
+import * as tseslint from "@typescript-eslint/eslint-plugin";
 
 export default [
-  { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
+  {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+  },
+  {
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+  pluginJs.configs.recommended, // JS recommended rules
+  {
+    ...tseslint.configs.recommended, // TypeScript recommended rules
+  },
+  pluginReact.configs.recommended, // React plugin recommended rules
   {
     settings: {
       react: {
@@ -17,9 +25,8 @@ export default [
       },
     },
     rules: {
-      "react/react-in-jsx-scope": "off",
-      "react/prop-types": "off",
-      "@typescript-eslint/no-unused-vars": "off",
+      "react/react-in-jsx-scope": "off", // Needed for Next.js projects or React 17+
+      "react/prop-types": "off", // Disable prop-types rule if you're using TypeScript
     },
   },
 ];
