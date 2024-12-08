@@ -1,6 +1,6 @@
 import { Button, Flex, Link, Text } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-import { CaretRight } from "@phosphor-icons/react";
+import {CaretRight} from "@phosphor-icons/react/dist/ssr/CaretRight";
 import React from "react";
 
 interface SummaryTitleProps {

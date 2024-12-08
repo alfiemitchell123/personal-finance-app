@@ -1,7 +1,14 @@
 import React from "react";
 import { Box, Flex, useTheme } from "@chakra-ui/react";
 import SidebarMenuItem from './sidebarMenuItem';
-import { House, ArrowsDownUp, ChartDonut, Jar, Receipt, ArrowFatLineLeft, ArrowFatLineRight } from "@phosphor-icons/react";
+import {House} from "@phosphor-icons/react/dist/ssr/House";
+import {ArrowsDownUp} from "@phosphor-icons/react/dist/ssr/ArrowsDownUp";
+import {ChartDonut} from "@phosphor-icons/react/dist/ssr/ChartDonut";
+import {Jar} from "@phosphor-icons/react/dist/ssr/Jar";
+import {Receipt} from "@phosphor-icons/react/dist/ssr/Receipt";
+import {ArrowFatLineLeft} from "@phosphor-icons/react/dist/ssr/ArrowFatLineLeft";
+import {ArrowFatLineRight} from "@phosphor-icons/react/dist/ssr/ArrowFatLineRight";
+
 import { useSidebar } from "~/contexts/sidebarProvider";
 
 interface SidebarProps {
