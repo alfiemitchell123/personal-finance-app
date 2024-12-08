@@ -18,7 +18,8 @@ import {
     VStack,
     useToast,
 } from '@chakra-ui/react';
-import { Eye, EyeSlash } from "@phosphor-icons/react";
+import {Eye} from "@phosphor-icons/react/dist/ssr/Eye";
+import {EyeSlash} from "@phosphor-icons/react/dist/ssr/EyeSlash";
 import InputField from '../ui/inputField';
 import ClientOnly from '../ClientOnly';
 import theme from '~/theme';

@@ -1,5 +1,4 @@
 import { Button, Flex, Text, useTheme } from "@chakra-ui/react";
-import { CaretRight } from "@phosphor-icons/react";
 import SummaryTitle from "./summaryTitle";
 import BudgetsChart from "../budgets/budgetsChart";
 import MicroSummaryTag from "./microSummaryTag";

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Flex, Text } from "@chakra-ui/react";
-import { CaretLeft } from "@phosphor-icons/react";
 import theme from "~/theme";
 import PaginationButton from "./paginationButton";
 
