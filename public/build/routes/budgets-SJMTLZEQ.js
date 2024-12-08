@@ -5,7 +5,8 @@ import {
   budgetsChart_default,
   summaryTitle_default,
   useBudgets_default
-} from "/build/_shared/chunk-74VEQR6V.js";
+} from "/build/_shared/chunk-JGDIYDEN.js";
+import "/build/_shared/chunk-IVEKJXSA.js";
 import {
   addNewModal_default,
   categoryMenuItems,
@@ -23,7 +24,7 @@ import {
   pageHeader_default,
   pageLoading_default
 } from "/build/_shared/chunk-STRJBWB3.js";
-import "/build/_shared/chunk-5PNKOZEI.js";
+import "/build/_shared/chunk-NAY3M5MB.js";
 import {
   Timestamp,
   db,
@@ -1008,4 +1009,4 @@ window.$RefreshSig$ = prevRefreshSig;
 export {
   BudgetsRoute as default
 };
-//# sourceMappingURL=/build/routes/budgets-S6DF5P34.js.map
+//# sourceMappingURL=/build/routes/budgets-SJMTLZEQ.js.map

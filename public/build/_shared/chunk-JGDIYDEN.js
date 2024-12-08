@@ -1,6 +1,6 @@
 import {
-  l
-} from "/build/_shared/chunk-5PNKOZEI.js";
+  n
+} from "/build/_shared/chunk-IVEKJXSA.js";
 import {
   addDoc,
   collection,
@@ -1436,9 +1436,9 @@ var require_getSymbols = __commonJS({
 // node_modules/lodash/_baseTimes.js
 var require_baseTimes = __commonJS({
   "node_modules/lodash/_baseTimes.js"(exports, module) {
-    function baseTimes(n, iteratee) {
-      var index = -1, result = Array(n);
-      while (++index < n) {
+    function baseTimes(n2, iteratee) {
+      var index = -1, result = Array(n2);
+      while (++index < n2) {
         result[index] = iteratee(index);
       }
       return result;
@@ -3250,7 +3250,7 @@ var require_decimal = __commonJS({
         return z && e > sd ? e : sd;
       };
       P.squareRoot = P.sqrt = function() {
-        var e, n, pr, r2, s2, t, wpr, x2 = this, Ctor = x2.constructor;
+        var e, n2, pr, r2, s2, t, wpr, x2 = this, Ctor = x2.constructor;
         if (x2.s < 1) {
           if (!x2.s)
             return new Ctor(0);
@@ -3260,18 +3260,18 @@ var require_decimal = __commonJS({
         external = false;
         s2 = Math.sqrt(+x2);
         if (s2 == 0 || s2 == 1 / 0) {
-          n = digitsToString(x2.d);
-          if ((n.length + e) % 2 == 0)
-            n += "0";
-          s2 = Math.sqrt(n);
+          n2 = digitsToString(x2.d);
+          if ((n2.length + e) % 2 == 0)
+            n2 += "0";
+          s2 = Math.sqrt(n2);
           e = mathfloor((e + 1) / 2) - (e < 0 || e % 2);
           if (s2 == 1 / 0) {
-            n = "5e" + e;
+            n2 = "5e" + e;
           } else {
-            n = s2.toExponential();
-            n = n.slice(0, n.indexOf("e") + 1) + e;
+            n2 = s2.toExponential();
+            n2 = n2.slice(0, n2.indexOf("e") + 1) + e;
           }
-          r2 = new Ctor(n);
+          r2 = new Ctor(n2);
         } else {
           r2 = new Ctor(s2.toString());
         }
@@ -3280,15 +3280,15 @@ var require_decimal = __commonJS({
         for (; ; ) {
           t = r2;
           r2 = t.plus(divide(x2, t, wpr + 2)).times(0.5);
-          if (digitsToString(t.d).slice(0, wpr) === (n = digitsToString(r2.d)).slice(0, wpr)) {
-            n = n.slice(wpr - 3, wpr + 1);
-            if (s2 == wpr && n == "4999") {
+          if (digitsToString(t.d).slice(0, wpr) === (n2 = digitsToString(r2.d)).slice(0, wpr)) {
+            n2 = n2.slice(wpr - 3, wpr + 1);
+            if (s2 == wpr && n2 == "4999") {
               round(t, pr + 1, 0);
               if (t.times(t).eq(x2)) {
                 r2 = t;
                 break;
               }
-            } else if (n != "9999") {
+            } else if (n2 != "9999") {
               break;
             }
             wpr += 4;
@@ -3752,7 +3752,7 @@ var require_decimal = __commonJS({
         return zs;
       }
       function ln(y2, sd) {
-        var c2, c0, denominator, e, numerator, sum, t, wpr, x2, n = 1, guard = 10, x3 = y2, xd = x3.d, Ctor = x3.constructor, pr = Ctor.precision;
+        var c2, c0, denominator, e, numerator, sum, t, wpr, x2, n2 = 1, guard = 10, x3 = y2, xd = x3.d, Ctor = x3.constructor, pr = Ctor.precision;
         if (x3.s < 1)
           throw Error(decimalError + (x3.s ? "NaN" : "-Infinity"));
         if (x3.eq(ONE))
@@ -3778,7 +3778,7 @@ var require_decimal = __commonJS({
             x3 = x3.times(y2);
             c2 = digitsToString(x3.d);
             c0 = c2.charAt(0);
-            n++;
+            n2++;
           }
           e = getBase10Exponent(x3);
           if (c0 > 1) {
@@ -3803,7 +3803,7 @@ var require_decimal = __commonJS({
             sum = sum.times(2);
             if (e !== 0)
               sum = sum.plus(getLn10(Ctor, wpr + 2, pr).times(e + ""));
-            sum = divide(sum, new Ctor(n), wpr);
+            sum = divide(sum, new Ctor(n2), wpr);
             Ctor.precision = pr;
             return sd == null ? (external = true, round(sum, pr)) : sum;
           }
@@ -3859,10 +3859,10 @@ var require_decimal = __commonJS({
         return x2;
       }
       function round(x2, sd, rm) {
-        var i, j, k2, n, rd, doRound, w, xdi, xd = x2.d;
-        for (n = 1, k2 = xd[0]; k2 >= 10; k2 /= 10)
-          n++;
-        i = sd - n;
+        var i, j, k2, n2, rd, doRound, w, xdi, xd = x2.d;
+        for (n2 = 1, k2 = xd[0]; k2 >= 10; k2 /= 10)
+          n2++;
+        i = sd - n2;
         if (i < 0) {
           i += LOG_BASE;
           j = sd;
@@ -3873,17 +3873,17 @@ var require_decimal = __commonJS({
           if (xdi >= k2)
             return x2;
           w = k2 = xd[xdi];
-          for (n = 1; k2 >= 10; k2 /= 10)
-            n++;
+          for (n2 = 1; k2 >= 10; k2 /= 10)
+            n2++;
           i %= LOG_BASE;
-          j = i - LOG_BASE + n;
+          j = i - LOG_BASE + n2;
         }
         if (rm !== void 0) {
-          k2 = mathpow(10, n - j - 1);
+          k2 = mathpow(10, n2 - j - 1);
           rd = w / k2 % 10 | 0;
           doRound = sd < 0 || xd[xdi + 1] !== void 0 || w % k2;
           doRound = rm < 4 ? (rd || doRound) && (rm == 0 || rm == (x2.s < 0 ? 3 : 2)) : rd > 5 || rd == 5 && (rm == 4 || doRound || rm == 6 && // Check whether the digit to the left of the rounding digit is odd.
-          (i > 0 ? j > 0 ? w / mathpow(10, n - j) : 0 : xd[xdi - 1]) % 10 & 1 || rm == (x2.s < 0 ? 8 : 7));
+          (i > 0 ? j > 0 ? w / mathpow(10, n2 - j) : 0 : xd[xdi - 1]) % 10 & 1 || rm == (x2.s < 0 ? 8 : 7));
         }
         if (sd < 1 || !xd[0]) {
           if (doRound) {
@@ -3905,7 +3905,7 @@ var require_decimal = __commonJS({
         } else {
           xd.length = xdi + 1;
           k2 = mathpow(10, LOG_BASE - i);
-          xd[xdi] = j > 0 ? (w / mathpow(10, n - j) % mathpow(10, j) | 0) * k2 : 0;
+          xd[xdi] = j > 0 ? (w / mathpow(10, n2 - j) % mathpow(10, j) | 0) * k2 : 0;
         }
         if (doRound) {
           for (; ; ) {
@@ -4577,7 +4577,7 @@ var require_eventemitter3 = __commonJS({
         return [];
       if (handlers.fn)
         return [handlers.fn];
-      for (var i = 0, l2 = handlers.length, ee = new Array(l2); i < l2; i++) {
+      for (var i = 0, l = handlers.length, ee = new Array(l); i < l; i++) {
         ee[i] = handlers[i].fn;
       }
       return ee;
@@ -4792,23 +4792,23 @@ var import_react4 = __toESM(require_react());
 
 // node_modules/clsx/dist/clsx.mjs
 function r(e) {
-  var t, f, n = "";
+  var t, f, n2 = "";
   if ("string" == typeof e || "number" == typeof e)
-    n += e;
+    n2 += e;
   else if ("object" == typeof e)
     if (Array.isArray(e)) {
       var o = e.length;
       for (t = 0; t < o; t++)
-        e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
+        e[t] && (f = r(e[t])) && (n2 && (n2 += " "), n2 += f);
     } else
       for (f in e)
-        e[f] && (n && (n += " "), n += f);
-  return n;
+        e[f] && (n2 && (n2 += " "), n2 += f);
+  return n2;
 }
 function clsx() {
-  for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++)
-    (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
-  return n;
+  for (var e, t, f = 0, n2 = "", o = arguments.length; f < o; f++)
+    (e = arguments[f]) && (t = r(e)) && (n2 && (n2 += " "), n2 += t);
+  return n2;
 }
 var clsx_default = clsx;
 
@@ -5694,7 +5694,7 @@ var epsilon = 1e-6;
 var tauEpsilon = tau2 - epsilon;
 function append(strings) {
   this._ += strings[0];
-  for (let i = 1, n = strings.length; i < n; ++i) {
+  for (let i = 1, n2 = strings.length; i < n2; ++i) {
     this._ += arguments[i] + strings[i];
   }
 }
@@ -5707,7 +5707,7 @@ function appendRound(digits) {
   const k2 = 10 ** d;
   return function(strings) {
     this._ += strings[0];
-    for (let i = 1, n = strings.length; i < n; ++i) {
+    for (let i = 1, n2 = strings.length; i < n2; ++i) {
       this._ += Math.round(arguments[i] * k2) / k2 + strings[i];
     }
   };
@@ -5749,7 +5749,7 @@ var Path = class {
     else if (!(Math.abs(y01 * x21 - y21 * x01) > epsilon) || !r2) {
       this._append`L${this._x1 = x1},${this._y1 = y1}`;
     } else {
-      let x20 = x2 - x0, y20 = y2 - y0, l21_2 = x21 * x21 + y21 * y21, l20_2 = x20 * x20 + y20 * y20, l21 = Math.sqrt(l21_2), l01 = Math.sqrt(l01_2), l2 = r2 * Math.tan((pi2 - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2), t01 = l2 / l01, t21 = l2 / l21;
+      let x20 = x2 - x0, y20 = y2 - y0, l21_2 = x21 * x21 + y21 * y21, l20_2 = x20 * x20 + y20 * y20, l21 = Math.sqrt(l21_2), l01 = Math.sqrt(l01_2), l = r2 * Math.tan((pi2 - Math.acos((l21_2 + l01_2 - l20_2) / (2 * l21 * l01))) / 2), t01 = l / l01, t21 = l / l21;
       if (Math.abs(t01 - 1) > epsilon) {
         this._append`L${x1 + t01 * x01},${y1 + t01 * y01}`;
       }
@@ -5865,11 +5865,11 @@ function line_default(x2, y2) {
   x2 = typeof x2 === "function" ? x2 : x2 === void 0 ? x : constant_default(x2);
   y2 = typeof y2 === "function" ? y2 : y2 === void 0 ? y : constant_default(y2);
   function line(data) {
-    var i, n = (data = array_default(data)).length, d, defined0 = false, buffer;
+    var i, n2 = (data = array_default(data)).length, d, defined0 = false, buffer;
     if (context == null)
       output = curve(buffer = path2());
-    for (i = 0; i <= n; ++i) {
-      if (!(i < n && defined3(d = data[i], i, data)) === defined0) {
+    for (i = 0; i <= n2; ++i) {
+      if (!(i < n2 && defined3(d = data[i], i, data)) === defined0) {
         if (defined0 = !defined0)
           output.lineStart();
         else
@@ -5906,11 +5906,11 @@ function area_default(x0, y0, y1) {
   y0 = typeof y0 === "function" ? y0 : y0 === void 0 ? constant_default(0) : constant_default(+y0);
   y1 = typeof y1 === "function" ? y1 : y1 === void 0 ? y : constant_default(+y1);
   function area(data) {
-    var i, j, k2, n = (data = array_default(data)).length, d, defined0 = false, buffer, x0z = new Array(n), y0z = new Array(n);
+    var i, j, k2, n2 = (data = array_default(data)).length, d, defined0 = false, buffer, x0z = new Array(n2), y0z = new Array(n2);
     if (context == null)
       output = curve(buffer = path2());
-    for (i = 0; i <= n; ++i) {
-      if (!(i < n && defined3(d = data[i], i, data)) === defined0) {
+    for (i = 0; i <= n2; ++i) {
+      if (!(i < n2 && defined3(d = data[i], i, data)) === defined0) {
         if (defined0 = !defined0) {
           j = i;
           output.areaStart();
@@ -6478,19 +6478,19 @@ Natural.prototype = {
     this._y = [];
   },
   lineEnd: function() {
-    var x2 = this._x, y2 = this._y, n = x2.length;
-    if (n) {
+    var x2 = this._x, y2 = this._y, n2 = x2.length;
+    if (n2) {
       this._line ? this._context.lineTo(x2[0], y2[0]) : this._context.moveTo(x2[0], y2[0]);
-      if (n === 2) {
+      if (n2 === 2) {
         this._context.lineTo(x2[1], y2[1]);
       } else {
         var px = controlPoints(x2), py = controlPoints(y2);
-        for (var i0 = 0, i1 = 1; i1 < n; ++i0, ++i1) {
+        for (var i0 = 0, i1 = 1; i1 < n2; ++i0, ++i1) {
           this._context.bezierCurveTo(px[0][i0], py[0][i0], px[1][i0], py[1][i0], x2[i1], y2[i1]);
         }
       }
     }
-    if (this._line || this._line !== 0 && n === 1)
+    if (this._line || this._line !== 0 && n2 === 1)
       this._context.closePath();
     this._line = 1 - this._line;
     this._x = this._y = null;
@@ -6501,18 +6501,18 @@ Natural.prototype = {
   }
 };
 function controlPoints(x2) {
-  var i, n = x2.length - 1, m, a2 = new Array(n), b = new Array(n), r2 = new Array(n);
+  var i, n2 = x2.length - 1, m, a2 = new Array(n2), b = new Array(n2), r2 = new Array(n2);
   a2[0] = 0, b[0] = 2, r2[0] = x2[0] + 2 * x2[1];
-  for (i = 1; i < n - 1; ++i)
+  for (i = 1; i < n2 - 1; ++i)
     a2[i] = 1, b[i] = 4, r2[i] = 4 * x2[i] + 2 * x2[i + 1];
-  a2[n - 1] = 2, b[n - 1] = 7, r2[n - 1] = 8 * x2[n - 1] + x2[n];
-  for (i = 1; i < n; ++i)
+  a2[n2 - 1] = 2, b[n2 - 1] = 7, r2[n2 - 1] = 8 * x2[n2 - 1] + x2[n2];
+  for (i = 1; i < n2; ++i)
     m = a2[i] / b[i - 1], b[i] -= m, r2[i] -= m * r2[i - 1];
-  a2[n - 1] = r2[n - 1] / b[n - 1];
-  for (i = n - 2; i >= 0; --i)
+  a2[n2 - 1] = r2[n2 - 1] / b[n2 - 1];
+  for (i = n2 - 2; i >= 0; --i)
     a2[i] = (r2[i] - a2[i + 1]) / b[i];
-  b[n - 1] = (x2[n] + a2[n - 1]) / 2;
-  for (i = 0; i < n - 1; ++i)
+  b[n2 - 1] = (x2[n2] + a2[n2 - 1]) / 2;
+  for (i = 0; i < n2 - 1; ++i)
     b[i] = 2 * x2[i + 1] - a2[i + 1];
   return [a2, b];
 }
@@ -6580,9 +6580,9 @@ function stepAfter(context) {
 
 // node_modules/d3-shape/src/offset/none.js
 function none_default(series, order) {
-  if (!((n = series.length) > 1))
+  if (!((n2 = series.length) > 1))
     return;
-  for (var i = 1, j, s0, s1 = series[order[0]], n, m = s1.length; i < n; ++i) {
+  for (var i = 1, j, s0, s1 = series[order[0]], n2, m = s1.length; i < n2; ++i) {
     s0 = s1, s1 = series[order[i]];
     for (j = 0; j < m; ++j) {
       s1[j][1] += s1[j][0] = isNaN(s0[j][1]) ? s0[j][0] : s0[j][1];
@@ -6592,9 +6592,9 @@ function none_default(series, order) {
 
 // node_modules/d3-shape/src/order/none.js
 function none_default2(series) {
-  var n = series.length, o = new Array(n);
-  while (--n >= 0)
-    o[n] = n;
+  var n2 = series.length, o = new Array(n2);
+  while (--n2 >= 0)
+    o[n2] = n2;
   return o;
 }
 
@@ -6610,13 +6610,13 @@ function stackSeries(key) {
 function stack_default() {
   var keys2 = constant_default([]), order = none_default2, offset = none_default, value = stackValue;
   function stack(data) {
-    var sz = Array.from(keys2.apply(this, arguments), stackSeries), i, n = sz.length, j = -1, oz;
+    var sz = Array.from(keys2.apply(this, arguments), stackSeries), i, n2 = sz.length, j = -1, oz;
     for (const d of data) {
-      for (i = 0, ++j; i < n; ++i) {
+      for (i = 0, ++j; i < n2; ++i) {
         (sz[i][j] = [0, +value(d, sz[i].key, j, data)]).data = d;
       }
     }
-    for (i = 0, oz = array_default(order(sz)); i < n; ++i) {
+    for (i = 0, oz = array_default(order(sz)); i < n2; ++i) {
       sz[oz[i]].index = i;
     }
     offset(sz, oz);
@@ -6639,13 +6639,13 @@ function stack_default() {
 
 // node_modules/d3-shape/src/offset/expand.js
 function expand_default(series, order) {
-  if (!((n = series.length) > 0))
+  if (!((n2 = series.length) > 0))
     return;
-  for (var i, n, j = 0, m = series[0].length, y2; j < m; ++j) {
-    for (y2 = i = 0; i < n; ++i)
+  for (var i, n2, j = 0, m = series[0].length, y2; j < m; ++j) {
+    for (y2 = i = 0; i < n2; ++i)
       y2 += series[i][j][1] || 0;
     if (y2)
-      for (i = 0; i < n; ++i)
+      for (i = 0; i < n2; ++i)
         series[i][j][1] /= y2;
   }
   none_default(series, order);
@@ -6653,10 +6653,10 @@ function expand_default(series, order) {
 
 // node_modules/d3-shape/src/offset/silhouette.js
 function silhouette_default(series, order) {
-  if (!((n = series.length) > 0))
+  if (!((n2 = series.length) > 0))
     return;
-  for (var j = 0, s0 = series[order[0]], n, m = s0.length; j < m; ++j) {
-    for (var i = 0, y2 = 0; i < n; ++i)
+  for (var j = 0, s0 = series[order[0]], n2, m = s0.length; j < m; ++j) {
+    for (var i = 0, y2 = 0; i < n2; ++i)
       y2 += series[i][j][1] || 0;
     s0[j][1] += s0[j][0] = -y2 / 2;
   }
@@ -6665,10 +6665,10 @@ function silhouette_default(series, order) {
 
 // node_modules/d3-shape/src/offset/wiggle.js
 function wiggle_default(series, order) {
-  if (!((n = series.length) > 0) || !((m = (s0 = series[order[0]]).length) > 0))
+  if (!((n2 = series.length) > 0) || !((m = (s0 = series[order[0]]).length) > 0))
     return;
-  for (var y2 = 0, j = 1, s0, m, n; j < m; ++j) {
-    for (var i = 0, s1 = 0, s2 = 0; i < n; ++i) {
+  for (var y2 = 0, j = 1, s0, m, n2; j < m; ++j) {
+    for (var i = 0, s1 = 0, s2 = 0; i < n2; ++i) {
       var si = series[order[i]], sij0 = si[j][1] || 0, sij1 = si[j - 1][1] || 0, s3 = (sij0 - sij1) / 2;
       for (var k2 = 0; k2 < i; ++k2) {
         var sk = series[order[k2]], skj0 = sk[j][1] || 0, skj1 = sk[j - 1][1] || 0;
@@ -7520,12 +7520,12 @@ function _unsupportedIterableToArray(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray(o, minLen);
 }
 function _arrayLikeToArray(arr, len) {
@@ -7535,27 +7535,27 @@ function _arrayLikeToArray(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit(r2, l2) {
+function _iterableToArrayLimit(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -8469,12 +8469,12 @@ function _unsupportedIterableToArray2(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray2(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray2(o, minLen);
 }
 function _arrayLikeToArray2(arr, len) {
@@ -8484,27 +8484,27 @@ function _arrayLikeToArray2(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit2(r2, l2) {
+function _iterableToArrayLimit2(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -8761,12 +8761,12 @@ function _unsupportedIterableToArray3(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray3(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray3(o, minLen);
 }
 function _arrayLikeToArray3(arr, len) {
@@ -8776,27 +8776,27 @@ function _arrayLikeToArray3(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit3(r2, l2) {
+function _iterableToArrayLimit3(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -9221,20 +9221,20 @@ function ticks(start, stop, count) {
   const reverse3 = stop < start, [i1, i2, inc] = reverse3 ? tickSpec(stop, start, count) : tickSpec(start, stop, count);
   if (!(i2 >= i1))
     return [];
-  const n = i2 - i1 + 1, ticks2 = new Array(n);
+  const n2 = i2 - i1 + 1, ticks2 = new Array(n2);
   if (reverse3) {
     if (inc < 0)
-      for (let i = 0; i < n; ++i)
+      for (let i = 0; i < n2; ++i)
         ticks2[i] = (i2 - i) / -inc;
     else
-      for (let i = 0; i < n; ++i)
+      for (let i = 0; i < n2; ++i)
         ticks2[i] = (i2 - i) * inc;
   } else {
     if (inc < 0)
-      for (let i = 0; i < n; ++i)
+      for (let i = 0; i < n2; ++i)
         ticks2[i] = (i1 + i) / -inc;
     else
-      for (let i = 0; i < n; ++i)
+      for (let i = 0; i < n2; ++i)
         ticks2[i] = (i1 + i) * inc;
   }
   return ticks2;
@@ -9299,13 +9299,13 @@ function quickselect(array, k2, left = 0, right = Infinity, compare) {
   compare = compare === void 0 ? ascendingDefined : compareDefined(compare);
   while (right > left) {
     if (right - left > 600) {
-      const n = right - left + 1;
+      const n2 = right - left + 1;
       const m = k2 - left + 1;
-      const z = Math.log(n);
+      const z = Math.log(n2);
       const s2 = 0.5 * Math.exp(2 * z / 3);
-      const sd = 0.5 * Math.sqrt(z * s2 * (n - s2) / n) * (m - n / 2 < 0 ? -1 : 1);
-      const newLeft = Math.max(left, Math.floor(k2 - m * s2 / n + sd));
-      const newRight = Math.min(right, Math.floor(k2 + (n - m) * s2 / n + sd));
+      const sd = 0.5 * Math.sqrt(z * s2 * (n2 - s2) / n2) * (m - n2 / 2 < 0 ? -1 : 1);
+      const newLeft = Math.max(left, Math.floor(k2 - m * s2 / n2 + sd));
+      const newRight = Math.min(right, Math.floor(k2 + (n2 - m) * s2 / n2 + sd));
       quickselect(array, k2, newLeft, newRight, compare);
     }
     const t = array[k2];
@@ -9341,31 +9341,31 @@ function swap(array, i, j) {
 // node_modules/d3-array/src/quantile.js
 function quantile(values2, p, valueof) {
   values2 = Float64Array.from(numbers(values2, valueof));
-  if (!(n = values2.length) || isNaN(p = +p))
+  if (!(n2 = values2.length) || isNaN(p = +p))
     return;
-  if (p <= 0 || n < 2)
+  if (p <= 0 || n2 < 2)
     return min(values2);
   if (p >= 1)
     return max(values2);
-  var n, i = (n - 1) * p, i0 = Math.floor(i), value0 = max(quickselect(values2, i0).subarray(0, i0 + 1)), value1 = min(values2.subarray(i0 + 1));
+  var n2, i = (n2 - 1) * p, i0 = Math.floor(i), value0 = max(quickselect(values2, i0).subarray(0, i0 + 1)), value1 = min(values2.subarray(i0 + 1));
   return value0 + (value1 - value0) * (i - i0);
 }
 function quantileSorted(values2, p, valueof = number) {
-  if (!(n = values2.length) || isNaN(p = +p))
+  if (!(n2 = values2.length) || isNaN(p = +p))
     return;
-  if (p <= 0 || n < 2)
+  if (p <= 0 || n2 < 2)
     return +valueof(values2[0], 0, values2);
   if (p >= 1)
-    return +valueof(values2[n - 1], n - 1, values2);
-  var n, i = (n - 1) * p, i0 = Math.floor(i), value0 = +valueof(values2[i0], i0, values2), value1 = +valueof(values2[i0 + 1], i0 + 1, values2);
+    return +valueof(values2[n2 - 1], n2 - 1, values2);
+  var n2, i = (n2 - 1) * p, i0 = Math.floor(i), value0 = +valueof(values2[i0], i0, values2), value1 = +valueof(values2[i0 + 1], i0 + 1, values2);
   return value0 + (value1 - value0) * (i - i0);
 }
 
 // node_modules/d3-array/src/range.js
 function range(start, stop, step) {
-  start = +start, stop = +stop, step = (n = arguments.length) < 2 ? (stop = start, start = 0, 1) : n < 3 ? 1 : +step;
-  var i = -1, n = Math.max(0, Math.ceil((stop - start) / step)) | 0, range6 = new Array(n);
-  while (++i < n) {
+  start = +start, stop = +stop, step = (n2 = arguments.length) < 2 ? (stop = start, start = 0, 1) : n2 < 3 ? 1 : +step;
+  var i = -1, n2 = Math.max(0, Math.ceil((stop - start) / step)) | 0, range6 = new Array(n2);
+  while (++i < n2) {
     range6[i] = start + i * step;
   }
   return range6;
@@ -9450,15 +9450,15 @@ function band() {
   var scale = ordinal().unknown(void 0), domain = scale.domain, ordinalRange = scale.range, r0 = 0, r1 = 1, step, bandwidth, round = false, paddingInner = 0, paddingOuter = 0, align = 0.5;
   delete scale.unknown;
   function rescale() {
-    var n = domain().length, reverse3 = r1 < r0, start = reverse3 ? r1 : r0, stop = reverse3 ? r0 : r1;
-    step = (stop - start) / Math.max(1, n - paddingInner + paddingOuter * 2);
+    var n2 = domain().length, reverse3 = r1 < r0, start = reverse3 ? r1 : r0, stop = reverse3 ? r0 : r1;
+    step = (stop - start) / Math.max(1, n2 - paddingInner + paddingOuter * 2);
     if (round)
       step = Math.floor(step);
-    start += (stop - start - step * (n - paddingInner)) * align;
+    start += (stop - start - step * (n2 - paddingInner)) * align;
     bandwidth = step * (1 - paddingInner);
     if (round)
       start = Math.round(start), bandwidth = Math.round(bandwidth);
-    var values2 = range(n).map(function(i) {
+    var values2 = range(n2).map(function(i) {
       return start + step * i;
     });
     return ordinalRange(reverse3 ? values2.reverse() : values2);
@@ -9717,12 +9717,12 @@ function color_formatRgb() {
   return this.rgb().formatRgb();
 }
 function color(format2) {
-  var m, l2;
+  var m, l;
   format2 = (format2 + "").trim().toLowerCase();
-  return (m = reHex.exec(format2)) ? (l2 = m[1].length, m = parseInt(m[1], 16), l2 === 6 ? rgbn(m) : l2 === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) : l2 === 8 ? rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) : l2 === 4 ? rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) : null) : (m = reRgbInteger.exec(format2)) ? new Rgb(m[1], m[2], m[3], 1) : (m = reRgbPercent.exec(format2)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) : (m = reRgbaInteger.exec(format2)) ? rgba(m[1], m[2], m[3], m[4]) : (m = reRgbaPercent.exec(format2)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) : (m = reHslPercent.exec(format2)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) : (m = reHslaPercent.exec(format2)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) : named.hasOwnProperty(format2) ? rgbn(named[format2]) : format2 === "transparent" ? new Rgb(NaN, NaN, NaN, 0) : null;
+  return (m = reHex.exec(format2)) ? (l = m[1].length, m = parseInt(m[1], 16), l === 6 ? rgbn(m) : l === 3 ? new Rgb(m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, (m & 15) << 4 | m & 15, 1) : l === 8 ? rgba(m >> 24 & 255, m >> 16 & 255, m >> 8 & 255, (m & 255) / 255) : l === 4 ? rgba(m >> 12 & 15 | m >> 8 & 240, m >> 8 & 15 | m >> 4 & 240, m >> 4 & 15 | m & 240, ((m & 15) << 4 | m & 15) / 255) : null) : (m = reRgbInteger.exec(format2)) ? new Rgb(m[1], m[2], m[3], 1) : (m = reRgbPercent.exec(format2)) ? new Rgb(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, 1) : (m = reRgbaInteger.exec(format2)) ? rgba(m[1], m[2], m[3], m[4]) : (m = reRgbaPercent.exec(format2)) ? rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]) : (m = reHslPercent.exec(format2)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) : (m = reHslaPercent.exec(format2)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) : named.hasOwnProperty(format2) ? rgbn(named[format2]) : format2 === "transparent" ? new Rgb(NaN, NaN, NaN, 0) : null;
 }
-function rgbn(n) {
-  return new Rgb(n >> 16 & 255, n >> 8 & 255, n & 255, 1);
+function rgbn(n2) {
+  return new Rgb(n2 >> 16 & 255, n2 >> 8 & 255, n2 & 255, 1);
 }
 function rgba(r2, g, b, a2) {
   if (a2 <= 0)
@@ -9791,14 +9791,14 @@ function hex(value) {
   value = clampi(value);
   return (value < 16 ? "0" : "") + value.toString(16);
 }
-function hsla(h, s2, l2, a2) {
+function hsla(h, s2, l, a2) {
   if (a2 <= 0)
-    h = s2 = l2 = NaN;
-  else if (l2 <= 0 || l2 >= 1)
+    h = s2 = l = NaN;
+  else if (l <= 0 || l >= 1)
     h = s2 = NaN;
   else if (s2 <= 0)
     h = NaN;
-  return new Hsl(h, s2, l2, a2);
+  return new Hsl(h, s2, l, a2);
 }
 function hslConvert(o) {
   if (o instanceof Hsl)
@@ -9810,7 +9810,7 @@ function hslConvert(o) {
   if (o instanceof Hsl)
     return o;
   o = o.rgb();
-  var r2 = o.r / 255, g = o.g / 255, b = o.b / 255, min3 = Math.min(r2, g, b), max3 = Math.max(r2, g, b), h = NaN, s2 = max3 - min3, l2 = (max3 + min3) / 2;
+  var r2 = o.r / 255, g = o.g / 255, b = o.b / 255, min3 = Math.min(r2, g, b), max3 = Math.max(r2, g, b), h = NaN, s2 = max3 - min3, l = (max3 + min3) / 2;
   if (s2) {
     if (r2 === max3)
       h = (g - b) / s2 + (g < b) * 6;
@@ -9818,20 +9818,20 @@ function hslConvert(o) {
       h = (b - r2) / s2 + 2;
     else
       h = (r2 - g) / s2 + 4;
-    s2 /= l2 < 0.5 ? max3 + min3 : 2 - max3 - min3;
+    s2 /= l < 0.5 ? max3 + min3 : 2 - max3 - min3;
     h *= 60;
   } else {
-    s2 = l2 > 0 && l2 < 1 ? 0 : h;
+    s2 = l > 0 && l < 1 ? 0 : h;
   }
-  return new Hsl(h, s2, l2, o.opacity);
+  return new Hsl(h, s2, l, o.opacity);
 }
-function hsl(h, s2, l2, opacity) {
-  return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s2, l2, opacity == null ? 1 : opacity);
+function hsl(h, s2, l, opacity) {
+  return arguments.length === 1 ? hslConvert(h) : new Hsl(h, s2, l, opacity == null ? 1 : opacity);
 }
-function Hsl(h, s2, l2, opacity) {
+function Hsl(h, s2, l, opacity) {
   this.h = +h;
   this.s = +s2;
-  this.l = +l2;
+  this.l = +l;
   this.opacity = +opacity;
 }
 define_default(Hsl, hsl, extend(Color, {
@@ -9844,7 +9844,7 @@ define_default(Hsl, hsl, extend(Color, {
     return new Hsl(this.h, this.s, this.l * k2, this.opacity);
   },
   rgb() {
-    var h = this.h % 360 + (this.h < 0) * 360, s2 = isNaN(h) || isNaN(this.s) ? 0 : this.s, l2 = this.l, m2 = l2 + (l2 < 0.5 ? l2 : 1 - l2) * s2, m1 = 2 * l2 - m2;
+    var h = this.h % 360 + (this.h < 0) * 360, s2 = isNaN(h) || isNaN(this.s) ? 0 : this.s, l = this.l, m2 = l + (l < 0.5 ? l : 1 - l) * s2, m1 = 2 * l - m2;
     return new Rgb(
       hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
       hsl2rgb(h, m1, m2),
@@ -9880,19 +9880,19 @@ function basis(t12, v0, v1, v2, v3) {
   return ((1 - 3 * t12 + 3 * t2 - t3) * v0 + (4 - 6 * t2 + 3 * t3) * v1 + (1 + 3 * t12 + 3 * t2 - 3 * t3) * v2 + t3 * v3) / 6;
 }
 function basis_default2(values2) {
-  var n = values2.length - 1;
+  var n2 = values2.length - 1;
   return function(t) {
-    var i = t <= 0 ? t = 0 : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n), v1 = values2[i], v2 = values2[i + 1], v0 = i > 0 ? values2[i - 1] : 2 * v1 - v2, v3 = i < n - 1 ? values2[i + 2] : 2 * v2 - v1;
-    return basis((t - i / n) * n, v0, v1, v2, v3);
+    var i = t <= 0 ? t = 0 : t >= 1 ? (t = 1, n2 - 1) : Math.floor(t * n2), v1 = values2[i], v2 = values2[i + 1], v0 = i > 0 ? values2[i - 1] : 2 * v1 - v2, v3 = i < n2 - 1 ? values2[i + 2] : 2 * v2 - v1;
+    return basis((t - i / n2) * n2, v0, v1, v2, v3);
   };
 }
 
 // node_modules/d3-interpolate/src/basisClosed.js
 function basisClosed_default2(values2) {
-  var n = values2.length;
+  var n2 = values2.length;
   return function(t) {
-    var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n), v0 = values2[(i + n - 1) % n], v1 = values2[i % n], v2 = values2[(i + 1) % n], v3 = values2[(i + 2) % n];
-    return basis((t - i / n) * n, v0, v1, v2, v3);
+    var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n2), v0 = values2[(i + n2 - 1) % n2], v1 = values2[i % n2], v2 = values2[(i + 1) % n2], v3 = values2[(i + 2) % n2];
+    return basis((t - i / n2) * n2, v0, v1, v2, v3);
   };
 }
 
@@ -9938,8 +9938,8 @@ var rgb_default = function rgbGamma(y2) {
 }(1);
 function rgbSpline(spline) {
   return function(colors) {
-    var n = colors.length, r2 = new Array(n), g = new Array(n), b = new Array(n), i, color2;
-    for (i = 0; i < n; ++i) {
+    var n2 = colors.length, r2 = new Array(n2), g = new Array(n2), b = new Array(n2), i, color2;
+    for (i = 0; i < n2; ++i) {
       color2 = rgb(colors[i]);
       r2[i] = color2.r || 0;
       g[i] = color2.g || 0;
@@ -9964,9 +9964,9 @@ var rgbBasisClosed = rgbSpline(basisClosed_default2);
 function numberArray_default(a2, b) {
   if (!b)
     b = [];
-  var n = a2 ? Math.min(b.length, a2.length) : 0, c2 = b.slice(), i;
+  var n2 = a2 ? Math.min(b.length, a2.length) : 0, c2 = b.slice(), i;
   return function(t) {
-    for (i = 0; i < n; ++i)
+    for (i = 0; i < n2; ++i)
       c2[i] = a2[i] * (1 - t) + b[i] * t;
     return c2;
   };
@@ -10091,11 +10091,11 @@ function round_default(a2, b) {
 function piecewise(interpolate, values2) {
   if (values2 === void 0)
     values2 = interpolate, interpolate = value_default;
-  var i = 0, n = values2.length - 1, v = values2[0], I = new Array(n < 0 ? 0 : n);
-  while (i < n)
+  var i = 0, n2 = values2.length - 1, v = values2[0], I = new Array(n2 < 0 ? 0 : n2);
+  while (i < n2)
     I[i] = interpolate(v, v = values2[++i]);
   return function(t) {
-    var i2 = Math.max(0, Math.min(n - 1, Math.floor(t *= n)));
+    var i2 = Math.max(0, Math.min(n2 - 1, Math.floor(t *= n2)));
     return I[i2](t - i2);
   };
 }
@@ -10161,10 +10161,10 @@ function copy(source, target) {
 function transformer() {
   var domain = unit, range6 = unit, interpolate = value_default, transform, untransform, unknown, clamp = identity, piecewise2, output, input;
   function rescale() {
-    var n = Math.min(domain.length, range6.length);
+    var n2 = Math.min(domain.length, range6.length);
     if (clamp !== identity)
-      clamp = clamper(domain[0], domain[n - 1]);
-    piecewise2 = n > 2 ? polymap : bimap;
+      clamp = clamper(domain[0], domain[n2 - 1]);
+    piecewise2 = n2 > 2 ? polymap : bimap;
     output = input = null;
     return scale;
   }
@@ -10284,7 +10284,7 @@ FormatSpecifier.prototype.toString = function() {
 // node_modules/d3-format/src/formatTrim.js
 function formatTrim_default(s2) {
   out:
-    for (var n = s2.length, i = 1, i0 = -1, i1; i < n; ++i) {
+    for (var n2 = s2.length, i = 1, i0 = -1, i1; i < n2; ++i) {
       switch (s2[i]) {
         case ".":
           i0 = i1 = i;
@@ -10311,8 +10311,8 @@ function formatPrefixAuto_default(x2, p) {
   var d = formatDecimalParts(x2, p);
   if (!d)
     return x2 + "";
-  var coefficient = d[0], exponent = d[1], i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1, n = coefficient.length;
-  return i === n ? coefficient : i > n ? coefficient + new Array(i - n + 1).join("0") : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i) : "0." + new Array(1 - i).join("0") + formatDecimalParts(x2, Math.max(0, p + i - 1))[0];
+  var coefficient = d[0], exponent = d[1], i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1, n2 = coefficient.length;
+  return i === n2 ? coefficient : i > n2 ? coefficient + new Array(i - n2 + 1).join("0") : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i) : "0." + new Array(1 - i).join("0") + formatDecimalParts(x2, Math.max(0, p + i - 1))[0];
 }
 
 // node_modules/d3-format/src/formatRounded.js
@@ -10364,7 +10364,7 @@ function locale_default(locale3) {
     var formatType = formatTypes_default[type], maybeSuffix = /[defgprs%]/.test(type);
     precision = precision === void 0 ? 6 : /[gprs]/.test(type) ? Math.max(1, Math.min(21, precision)) : Math.max(0, Math.min(20, precision));
     function format2(value) {
-      var valuePrefix = prefix2, valueSuffix = suffix, i, n, c2;
+      var valuePrefix = prefix2, valueSuffix = suffix, i, n2, c2;
       if (type === "c") {
         valueSuffix = formatType(value) + valueSuffix;
         value = "";
@@ -10379,8 +10379,8 @@ function locale_default(locale3) {
         valuePrefix = (valueNegative ? sign2 === "(" ? sign2 : minus : sign2 === "-" || sign2 === "(" ? "" : sign2) + valuePrefix;
         valueSuffix = (type === "s" ? prefixes[8 + prefixExponent / 3] : "") + valueSuffix + (valueNegative && sign2 === "(" ? ")" : "");
         if (maybeSuffix) {
-          i = -1, n = value.length;
-          while (++i < n) {
+          i = -1, n2 = value.length;
+          while (++i < n2) {
             if (c2 = value.charCodeAt(i), 48 > c2 || c2 > 57) {
               valueSuffix = (c2 === 46 ? decimal + value.slice(i + 1) : value.slice(i)) + valueSuffix;
               value = value.slice(0, i);
@@ -10636,9 +10636,9 @@ function loggish(transform) {
     let j = logs(v);
     let k2;
     let t;
-    const n = count == null ? 10 : +count;
+    const n2 = count == null ? 10 : +count;
     let z = [];
-    if (!(base % 1) && j - i < n) {
+    if (!(base % 1) && j - i < n2) {
       i = Math.floor(i), j = Math.ceil(j);
       if (u > 0)
         for (; i <= j; ++i) {
@@ -10662,10 +10662,10 @@ function loggish(transform) {
             z.push(t);
           }
         }
-      if (z.length * 2 < n)
-        z = ticks(u, v, n);
+      if (z.length * 2 < n2)
+        z = ticks(u, v, n2);
     } else {
-      z = ticks(i, j, Math.min(j - i, n)).map(pows);
+      z = ticks(i, j, Math.min(j - i, n2)).map(pows);
     }
     return r2 ? z.reverse() : z;
   };
@@ -10809,10 +10809,10 @@ function radial() {
 function quantile2() {
   var domain = [], range6 = [], thresholds = [], unknown;
   function rescale() {
-    var i = 0, n = Math.max(1, range6.length);
-    thresholds = new Array(n - 1);
-    while (++i < n)
-      thresholds[i - 1] = quantileSorted(domain, i / n);
+    var i = 0, n2 = Math.max(1, range6.length);
+    thresholds = new Array(n2 - 1);
+    while (++i < n2)
+      thresholds[i - 1] = quantileSorted(domain, i / n2);
     return scale;
   }
   function scale(x2) {
@@ -10852,26 +10852,26 @@ function quantile2() {
 
 // node_modules/d3-scale/src/quantize.js
 function quantize() {
-  var x0 = 0, x1 = 1, n = 1, domain = [0.5], range6 = [0, 1], unknown;
+  var x0 = 0, x1 = 1, n2 = 1, domain = [0.5], range6 = [0, 1], unknown;
   function scale(x2) {
-    return x2 != null && x2 <= x2 ? range6[bisect_default(domain, x2, 0, n)] : unknown;
+    return x2 != null && x2 <= x2 ? range6[bisect_default(domain, x2, 0, n2)] : unknown;
   }
   function rescale() {
     var i = -1;
-    domain = new Array(n);
-    while (++i < n)
-      domain[i] = ((i + 1) * x1 - (i - n) * x0) / (n + 1);
+    domain = new Array(n2);
+    while (++i < n2)
+      domain[i] = ((i + 1) * x1 - (i - n2) * x0) / (n2 + 1);
     return scale;
   }
   scale.domain = function(_) {
     return arguments.length ? ([x0, x1] = _, x0 = +x0, x1 = +x1, rescale()) : [x0, x1];
   };
   scale.range = function(_) {
-    return arguments.length ? (n = (range6 = Array.from(_)).length - 1, rescale()) : range6.slice();
+    return arguments.length ? (n2 = (range6 = Array.from(_)).length - 1, rescale()) : range6.slice();
   };
   scale.invertExtent = function(y2) {
     var i = range6.indexOf(y2);
-    return i < 0 ? [NaN, NaN] : i < 1 ? [x0, domain[0]] : i >= n ? [domain[n - 1], x1] : [domain[i - 1], domain[i]];
+    return i < 0 ? [NaN, NaN] : i < 1 ? [x0, domain[0]] : i >= n2 ? [domain[n2 - 1], x1] : [domain[i - 1], domain[i]];
   };
   scale.unknown = function(_) {
     return arguments.length ? (unknown = _, scale) : scale;
@@ -10887,15 +10887,15 @@ function quantize() {
 
 // node_modules/d3-scale/src/threshold.js
 function threshold() {
-  var domain = [0.5], range6 = [0, 1], unknown, n = 1;
+  var domain = [0.5], range6 = [0, 1], unknown, n2 = 1;
   function scale(x2) {
-    return x2 != null && x2 <= x2 ? range6[bisect_default(domain, x2, 0, n)] : unknown;
+    return x2 != null && x2 <= x2 ? range6[bisect_default(domain, x2, 0, n2)] : unknown;
   }
   scale.domain = function(_) {
-    return arguments.length ? (domain = Array.from(_), n = Math.min(domain.length, range6.length - 1), scale) : domain.slice();
+    return arguments.length ? (domain = Array.from(_), n2 = Math.min(domain.length, range6.length - 1), scale) : domain.slice();
   };
   scale.range = function(_) {
-    return arguments.length ? (range6 = Array.from(_), n = Math.min(domain.length, range6.length - 1), scale) : range6.slice();
+    return arguments.length ? (range6 = Array.from(_), n2 = Math.min(domain.length, range6.length - 1), scale) : range6.slice();
   };
   scale.invertExtent = function(y2) {
     var i = range6.indexOf(y2);
@@ -11387,10 +11387,10 @@ function formatLocale(locale3) {
   utcFormats.c = newFormat(locale_dateTime, utcFormats);
   function newFormat(specifier, formats2) {
     return function(date2) {
-      var string = [], i = -1, j = 0, n = specifier.length, c2, pad2, format2;
+      var string = [], i = -1, j = 0, n2 = specifier.length, c2, pad2, format2;
       if (!(date2 instanceof Date))
         date2 = /* @__PURE__ */ new Date(+date2);
-      while (++i < n) {
+      while (++i < n2) {
         if (specifier.charCodeAt(i) === 37) {
           string.push(specifier.slice(j, i));
           if ((pad2 = pads[c2 = specifier.charAt(++i)]) != null)
@@ -11458,8 +11458,8 @@ function formatLocale(locale3) {
     };
   }
   function parseSpecifier(d, specifier, string, j) {
-    var i = 0, n = specifier.length, m = string.length, c2, parse;
-    while (i < n) {
+    var i = 0, n2 = specifier.length, m = string.length, c2, parse;
+    while (i < n2) {
       if (j >= m)
         return -1;
       c2 = specifier.charCodeAt(i++);
@@ -11475,24 +11475,24 @@ function formatLocale(locale3) {
     return j;
   }
   function parsePeriod(d, string, i) {
-    var n = periodRe.exec(string.slice(i));
-    return n ? (d.p = periodLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+    var n2 = periodRe.exec(string.slice(i));
+    return n2 ? (d.p = periodLookup.get(n2[0].toLowerCase()), i + n2[0].length) : -1;
   }
   function parseShortWeekday(d, string, i) {
-    var n = shortWeekdayRe.exec(string.slice(i));
-    return n ? (d.w = shortWeekdayLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+    var n2 = shortWeekdayRe.exec(string.slice(i));
+    return n2 ? (d.w = shortWeekdayLookup.get(n2[0].toLowerCase()), i + n2[0].length) : -1;
   }
   function parseWeekday(d, string, i) {
-    var n = weekdayRe.exec(string.slice(i));
-    return n ? (d.w = weekdayLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+    var n2 = weekdayRe.exec(string.slice(i));
+    return n2 ? (d.w = weekdayLookup.get(n2[0].toLowerCase()), i + n2[0].length) : -1;
   }
   function parseShortMonth(d, string, i) {
-    var n = shortMonthRe.exec(string.slice(i));
-    return n ? (d.m = shortMonthLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+    var n2 = shortMonthRe.exec(string.slice(i));
+    return n2 ? (d.m = shortMonthLookup.get(n2[0].toLowerCase()), i + n2[0].length) : -1;
   }
   function parseMonth(d, string, i) {
-    var n = monthRe.exec(string.slice(i));
-    return n ? (d.m = monthLookup.get(n[0].toLowerCase()), i + n[0].length) : -1;
+    var n2 = monthRe.exec(string.slice(i));
+    return n2 ? (d.m = monthLookup.get(n2[0].toLowerCase()), i + n2[0].length) : -1;
   }
   function parseLocaleDateTime(d, string, i) {
     return parseSpecifier(d, locale_dateTime, string, i);
@@ -11588,84 +11588,84 @@ function formatLookup(names) {
   return new Map(names.map((name, i) => [name.toLowerCase(), i]));
 }
 function parseWeekdayNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.w = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 1));
+  return n2 ? (d.w = +n2[0], i + n2[0].length) : -1;
 }
 function parseWeekdayNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.u = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 1));
+  return n2 ? (d.u = +n2[0], i + n2[0].length) : -1;
 }
 function parseWeekNumberSunday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.U = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.U = +n2[0], i + n2[0].length) : -1;
 }
 function parseWeekNumberISO(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.V = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.V = +n2[0], i + n2[0].length) : -1;
 }
 function parseWeekNumberMonday(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.W = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.W = +n2[0], i + n2[0].length) : -1;
 }
 function parseFullYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 4));
-  return n ? (d.y = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 4));
+  return n2 ? (d.y = +n2[0], i + n2[0].length) : -1;
 }
 function parseYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.y = +n[0] + (+n[0] > 68 ? 1900 : 2e3), i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.y = +n2[0] + (+n2[0] > 68 ? 1900 : 2e3), i + n2[0].length) : -1;
 }
 function parseZone(d, string, i) {
-  var n = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
-  return n ? (d.Z = n[1] ? 0 : -(n[2] + (n[3] || "00")), i + n[0].length) : -1;
+  var n2 = /^(Z)|([+-]\d\d)(?::?(\d\d))?/.exec(string.slice(i, i + 6));
+  return n2 ? (d.Z = n2[1] ? 0 : -(n2[2] + (n2[3] || "00")), i + n2[0].length) : -1;
 }
 function parseQuarter(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 1));
-  return n ? (d.q = n[0] * 3 - 3, i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 1));
+  return n2 ? (d.q = n2[0] * 3 - 3, i + n2[0].length) : -1;
 }
 function parseMonthNumber(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.m = n[0] - 1, i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.m = n2[0] - 1, i + n2[0].length) : -1;
 }
 function parseDayOfMonth(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.d = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.d = +n2[0], i + n2[0].length) : -1;
 }
 function parseDayOfYear(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
-  return n ? (d.m = 0, d.d = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 3));
+  return n2 ? (d.m = 0, d.d = +n2[0], i + n2[0].length) : -1;
 }
 function parseHour24(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.H = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.H = +n2[0], i + n2[0].length) : -1;
 }
 function parseMinutes(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.M = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.M = +n2[0], i + n2[0].length) : -1;
 }
 function parseSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 2));
-  return n ? (d.S = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 2));
+  return n2 ? (d.S = +n2[0], i + n2[0].length) : -1;
 }
 function parseMilliseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 3));
-  return n ? (d.L = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 3));
+  return n2 ? (d.L = +n2[0], i + n2[0].length) : -1;
 }
 function parseMicroseconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i, i + 6));
-  return n ? (d.L = Math.floor(n[0] / 1e3), i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i, i + 6));
+  return n2 ? (d.L = Math.floor(n2[0] / 1e3), i + n2[0].length) : -1;
 }
 function parseLiteralPercent(d, string, i) {
-  var n = percentRe.exec(string.slice(i, i + 1));
-  return n ? i + n[0].length : -1;
+  var n2 = percentRe.exec(string.slice(i, i + 1));
+  return n2 ? i + n2[0].length : -1;
 }
 function parseUnixTimestamp(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
-  return n ? (d.Q = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i));
+  return n2 ? (d.Q = +n2[0], i + n2[0].length) : -1;
 }
 function parseUnixTimestampSeconds(d, string, i) {
-  var n = numberRe.exec(string.slice(i));
-  return n ? (d.s = +n[0], i + n[0].length) : -1;
+  var n2 = numberRe.exec(string.slice(i));
+  return n2 ? (d.s = +n2[0], i + n2[0].length) : -1;
 }
 function formatDayOfMonth(d, p) {
   return pad(d.getDate(), p, 2);
@@ -11970,8 +11970,8 @@ function sequentialQuantile() {
   scale.range = function() {
     return domain.map((d, i) => interpolator(i / (domain.length - 1)));
   };
-  scale.quantiles = function(n) {
-    return Array.from({ length: n + 1 }, (_, i) => quantile(domain, i / n));
+  scale.quantiles = function(n2) {
+    return Array.from({ length: n2 + 1 }, (_, i) => quantile(domain, i / n2));
   };
   scale.copy = function() {
     return sequentialQuantile(interpolator).domain(domain);
@@ -12070,12 +12070,12 @@ function _unsupportedIterableToArray4(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray4(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray4(o, minLen);
 }
 function _iterableToArray(iter) {
@@ -12111,8 +12111,8 @@ var curry0 = function curry02(fn) {
     return fn.apply(void 0, arguments);
   };
 };
-var curryN = function curryN2(n, fn) {
-  if (n === 1) {
+var curryN = function curryN2(n2, fn) {
+  if (n2 === 1) {
     return fn;
   }
   return curry0(function() {
@@ -12122,10 +12122,10 @@ var curryN = function curryN2(n, fn) {
     var argsLength = args.filter(function(arg) {
       return arg !== PLACE_HOLDER;
     }).length;
-    if (argsLength >= n) {
+    if (argsLength >= n2) {
       return fn.apply(void 0, args);
     }
-    return curryN2(n - argsLength, curry0(function() {
+    return curryN2(n2 - argsLength, curry0(function() {
       for (var _len2 = arguments.length, restArgs = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
         restArgs[_key2] = arguments[_key2];
       }
@@ -12265,12 +12265,12 @@ function _unsupportedIterableToArray5(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray5(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray5(o, minLen);
 }
 function _arrayLikeToArray5(arr, len) {
@@ -12350,8 +12350,8 @@ function getTickOfSingleValue(value, tickCount, allowDecimals) {
     middle = new import_decimal2.default(Math.floor(value));
   }
   var middleIndex = Math.floor((tickCount - 1) / 2);
-  var fn = compose(map2(function(n) {
-    return middle.add(new import_decimal2.default(n - middleIndex).mul(step)).toNumber();
+  var fn = compose(map2(function(n2) {
+    return middle.add(new import_decimal2.default(n2 - middleIndex).mul(step)).toNumber();
   }), range2);
   return fn(0, tickCount);
 }
@@ -12422,8 +12422,8 @@ function getTickValuesFn(_ref5) {
     return getTickOfSingleValue(cormin, tickCount, allowDecimals);
   }
   var step = getFormatStep(new import_decimal2.default(cormax).sub(cormin).div(count - 1), allowDecimals, 0);
-  var fn = compose(map2(function(n) {
-    return new import_decimal2.default(cormin).add(new import_decimal2.default(n).mul(step)).toNumber();
+  var fn = compose(map2(function(n2) {
+    return new import_decimal2.default(cormin).add(new import_decimal2.default(n2).mul(step)).toNumber();
   }), range2);
   var values2 = fn(0, count).filter(function(entry) {
     return entry >= cormin && entry <= cormax;
@@ -12477,12 +12477,12 @@ function _unsupportedIterableToArray6(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray6(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray6(o, minLen);
 }
 function _arrayLikeToArray6(arr, len) {
@@ -12492,27 +12492,27 @@ function _arrayLikeToArray6(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit5(r2, l2) {
+function _iterableToArrayLimit5(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -12811,12 +12811,12 @@ function _unsupportedIterableToArray7(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray7(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray7(o, minLen);
 }
 function _iterableToArray3(iter) {
@@ -13288,14 +13288,14 @@ var checkDomainOfScale = function checkDomainOfScale2(scale) {
   }
 };
 var offsetSign = function offsetSign2(series) {
-  var n = series.length;
-  if (n <= 0) {
+  var n2 = series.length;
+  if (n2 <= 0) {
     return;
   }
   for (var j = 0, m = series[0].length; j < m; ++j) {
     var positive = 0;
     var negative = 0;
-    for (var i = 0; i < n; ++i) {
+    for (var i = 0; i < n2; ++i) {
       var value = (0, import_isNaN2.default)(series[i][j][1]) ? series[i][j][0] : series[i][j][1];
       if (value >= 0) {
         series[i][j][0] = positive;
@@ -13310,13 +13310,13 @@ var offsetSign = function offsetSign2(series) {
   }
 };
 var offsetPositive = function offsetPositive2(series) {
-  var n = series.length;
-  if (n <= 0) {
+  var n2 = series.length;
+  if (n2 <= 0) {
     return;
   }
   for (var j = 0, m = series[0].length; j < m; ++j) {
     var positive = 0;
-    for (var i = 0; i < n; ++i) {
+    for (var i = 0; i < n2; ++i) {
       var value = (0, import_isNaN2.default)(series[i][j][1]) ? series[i][j][0] : series[i][j][1];
       if (value >= 0) {
         series[i][j][0] = positive;
@@ -13602,12 +13602,12 @@ function _unsupportedIterableToArray8(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray8(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray8(o, minLen);
 }
 function _arrayLikeToArray8(arr, len) {
@@ -13617,27 +13617,27 @@ function _arrayLikeToArray8(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit6(r2, l2) {
+function _iterableToArrayLimit6(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -13830,12 +13830,12 @@ function _unsupportedIterableToArray9(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray9(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray9(o, minLen);
 }
 function _iterableToArray4(iter) {
@@ -14358,12 +14358,12 @@ function _unsupportedIterableToArray10(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray10(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray10(o, minLen);
 }
 function _iterableToArray5(iter) {
@@ -15343,12 +15343,12 @@ function _unsupportedIterableToArray11(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray11(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray11(o, minLen);
 }
 function _arrayLikeToArray11(arr, len) {
@@ -15524,27 +15524,27 @@ function _slicedToArray7(arr, i) {
 function _nonIterableRest8() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _iterableToArrayLimit7(r2, l2) {
+function _iterableToArrayLimit7(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t.return && (u = t.return(), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -15565,12 +15565,12 @@ function _unsupportedIterableToArray12(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray12(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray12(o, minLen);
 }
 function _iterableToArray7(iter) {
@@ -15825,12 +15825,12 @@ function _unsupportedIterableToArray13(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray13(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray13(o, minLen);
 }
 function _arrayLikeToArray13(arr, len) {
@@ -15840,27 +15840,27 @@ function _arrayLikeToArray13(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit8(r2, l2) {
+function _iterableToArrayLimit8(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t.return && (u = t.return(), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -16020,12 +16020,12 @@ function _unsupportedIterableToArray14(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray14(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray14(o, minLen);
 }
 function _iterableToArray9(iter) {
@@ -17471,12 +17471,12 @@ function _unsupportedIterableToArray15(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray15(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray15(o, minLen);
 }
 function _arrayLikeToArray15(arr, len) {
@@ -17486,27 +17486,27 @@ function _arrayLikeToArray15(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit9(r2, l2) {
+function _iterableToArrayLimit9(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -17751,12 +17751,12 @@ function _unsupportedIterableToArray16(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray16(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray16(o, minLen);
 }
 function _iterableToArray10(iter) {
@@ -18683,12 +18683,12 @@ function _unsupportedIterableToArray17(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray17(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray17(o, minLen);
 }
 function _arrayLikeToArray17(arr, len) {
@@ -18698,27 +18698,27 @@ function _arrayLikeToArray17(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit10(r2, l2) {
+function _iterableToArrayLimit10(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -20763,12 +20763,12 @@ function _unsupportedIterableToArray18(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray18(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray18(o, minLen);
 }
 function _arrayLikeToArray18(arr, len) {
@@ -20778,27 +20778,27 @@ function _arrayLikeToArray18(arr, len) {
     arr2[i] = arr[i];
   return arr2;
 }
-function _iterableToArrayLimit11(r2, l2) {
+function _iterableToArrayLimit11(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -21255,12 +21255,12 @@ function _unsupportedIterableToArray19(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray19(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray19(o, minLen);
 }
 function _iterableToArray11(iter) {
@@ -21667,27 +21667,27 @@ function _slicedToArray12(arr, i) {
 function _nonIterableRest13() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-function _iterableToArrayLimit12(r2, l2) {
+function _iterableToArrayLimit12(r2, l) {
   var t = null == r2 ? null : "undefined" != typeof Symbol && r2[Symbol.iterator] || r2["@@iterator"];
   if (null != t) {
-    var e, n, i, u, a2 = [], f = true, o = false;
+    var e, n2, i, u, a2 = [], f = true, o = false;
     try {
-      if (i = (t = t.call(r2)).next, 0 === l2) {
+      if (i = (t = t.call(r2)).next, 0 === l) {
         if (Object(t) !== t)
           return;
         f = false;
       } else
-        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l2); f = true)
+        for (; !(f = (e = i.call(t)).done) && (a2.push(e.value), a2.length !== l); f = true)
           ;
     } catch (r3) {
-      o = true, n = r3;
+      o = true, n2 = r3;
     } finally {
       try {
         if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u))
           return;
       } finally {
         if (o)
-          throw n;
+          throw n2;
       }
     }
     return a2;
@@ -21812,12 +21812,12 @@ function _unsupportedIterableToArray20(o, minLen) {
     return;
   if (typeof o === "string")
     return _arrayLikeToArray20(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor)
-    n = o.constructor.name;
-  if (n === "Map" || n === "Set")
+  var n2 = Object.prototype.toString.call(o).slice(8, -1);
+  if (n2 === "Object" && o.constructor)
+    n2 = o.constructor.name;
+  if (n2 === "Map" || n2 === "Set")
     return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2))
     return _arrayLikeToArray20(o, minLen);
 }
 function _iterableToArray12(iter) {
@@ -23589,7 +23589,7 @@ if (import.meta) {
     //@ts-expect-error
     "app/components/dashboard/summaryTitle.tsx"
   );
-  import.meta.hot.lastModified = "1733508671083.456";
+  import.meta.hot.lastModified = "1733690189768.4229";
 }
 var SummaryTitle = ({
   title,
@@ -23607,7 +23607,7 @@ var SummaryTitle = ({
       fromLink: true
     }, _hover: {
       textDecoration: "none"
-    }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Button, { p: 0, variant: "tertiary", background: "none", rightIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(l, { weight: "fill" }, void 0, false, {
+    }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(Button, { p: 0, variant: "tertiary", background: "none", rightIcon: /* @__PURE__ */ (0, import_jsx_dev_runtime2.jsxDEV)(n, { weight: "fill" }, void 0, false, {
       fileName: "app/components/dashboard/summaryTitle.tsx",
       lineNumber: 40,
       columnNumber: 79
@@ -23647,4 +23647,4 @@ export {
 decimal.js-light/decimal.js:
   (*! decimal.js-light v2.5.1 https://github.com/MikeMcl/decimal.js-light/LICENCE *)
 */
-//# sourceMappingURL=/build/_shared/chunk-74VEQR6V.js.map
+//# sourceMappingURL=/build/_shared/chunk-JGDIYDEN.js.map

@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
-import { CaretLeft, CaretRight } from "@phosphor-icons/react";
+import { CaretLeft } from "@phosphor-icons/react/dist/ssr/CaretLeft";
+import { CaretRight } from "@phosphor-icons/react/dist/ssr/CaretRight";
 import theme from "~/theme";
 
 interface PaginationButtonProps {
