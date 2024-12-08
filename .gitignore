@@ -7,6 +7,4 @@ node_modules
 cypress/videos
 cypress/screenshots
 .vercel
-
-# Local Netlify folder
 .netlify
