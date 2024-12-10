@@ -75,15 +75,15 @@ For my next project, I want to approach things more thoughtfully, starting with 
 
 Here’s how I plan to improve my process for the next project:
 
-- Docker
+- **Docker**
     - **Why:** To create a consistent environment for building and running the application.
     - By containerizing the app, I can make sure it works the same across different machines, which will help avoid "it works on my computer" issues. This should also make it easier to deploy without running into unexpected errors.
 
-- Testing Frameworks (e.g., Cypress, Playwright, Vitest, Jest)
+- **Testing Frameworks (e.g., Cypress, Playwright, Vitest, Jest)**
     - **Why:** To test as I go and catch issues early.
     - I’ll use tools like Jest or Vitest for unit tests to make sure individual components work as expected and Cypress or Playwright for end-to-end testing to check the overall user flow. Writing tests during development will help me avoid piling up bugs that are harder to fix later.
 
-- GitHub Actions
+- **GitHub Actions**
     - **Why:** To automate repetitive tasks like running tests and deploying updates.
     - Setting up CI/CD pipelines with GitHub Actions will make the build and deployment process smoother and more reliable. It’ll also help catch problems early and save me time by automating tasks I’d otherwise have to do manually.
 
