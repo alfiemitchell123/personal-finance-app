@@ -46,7 +46,7 @@ Example transaction images have been added manually to reflect the Figma design.
 
   
 
-- Solution URL: [Frontend Mentor](https://your-solution-url.com)
+- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/full-stack-personal-finance-app-with-remix-firebase-and-chakra-ui-nNaYk8-i5w)
 
 - Live Site URL: [Personal Finance App](https://personal-finance-app-snowy.vercel.app/login)
 
