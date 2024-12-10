@@ -17,7 +17,7 @@ import {
 import ClientOnly from '../ClientOnly';
 
 const Register = () => {
-    const { userLoggedIn } = useAuth() || { userLoggedIn: false };
+    const { user } = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -45,9 +45,7 @@ const Register = () => {
                 expenses: 0,
                 currentBalance: 0,
                 displayName: "User",
-            })
-
-            console.log("Registration sucessful.");
+            });
             toast({
                 title: "Registration Successful",
                 description: "You have successfully registered.",
@@ -69,7 +67,7 @@ const Register = () => {
         }
     };
 
-    if (userLoggedIn) {
+    if (user) {
         return <Navigate to='/' replace />;
     }
 

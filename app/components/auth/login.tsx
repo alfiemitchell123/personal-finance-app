@@ -18,8 +18,8 @@ import {
     VStack,
     useToast,
 } from '@chakra-ui/react';
-import {Eye} from "@phosphor-icons/react/dist/ssr/Eye";
-import {EyeSlash} from "@phosphor-icons/react/dist/ssr/EyeSlash";
+import { Eye } from "@phosphor-icons/react/dist/ssr/Eye";
+import { EyeSlash } from "@phosphor-icons/react/dist/ssr/EyeSlash";
 import InputField from '../ui/inputField';
 import ClientOnly from '../ClientOnly';
 import theme from '~/theme';
@@ -69,8 +69,6 @@ const Login = () => {
                 await setDoc(doc(db, "users", user.uid), {
                     displayName: name || "User",
                 })
-
-                console.log("Registration sucessful.");
                 toast({
                     title: "Registration Successful",
                     description: "You have successfully registered.",

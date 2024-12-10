@@ -17,7 +17,6 @@ export default function PotsRoute() {
     const selectedPot = pots?.find((pot) => pot.id === selectedItem);
 
     const handleEdit = (id: string) => {
-        console.log("Editing pot with id: ", id);
         openEditPotModal(id);
     };
 

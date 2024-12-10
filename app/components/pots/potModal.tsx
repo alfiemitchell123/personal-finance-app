@@ -82,7 +82,6 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
             setPotName(existingPot.potName || "");
             setTargetAmt(Number(existingPot.targetAmt) || 0);
             setPotColor(existingPot.potColor || "");
-            console.log("Editing mode with data: ", existingPot);
         }
     }, [mode, existingPot]);
 
@@ -149,13 +148,11 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
 
     // Logic for deleting pots
     const handleDeletePot = async () => {
-        console.log("handleDeletePot called, mode:", mode, "potId:", potId);
         if (mode === "delete" && potId) {
             if (user) {
                 // Delete pot
                 const potDocRef = doc(db, `users/${user.uid}/pots`, potId);
                 await deleteDoc(potDocRef);
-                console.log("Pot deleted successfully");
                 onClose();
                 toast({
                     title: "Pot deleted successfully.",
@@ -435,7 +432,6 @@ const PotModal: React.FC<PotModalProps> = ({ isOpen, onClose, mode, potId, exist
                         textStyle="preset4bold"
                         fontSize=" 0.875rem"
                         onClick={() => {
-                            console.log("Button clicked, mode:", mode);
                             if (mode === "addNew" || mode === "edit") {
                                 handleSavePot();
                             } else if (mode === "delete") {

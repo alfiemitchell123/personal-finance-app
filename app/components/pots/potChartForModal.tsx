@@ -13,7 +13,6 @@ interface PotChartForModalProps {
 
 const PotChartForModal: React.FC<PotChartForModalProps> = ({ newAmount, percentage, targetAmt, savedAmtBarWidth, addOrWithdrawAmtBarWidth, barColor }) => {
     const gap = theme.spacing[50];
-    console.log("savedAmtBarWidth: ", savedAmtBarWidth);
 
     return (
         <Flex

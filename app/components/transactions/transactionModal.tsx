@@ -126,7 +126,6 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, mo
     }
 
     const handleDeleteTransaction = async () => {
-        console.log("handleDeleteTransaction called, mode:", mode, "transactionId:", transactionId);
         if (mode === "delete" && transactionId) {
             if (user) {
                 // Delete transaction
@@ -223,7 +222,6 @@ const TransactionModal: React.FC<TransactionModalProps> = ({ isOpen, onClose, mo
                 textStyle="preset4bold"
                 fontSize=" 0.875rem"
                 onClick={() => {
-                    console.log("Button clicked, mode:", mode);
                     if (mode === "add" || mode === "edit") {
                         handleSaveTransaction();
                     } else if (mode === "delete") {

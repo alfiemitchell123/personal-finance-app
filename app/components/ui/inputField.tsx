@@ -49,14 +49,12 @@ const InputField: React.FC<InputFieldProps> = ({
     const [inputValue, setInputValue] = useState<string>("");
 
     useEffect(() => {
-        console.log("value prop updated:", value);
         if (value !== undefined) {
             setInputValue(value.toString()); // Sync local state with prop
         }
     }, [value]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("Input changed:", event.target.value);
         const { value } = event.target;
         setInputValue(value); // Update local state
         if (onChange) {

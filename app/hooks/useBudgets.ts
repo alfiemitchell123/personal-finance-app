@@ -56,7 +56,6 @@ const useBudgets = () => {
             setBudgets(sortedBudgets);
         }, (error) => {
             setError("Error fetching budgets");
-            console.log(error);
         });
 
         // Cleanup function to unsubscribe

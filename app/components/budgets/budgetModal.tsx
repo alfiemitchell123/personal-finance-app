@@ -138,13 +138,11 @@ const BudgetModal: React.FC<BudgetModalProps> = ({ isOpen, onClose, mode, budget
     }
 
     const handleDeleteBudget = async () => {
-        console.log("handleDeleteBudget called, mode:", mode, "budgetId:", budgetId);
         if (mode === "delete" && budgetId) {
             if (user) {
                 // Delete budget
                 const budgetDocRef = doc(db, `users/${user.uid}/budgets`, budgetId);
                 await deleteDoc(budgetDocRef);
-                console.log("Budget deleted successfully");
                 onClose();
                 toast({
                     title: "Budget deleted successfully.",
